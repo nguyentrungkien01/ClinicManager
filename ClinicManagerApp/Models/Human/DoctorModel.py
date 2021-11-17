@@ -4,5 +4,5 @@ from ClinicManagerApp.Models.Human.StaffModel import StaffModel
 
 class DoctorModel(StaffModel):
     __tablename__ = 'doctor_model'
-    major = Column(String(20), defaul='')
+    major = Column(String(20), default='')
     exp_year = Column(Float, default=1)
