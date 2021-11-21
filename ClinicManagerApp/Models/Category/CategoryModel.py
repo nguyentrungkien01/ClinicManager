@@ -1,9 +1,11 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
+from sqlalchemy.orm import relation
 
 from ClinicManagerApp import db
 
 
 class CategoryModel(db.Model):
     __tablename__ = 'category_model'
-    code = Column(String(6), primary_key=True)
-    name = Column(String(50), default='')
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(50), unique=True, default='')
+    medicine_list = relation('MedicineModel', backref='category', lazy=True)

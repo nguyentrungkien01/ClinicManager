@@ -1,10 +1,11 @@
 from ClinicManagerApp import app, db
 
+
 @app.route('/')
 def homePage():
     try:
-        db.drop_all()
-        #db.create_all()
+        # db.drop_all()
+        db.create_all()
     except:
         db.session.rollback()
         return "fail"
