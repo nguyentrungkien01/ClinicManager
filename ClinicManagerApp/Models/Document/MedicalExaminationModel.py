@@ -12,3 +12,5 @@ class MedicalExaminationModel(DocumentModel):
     customer_id = Column(Integer, ForeignKey('customer_model.id'), nullable=False)
     medical_bill = relation('MedicalBillModel', backref=backref('medical_examination', uselist=False, lazy=True),
                             uselist=False, lazy=True)
+    medicine_list = relation('MedicineModel', secondary='medicine_examination_detail_model',
+                             backref=backref('medical_examination_list', lazy=True), lazy=True)

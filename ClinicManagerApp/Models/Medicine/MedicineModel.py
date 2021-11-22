@@ -7,7 +7,7 @@ from ClinicManagerApp import db
 
 
 class MedicineModel(db.Model):
-    __tablename__ = 'medicine_-model'
+    __tablename__ = 'medicine_model'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(50), unique=True, default='', nullable=False)
     amount = Column(Integer, default=0)
