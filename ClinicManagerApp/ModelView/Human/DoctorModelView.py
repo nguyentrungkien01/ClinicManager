@@ -1,6 +1,5 @@
-from flask_admin.contrib.sqla import ModelView
+from ClinicManagerApp.ModelView.BaseModelView import BaseModelView
 
 
-
-class DoctorModelView(ModelView):
+class DoctorModelView(BaseModelView):
     pass

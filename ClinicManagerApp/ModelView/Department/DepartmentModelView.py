@@ -1,5 +1,6 @@
-from flask_admin.contrib.sqla import ModelView
+
+from ClinicManagerApp.ModelView.BaseModelView import BaseModelView
 
 
-class DepartmentModelView(ModelView):
-    pass
+class DepartmentModelView(BaseModelView):
+    column_sortable_list = ['department_id', 'name', 'capacity']

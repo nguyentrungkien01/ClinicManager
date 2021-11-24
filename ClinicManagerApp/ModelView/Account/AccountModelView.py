@@ -1,7 +1,6 @@
-from flask_admin.contrib.sqla import ModelView
+from ClinicManagerApp.ModelView.BaseModelView import BaseModelView
 
 
-class AccountModelView(ModelView):
-    column_hide_backrefs = False
-
-
+class AccountModelView(BaseModelView):
+    column_exclude_list = ['avatar']
+    column_sortable_list = ['account_id', 'username', 'last_access']

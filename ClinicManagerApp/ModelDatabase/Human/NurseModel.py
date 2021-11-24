@@ -1,11 +1,20 @@
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import backref, relationship
 
-from ClinicManagerApp import db
+from ClinicManagerApp import StaffModel
 
 
-class NurseModel(db.Model):
+class NurseModel(StaffModel):
     __tablename__ = 'nurse_model'
-    staff_code = Column(String(6), ForeignKey('staff_model.code'), primary_key=True)
 
-    medical_bill_list = relationship('MedicalBillModel', backref=backref('nurse', lazy=True), lazy=True)
+    # primary key
+    staff_code = Column(String(6), ForeignKey('staff_model.staff_code'), primary_key=True)
+
+    # relationship
+    medical_bill_list = relationship('MedicalBillModel', backref=backref('nurse', lazy=True),
+                                     foreign_keys='[MedicalBillModel.nurse_code]', lazy=True)
+
+    # mapper
+    __mapper_args__ = {
+        'polymorphic_identity': 'nurse',
+    }

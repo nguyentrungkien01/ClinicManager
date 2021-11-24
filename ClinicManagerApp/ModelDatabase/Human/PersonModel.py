@@ -1,12 +1,11 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, Boolean, DateTime, Integer
-
-from ClinicManagerApp import db
+from sqlalchemy import Column, String, Boolean, DateTime
 
 
-class PersonModel(db.Model):
-    id = Column(Integer, primary_key=True, autoincrement=True)
+class PersonModel(object):
+
+    # attributes
     first_name = Column(String(20), default='')
     middle_name = Column(String(40), default='')
     last_name = Column(String(20), default='')

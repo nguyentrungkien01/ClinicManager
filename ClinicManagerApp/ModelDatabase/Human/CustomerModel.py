@@ -1,14 +1,19 @@
-from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy import Column, Integer
 from sqlalchemy.orm import backref, relationship
 
-from ClinicManagerApp import db
+from ClinicManagerApp import PersonModel, db
 
 
-class CustomerModel(db.Model):
+class CustomerModel(PersonModel, db.Model):
     __tablename__ = 'customer_model'
-    person_id = Column(Integer, ForeignKey('person_model.id'), primary_key=True, nullable=False)
 
-    medical_examination_list = relationship('MedicalExaminationModel',
-                                            backref=backref('customer', lazy=True), lazy=True)
-    medical_bill_list = relationship('MedicalBillModel',
-                                     backref=backref('customer', lazy=True), lazy=True)
+    # attribute
+    customer_id = Column(Integer, primary_key=True, autoincrement=True)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.last_name, self.middle_name, self.first_name)
+
+    # relationship
+    document_list = relationship('DocumentModel', backref=backref('customer', lazy=True),
+                                 foreign_keys='[DocumentModel.customer_id]', lazy=True)
+
