@@ -29,14 +29,13 @@ from ClinicManagerApp.ModelDatabase.Human.NurseModel import NurseModel
 from ClinicManagerApp.ModelDatabase.Medicine.MedicineModel import MedicineModel
 from ClinicManagerApp.ModelDatabase.Intermediary.MedicineExaminationDetailModel import \
     medicine_examination_detail_model
+from ClinicManagerApp.ModelDatabase.Intermediary.DepartmentManagerDetailModel import department_manager_detail_model
 
 from ClinicManagerApp.ModelView.Account.AccountModelView import AccountModelView
 from ClinicManagerApp.ModelView.Category.CategoryModelView import CategoryModelView
 from ClinicManagerApp.ModelView.Department.DepartmentModelView import DepartmentModelView
-from ClinicManagerApp.ModelView.Document.DocumentModelView import DocumentModelView
 from ClinicManagerApp.ModelView.Document.MedicalBillModelView import MedicalBillModelView
 from ClinicManagerApp.ModelView.Document.MedicalExaminationModelView import MedicalExaminationModelView
-from ClinicManagerApp.ModelView.Human.StaffModelView import StaffModelView
 from ClinicManagerApp.ModelView.Human.CustomerModelView import CustomerModelView
 from ClinicManagerApp.ModelView.Human.DoctorModelView import DoctorModelView
 from ClinicManagerApp.ModelView.Human.NurseModelView import NurseModelView
@@ -51,12 +50,13 @@ def initTables():
 
 
 def initAdmin():
-    admin.add_view(AccountModelView(AccountModel, db.session))
-    admin.add_view(CustomerModelView(CustomerModel, db.session))
-    admin.add_view(DoctorModelView(DoctorModel, db.session, category='Staffs'))
-    admin.add_view(NurseModelView(NurseModel, db.session, category='Staffs'))
-    admin.add_view(DepartmentModelView(DepartmentModel, db.session))
-    admin.add_view(CategoryModelView(CategoryModel, db.session))
-    admin.add_view(MedicineModelView(MedicineModel, db.session))
-    admin.add_view(MedicalBillModelView(MedicalBillModel, db.session, category='Documents'))
-    admin.add_view(MedicalExaminationModelView(MedicalExaminationModel, db.session, category='Documents'))
+    admin.add_view(AccountModelView(AccountModel, db.session, name='Tài khoản'))
+    admin.add_view(DoctorModelView(DoctorModel, db.session, category='Nhân viên', name='Bác sĩ'))
+    admin.add_view(NurseModelView(NurseModel, db.session, category='Nhân viên', name='Y tá'))
+    admin.add_view(CustomerModelView(CustomerModel, db.session, name='Khách hàng'))
+    admin.add_view(DepartmentModelView(DepartmentModel, db.session, name='Khoa khám'))
+    admin.add_view(MedicineModelView(MedicineModel, db.session, name='Thuốc', category='Sản phẩm'))
+    admin.add_view(CategoryModelView(CategoryModel, db.session, name='Kho thuốc', category='Sản phẩm'))
+    admin.add_view(MedicalBillModelView(MedicalBillModel, db.session, category='Tài liệu', name='Hóa đơn'))
+    admin.add_view(MedicalExaminationModelView(MedicalExaminationModel, db.session,
+                                               category='Tài liệu', name='Phiếu khám'))

@@ -13,8 +13,3 @@ class NurseModel(StaffModel):
     # relationship
     medical_bill_list = relationship('MedicalBillModel', backref=backref('nurse', lazy=True),
                                      foreign_keys='[MedicalBillModel.nurse_code]', lazy=True)
-
-    # mapper
-    __mapper_args__ = {
-        'polymorphic_identity': 'nurse',
-    }

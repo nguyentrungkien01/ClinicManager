@@ -23,8 +23,3 @@ class MedicalExaminationModel(DocumentModel):
                                 foreign_keys='[MedicalBillModel.medical_examination_code]', lazy=True)
     medicine_list = relationship('MedicineModel', secondary='medicine_examination_detail_model',
                                  backref=backref('medical_examination_list', lazy=True), lazy=True)
-
-    # mapper
-    __mapper_args__ = {
-        'polymorphic_identity': 'medical_examination',
-    }

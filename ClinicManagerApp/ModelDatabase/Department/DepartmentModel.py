@@ -17,5 +17,5 @@ class DepartmentModel(db.Model):
     # relationships
     staff_list = relationship('StaffModel', backref='contained_department',
                               foreign_keys='[StaffModel.contained_department_id]', lazy=True)
-    manager = relationship('DoctorModel', backref=backref('managed_department', uselist=False, lazy=True),
-                           foreign_keys='[DoctorModel.managed_department_id]', lazy=True)
+    manager = relationship('DoctorModel', secondary='department_manager_detail_model',
+                           backref=backref('managed_department', lazy=True), lazy=True)

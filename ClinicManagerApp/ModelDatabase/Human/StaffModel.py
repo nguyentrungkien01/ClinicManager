@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import String, Column, DateTime, ForeignKey, Integer, Boolean
-from sqlalchemy.orm import relationship, backref, declared_attr
+from sqlalchemy import String, Column, DateTime, ForeignKey, Integer, Float
+from sqlalchemy.orm import relationship, backref
 
 from ClinicManagerApp import db
 from ClinicManagerApp.ModelDatabase.Human.PersonModel import PersonModel
@@ -15,8 +15,7 @@ class StaffModel(PersonModel, db.Model):
 
     # attributes
     date_of_work = Column(DateTime, default=datetime.now())
-    is_admin = Column(Boolean, default=True)
-    staff_type = Column(String(10))
+    exp_year = Column(Float, default=0.0)
 
     # foreign keys
     contained_department_id = Column('contained_department_id', Integer,
@@ -33,8 +32,3 @@ class StaffModel(PersonModel, db.Model):
     def __str__(self):
         return '{} {} {}'.format(self.last_name, self.middle_name, self.first_name)
 
-
-    # mapper
-    __mapper_args__ = {
-        'polymorphic_on': staff_type
-    }

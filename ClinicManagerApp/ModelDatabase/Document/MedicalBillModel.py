@@ -17,7 +17,3 @@ class MedicalBillModel(DocumentModel):
     # foreign key
     nurse_code = Column(String(6), ForeignKey('nurse_model.staff_code'))
     medical_examination_code = Column(String(10), ForeignKey('medical_examination_model.document_code'))
-    # mapper
-    __mapper_args__ = {
-        'polymorphic_identity': 'medical_bill',
-    }
