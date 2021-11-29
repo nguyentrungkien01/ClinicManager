@@ -1,10 +1,4 @@
 [
   {"patient_amount": 30},
-  {"units":
-      [
-        {"unit_1":  "Viên"},
-        {"unit_2":  "chai"}
-      ]
-  },
   {"medical_examination_price":  100000}
 ]

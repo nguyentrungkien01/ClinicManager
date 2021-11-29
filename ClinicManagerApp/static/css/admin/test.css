@@ -1,0 +1,26 @@
+table{
+
+                overflow:auto;
+                padding-left: 15px;
+        }
+    table, th, tr, td{
+          text-align: center;
+        white-space: nowrap;
+    }
+    .container-fluid {
+            width: 100%;
+            padding-right: 0px;
+            padding-left: 0px;
+            margin-right: auto;
+            margin-left: auto;
+    }
+    .table-responsive {
+        width: 95%;
+        margin: auto;
+        overflow-x: auto;
+        padding: 15px 0;
+    }
+     .table-bordered thead td, .table-bordered thead th {
+        border-bottom-width: 2px;
+        border: 2px solid red;
+    }

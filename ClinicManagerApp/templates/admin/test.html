@@ -1,0 +1,23 @@
+{% extends 'admin/model/list.html' %}
+
+{% block head%}
+{{super()}}
+<link href="{{url_for('static', filename='css/admin/test.css')}}" rel = 'stylesheet'>
+{% endblock%}
+
+
+{%block list_row_actions_header	%}
+{{super()}}
+{%endblock%}
+
+
+{%block model_menu_bar %}
+{{super()}}
+{%endblock%}
+
+
+{% block model_list_table %}
+{{super()}}
+{% endblock %}
+
+

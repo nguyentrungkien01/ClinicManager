@@ -1,0 +1,12 @@
+{% extends 'admin/base.html'%}
+
+
+{% block head%}
+{{super()}}
+<link href="{{url_for('static', filename='css/admin/test.css')}}" rel = 'stylesheet'>
+{% endblock%}
+
+{% block body %}
+{{super()}}
+<h1>Biểu đồ gì đó</h1>
+{% endblock %}
