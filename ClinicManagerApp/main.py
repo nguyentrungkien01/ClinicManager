@@ -1,4 +1,5 @@
-from ClinicManagerApp import app, initAdmin,  initTables
+from ClinicManagerApp import initTables, initAdmin
+from ClinicManagerApp.controller.admin.admin_controller import *
 
 
 @app.route('/')

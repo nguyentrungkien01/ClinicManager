@@ -1,0 +1,24 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    {% if not current_user.is_authenticated %}
+        <div class="container">
+            <p class="h1">Đăng nhập</p>
+            <form action="{{ url_for('login_admin' )}}" method = "post">
+                <div class="form-group">
+                    <label>Tên đăng nhập</label>
+                    <input type="text" name="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Đăng nhập" class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <h1>Hello {{current_user.username}}</h1>
+    {% endif%}
+{% endblock %}
