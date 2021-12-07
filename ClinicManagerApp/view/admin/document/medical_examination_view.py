@@ -11,9 +11,10 @@ class MedicalExaminationView(BaseModelView):
     can_edit = False
 
     # columns
-    column_sortable_list = ['document_code', 'date_created',
+    column_sortable_list = ['document_id',
+                            'date_created',
                             'date_created']
-    column_searchable_list = ['document_code',
+    column_searchable_list = ['document_id',
                               'symptom',
                               'predicted_disease']
     column_filters = (DateEqualFilter(MedicalExaminationModel.date_created, name='Ngày tạo'),
@@ -22,8 +23,8 @@ class MedicalExaminationView(BaseModelView):
                       DateSmallerFilter(MedicalExaminationModel.date_created, name='Ngày tạo'),
                       DateBetweenFilter(MedicalExaminationModel.date_created, name='Ngày tạo')
                       )
-    column_default_sort = 'document_code'
-    column_labels = dict(document_code='Mã',
+    column_default_sort = 'document_id'
+    column_labels = dict(document_id='Mã',
                          date_created='Ngày tạo',
                          symptom='Triệu chứng',
                          predicted_disease='Bệnh chẩn đoán',
@@ -32,7 +33,7 @@ class MedicalExaminationView(BaseModelView):
                          medical_bill='Hoá đơn thanh toán')
 
     def scaffold_list_columns(self):
-        return ['document_code',
+        return ['document_id',
                 'date_created',
                 'symptom',
                 'predicted_disease',

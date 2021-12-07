@@ -11,7 +11,8 @@ class RoleModel(db.Model):
     name = Column(String(30), nullable=False, unique=True, default='')
 
     # relationship
-    account_list = relationship('AccountModel', backref='role', lazy=True)
+    account_list = relationship('AccountModel', backref='role', lazy=True,
+                                foreign_keys='[AccountModel.role_id]')
 
     def __str__(self):
         return '{}'.format(self.name)

@@ -10,13 +10,13 @@ from ClinicManagerApp.view.base_model_view import BaseModelView
 
 class DoctorView(BaseModelView):
     # columns
-    column_sortable_list = ['staff_code',
+    column_sortable_list = ['staff_id',
                             'first_name',
                             'last_name',
                             'date_of_birth',
                             'date_of_work',
                             'exp_year']
-    column_searchable_list = ['staff_code']
+    column_searchable_list = ['staff_id']
     column_filters = (FilterEqual(DoctorModel.first_name, name='Tên'),
                       FilterNotEqual(DoctorModel.first_name, name='Tên'),
                       FilterLike(DoctorModel.first_name, name='Tên'),
@@ -49,9 +49,9 @@ class DoctorView(BaseModelView):
                       FloatGreaterFilter(DoctorModel.exp_year, name='Kinh nghiệm (năm)'),
                       FloatSmallerFilter(DoctorModel.exp_year, name='Kinh nghiệm (năm)'))
 
-    column_default_sort = 'staff_code'
+    column_default_sort = 'staff_id'
 
-    column_labels = dict(staff_code='Mã',
+    column_labels = dict(staff_id='Mã',
                          first_name='Tên',
                          last_name='Họ và tên đệm',
                          date_of_birth='Ngày sinh',
@@ -143,7 +143,7 @@ class DoctorView(BaseModelView):
     ]
 
     def scaffold_list_columns(self):
-        return ['staff_code',
+        return ['staff_id',
                 'first_name',
                 'last_name',
                 'date_of_birth',

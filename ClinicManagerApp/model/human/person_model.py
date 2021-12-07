@@ -10,6 +10,7 @@ class Sex(enum.Enum):
 
 
 class PersonModel(object):
+
     # attributes
     first_name = Column(String(20), default='')
     last_name = Column(String(50), default='')

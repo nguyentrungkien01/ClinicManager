@@ -19,8 +19,8 @@ class CategoryView(BaseModelView):
     column_labels = dict(category_id='Mã',
                          name='Tên kho thuốc',
                          medicine_list='Danh sách thuốc trong kho')
-    column_editable_list = ('name',
-                            'medicine_list')
+    column_editable_list = ('name',)
+                            #'medicine_list')
 
     form_args = dict(
         name=dict(validators=[DataRequired()],

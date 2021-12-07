@@ -12,7 +12,8 @@ class MedicineUnitModel(db.Model):
     name = Column(String(30), nullable=False, unique=True, default='')
 
     # relationship
-    medicine_list = relationship('MedicineModel', backref='medicine_unit', lazy=True)
+    medicine_list = relationship('MedicineModel', backref='medicine_unit', lazy=True,
+                                 foreign_keys='[MedicineModel.medicine_unit_id]')
 
     def __str__(self):
         return '{}'.format(self.name)

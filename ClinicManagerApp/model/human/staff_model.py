@@ -11,24 +11,30 @@ class StaffModel(PersonModel, db.Model):
     __tablename__ = 'staff_model'
 
     # primary keys
-    staff_code = Column(String(6), primary_key=True)
+    staff_id = Column(Integer, primary_key=True, autoincrement=True)
 
     # attributes
     date_of_work = Column(DateTime, default=datetime.now())
     exp_year = Column(Float, default=0.0)
+    type = Column(String(50))
 
     # foreign keys
     contained_department_id = Column('contained_department_id', Integer,
                                      ForeignKey('department_model.department_id'))
-    manager_code = Column('manager_code', String(6), ForeignKey('staff_model.staff_code'))
+    manager_id = Column('manager_id', Integer, ForeignKey('staff_model.staff_id'))
 
     # relationships
     account = relationship('AccountModel', backref=backref('staff', uselist=False, lazy=True),
-                           foreign_keys='[AccountModel.staff_code]', lazy=True)
+                           foreign_keys='[AccountModel.staff_id]', lazy=True)
     staff_list = relationship('StaffModel', backref=backref('manager', lazy=True),
-                              foreign_keys='[StaffModel.manager_code]',
-                              remote_side='[StaffModel.staff_code]', lazy=True)
+                              foreign_keys='[StaffModel.manager_id]',
+                              remote_side='[StaffModel.staff_id]', lazy=True)
+
+    # mapper
+    __mapper_args__ = {
+        'polymorphic_on': type
+    }
 
     def __str__(self):
-        return '{} {} {}'.format(self.last_name, self.middle_name, self.first_name)
+        return '{} {}'.format(self.last_name, self.first_name)
 

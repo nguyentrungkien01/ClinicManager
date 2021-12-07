@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DECIMAL, String, ForeignKey
+from sqlalchemy import Column, DECIMAL, String, ForeignKey, Integer
 
 from ClinicManagerApp.model.document.document_model import DocumentModel
 
@@ -7,7 +7,7 @@ class MedicalBillModel(DocumentModel):
     __tablename__ = 'medical_bill_model'
 
     # primary keys
-    document_code = Column(String(10), ForeignKey('document_model.document_code'), primary_key=True)
+    document_id = Column(Integer, ForeignKey('document_model.document_id'), primary_key=True)
 
     # attribute
     medical_price = Column(DECIMAL, default=0.0)
@@ -15,5 +15,10 @@ class MedicalBillModel(DocumentModel):
     total_price = Column(DECIMAL, default=0.0)
 
     # foreign key
-    nurse_code = Column(String(6), ForeignKey('nurse_model.staff_code'))
-    medical_examination_code = Column(String(10), ForeignKey('medical_examination_model.document_code'))
+    nurse_id = Column(Integer, ForeignKey('nurse_model.staff_id'))
+    medical_examination_id = Column(Integer, ForeignKey('medical_examination_model.document_id'))
+
+    # mapper
+    __mapper_args__ = {
+        'polymorphic_identity': 'medical_bill'
+    }

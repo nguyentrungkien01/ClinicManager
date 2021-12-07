@@ -4,9 +4,62 @@
 {% block head%}
     {{super()}}
     <link href="{{url_for('static', filename='css/admin/test.css')}}" rel = 'stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{url_for('static', filename='js/admin/statistic.js')}}"></script>
 {% endblock%}
 
 {% block body %}
     {{super()}}
-    <h1>Thống kê</h1>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <form>
+                <div class="form-group">
+                    <label for="statistic_type">Loại thống kê</label>
+                    <select name="statistic_type" id="statistic_type">
+                    {% for s in selections['statistic_type'] %}
+                        <option value={{s['type']}}>{{s['name']}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="chart_type">Loại biểu đồ</label>
+                    <select name="chart_type" id="chart_type">
+                    {% for s in selections['chart_type'] %}
+                        <option value={{s['type']}}>{{s['name']}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="statistic_condition">Điều kiện thống kê </label>
+                    <select name="statistic_condition" id="statistic_condition">
+                    {% for s in selections['statistic_condition'] %}
+                        <option value={{s['type']}}>{{s['name']}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <a style="color: red;" onclick="createChart(type='line',
+                                        data=[12, 19, 3, 5, 2, 3],
+                                        labels=['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                        backgroundColor=[
+                                                            'rgba(255, 99, 132, 0.2)',
+                                                            'rgba(54, 162, 235, 0.2)',
+                                                            'rgba(255, 206, 86, 0.2)',
+                                                            'rgba(75, 192, 192, 0.2)',
+                                                            'rgba(153, 102, 255, 0.2)',
+                                                            'rgba(255, 159, 64, 0.2)'],
+                                        borderColor=[
+                                                            'rgba(255, 99, 132, 1)',
+                                                            'rgba(54, 162, 235, 1)',
+                                                            'rgba(255, 206, 86, 1)',
+                                                            'rgba(75, 192, 192, 1)',
+                                                            'rgba(153, 102, 255, 1)',
+                                                            'rgba(255, 159, 64, 1)'])">click here</a>
+            </form>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <canvas id="chart" width="400px" height="400px"></canvas>
+        </div>
+    </div>
 {% endblock %}

@@ -11,13 +11,13 @@ class MedicalBillView(BaseModelView):
     can_delete = False
 
     # columns
-    column_sortable_list = ['document_code',
+    column_sortable_list = ['document_id',
                             'date_created',
                             'medical_price',
                             'medical_examination_price',
                             'total_price']
 
-    column_searchable_list = ['document_code']
+    column_searchable_list = ['document_id']
 
     column_filters = (DateEqualFilter(MedicalBillModel.date_created, name='Ngày tạo'),
                       DateNotEqualFilter(MedicalBillModel.date_created, name='Ngày tạo'),
@@ -37,9 +37,9 @@ class MedicalBillView(BaseModelView):
                       FloatGreaterFilter(MedicalBillModel.total_price, name='Tổng tiền'),
                       FloatSmallerFilter(MedicalBillModel.total_price, name='Tổng tiền'))
 
-    column_default_sort = 'document_code'
+    column_default_sort = 'document_id'
 
-    column_labels = dict(document_code='Mã',
+    column_labels = dict(document_id='Mã',
                          date_created='Ngày tạo',
                          medical_price='Tiền thuốc',
                          medical_examination_price='Tiền khám bệnh',
@@ -50,7 +50,7 @@ class MedicalBillView(BaseModelView):
                          )
 
     def scaffold_list_columns(self):
-        return ['document_code',
+        return ['document_id',
                 'date_created',
                 'medical_examination',
                 'customer',

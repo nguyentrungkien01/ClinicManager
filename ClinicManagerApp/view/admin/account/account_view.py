@@ -78,3 +78,6 @@ class AccountView(BaseModelView):
                 'avatar',
                 'last_access',
                 'staff']
+
+    # def is_accessible(self):
+    #     return True
