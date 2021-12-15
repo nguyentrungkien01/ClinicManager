@@ -21,8 +21,8 @@ def statistic_revenue_month(from_month=None, to_month=None):
         .order_by(func.month(MedicalBillModel.date_created))
 
     if from_month and to_month:
-        return data.filter(and_(extract('month', MedicalBillModel.date_created) >= from_month,
-                                extract('month', MedicalBillModel.date_created) <= to_month)).all()
+        data = data.filter(and_(extract('month', MedicalBillModel.date_created) >= from_month,
+                                extract('month', MedicalBillModel.date_created) <= to_month))
     return data.all()
 
 
@@ -34,8 +34,8 @@ def statistic_revenue_quarter(from_quarter=None, to_quarter=None):
         .order_by(func.quarter(MedicalBillModel.date_created))
 
     if from_quarter and to_quarter:
-        return data.filter(and_(extract('quarter', MedicalBillModel.date_created) >= from_quarter,
-                                extract('quarter', MedicalBillModel.date_created) <= to_quarter)).all()
+        data = data.filter(and_(extract('quarter', MedicalBillModel.date_created) >= from_quarter,
+                                extract('quarter', MedicalBillModel.date_created) <= to_quarter))
     return data.all()
 
 
@@ -47,8 +47,8 @@ def statistic_revenue_year(from_year=None, to_year=None):
         .order_by(func.year(MedicalBillModel.date_created))
 
     if from_year and to_year:
-        return data.filter(and_(extract('year', MedicalBillModel.date_created) >= from_year,
-                                extract('year', MedicalBillModel.date_created) <= to_year)).all()
+        data = data.filter(and_(extract('year', MedicalBillModel.date_created) >= from_year,
+                                extract('year', MedicalBillModel.date_created) <= to_year))
     return data.all()
 
 
@@ -66,8 +66,8 @@ def statistic_medicine_using_frequency_month(from_month=None, to_month=None, key
         data = data.filter(MedicineModel.name.__eq__(keyword))
 
     if from_month and to_month:
-        return data.filter(and_(extract('month', MedicalExaminationModel.date_created) >= from_month,
-                                extract('month', MedicalExaminationModel.date_created) <= to_month)).all()
+        data = data.filter(and_(extract('month', MedicalExaminationModel.date_created) >= from_month,
+                                extract('month', MedicalExaminationModel.date_created) <= to_month))
     return data.all()
 
 
@@ -85,8 +85,8 @@ def statistic_medicine_using_frequency_quarter(from_quarter=None, to_quarter=Non
         data = data.filter(MedicineModel.name.__eq__(keyword))
 
     if from_quarter and to_quarter:
-        return data.filter(and_(extract('quarter', MedicalExaminationModel.date_created) >= from_quarter,
-                                extract('quarter', MedicalExaminationModel.date_created) <= to_quarter)).all()
+        data = data.filter(and_(extract('quarter', MedicalExaminationModel.date_created) >= from_quarter,
+                                extract('quarter', MedicalExaminationModel.date_created) <= to_quarter))
     return data.all()
 
 
@@ -104,8 +104,8 @@ def statistic_medicine_using_frequency_year(from_year=None, to_year=None, keywor
         data = data.filter(MedicineModel.name.__eq__(keyword))
 
     if from_year and to_year:
-        return data.filter(and_(extract('year', MedicalExaminationModel.date_created) >= from_year,
-                                extract('year', MedicalExaminationModel.date_created) <= to_year)).all()
+        data = data.filter(and_(extract('year', MedicalExaminationModel.date_created) >= from_year,
+                                extract('year', MedicalExaminationModel.date_created) <= to_year))
     return data.all()
 
 
@@ -116,8 +116,8 @@ def statistic_medical_examination_month(from_month=None, to_month=None):
         .order_by(func.month(MedicalExaminationModel.date_created))
 
     if from_month and to_month:
-        return data.filter(and_(func.month(MedicalExaminationModel.date_created) >= from_month,
-                                func.month(MedicalExaminationModel.date_created) <= to_month)).all()
+        data = data.filter(and_(func.month(MedicalExaminationModel.date_created) >= from_month,
+                                func.month(MedicalExaminationModel.date_created) <= to_month))
     return data.all()
 
 
@@ -128,8 +128,8 @@ def statistic_medical_examination_quarter(from_quarter=None, to_quarter=None):
         .order_by(func.quarter(MedicalExaminationModel.date_created))
 
     if from_quarter and to_quarter:
-        return data.filter(and_(func.quarter(MedicalExaminationModel.date_created) >= from_quarter,
-                                func.quarter(MedicalExaminationModel.date_created) <= to_quarter)).all()
+        data = data.filter(and_(func.quarter(MedicalExaminationModel.date_created) >= from_quarter,
+                                func.quarter(MedicalExaminationModel.date_created) <= to_quarter))
     return data.all()
 
 
@@ -140,8 +140,8 @@ def statistic_medical_examination_year(from_year=None, to_year=None):
         .order_by(func.year(MedicalExaminationModel.date_created))
 
     if from_year and to_year:
-        return data.filter(and_(func.year(MedicalExaminationModel.date_created) >= from_year,
-                                func.year(MedicalExaminationModel.date_created) <= to_year)).all()
+        data = data.filter(and_(func.year(MedicalExaminationModel.date_created) >= from_year,
+                                func.year(MedicalExaminationModel.date_created) <= to_year))
     return data.all()
 
 
