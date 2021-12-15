@@ -7268,8 +7268,8 @@ label.error {
 }
 
 .btn-sm {
-  font-size: 11px;
-  padding: 7px 13px;
+  font-size: 11px !important;
+  padding: 7px 13px !important;
 }
 
 .btn-xs {

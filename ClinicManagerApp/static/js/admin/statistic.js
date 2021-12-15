@@ -151,7 +151,7 @@ function setResultHeaderTable() {
 function loadDataTable(datas) {
     var row = ""
     var header = `<tr>
-                    <th>${'So thu tu'}</th>
+                    <th>${'Số thứ tự'}</th>
                     <th>${setLabelHeaderTable()}</th>
                     <th>${setResultHeaderTable()}</th>
                 </tr>`
