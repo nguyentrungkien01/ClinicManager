@@ -1,9 +1,13 @@
+from flask import request
 from flask_admin.contrib.sqla.filters import BooleanEqualFilter, FilterLike, FilterEmpty, DateEqualFilter, \
     DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, FilterNotLike, BooleanNotEqualFilter
 from flask_admin.form import rules
+from flask_login import login_user
+from werkzeug.utils import redirect
 from wtforms import validators
 from wtforms.validators import DataRequired
 
+from ClinicManagerApp import login, app
 from ClinicManagerApp.model.account.account_model import AccountModel
 from ClinicManagerApp.model.rule.role_model import RoleModel
 from ClinicManagerApp.view.base_model_view import BaseModelView
@@ -79,5 +83,21 @@ class AccountView(BaseModelView):
                 'last_access',
                 'staff']
 
-    # def is_accessible(self):
-    #     return True
+
+@login.user_loader
+def load_user(user_id):
+    return AccountModel.query.get(user_id)
+
+
+@app.route("/admin", methods=['POST'])
+def login_admin():
+    if request.method == 'POST':
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = AccountModel.query.filter(AccountModel.username.__eq__(username),
+                                         AccountModel.password.__eq__(password)).first()
+        if user:
+            login_user(user=user)
+    return redirect('/admin')
+
+

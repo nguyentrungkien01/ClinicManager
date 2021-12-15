@@ -1,7 +1,6 @@
 from flask import render_template
 
-from ClinicManagerApp import initTables, initAdmin
-from ClinicManagerApp.controller.admin.account_controller import *
+from ClinicManagerApp import initTables, initAdmin, app
 
 
 @app.route('/')

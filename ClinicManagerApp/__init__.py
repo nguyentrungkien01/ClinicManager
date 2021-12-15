@@ -16,7 +16,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = \
     str.format(f"mysql+pymysql://{USERNAME_DB}:{PASSWORD_DB}@{IP_DB}/{NAME_DB}?charset=utf8mb4")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["FLASK_ADMIN_FLUID_LAYOUT"] = True
-#app.config["SQLALCHEMY_ECHO"] = True
+# app.config["SQLALCHEMY_ECHO"] = True
 app.secret_key = b'21137afa59a4dd08b708dcf106c724f9'
 db = SQLAlchemy(app=app)
 admin = Admin(app=app, name="Quản lý phòng mạch tư", template_mode="bootstrap4",
@@ -51,6 +51,8 @@ from ClinicManagerApp.view.admin.medicine.medicine_view import MedicineView
 from ClinicManagerApp.view.admin.statistic.statistic_view import StatisticView
 from ClinicManagerApp.view.admin.report.report_view import ReportView
 from ClinicManagerApp.view.admin.rule.rule_view import RuleView
+from ClinicManagerApp.view.admin.rule.role_view import RoleView
+from ClinicManagerApp.view.admin.rule.medicine_unit_view import MedicineUnitView
 from ClinicManagerApp.view.doctor.medical_examination_creation_view import MedicalExaminationCreationView
 from ClinicManagerApp.view.nurse.ofline_registration_view import OfflineRegistrationView
 from ClinicManagerApp.view.nurse.payment_view import PaymentView
@@ -77,9 +79,12 @@ def initAdmin():
                                           category='Tài liệu', name='Phiếu khám'))
     admin.add_view(StatisticView(name='Thống kê', category='Dữ liệu'))
     admin.add_view(ReportView(name='Báo cáo', category='Dữ liệu'))
-    admin.add_view(RuleView(name='Quy định phòng khám'))
+    admin.add_view(RuleView(RuleModel, db.session, name='Quy định chung', category='Quy định phòng khám'))
+    admin.add_view(RoleView(RoleModel, db.session, name='Vai trò nhân viên', category='Quy định phòng khám'))
+    admin.add_view(MedicineUnitView(MedicineUnitModel, db.session, name='Đơn vị thuốc', category='Quy định phòng khám'))
+
     admin.add_view(MedicalExaminationCreationView(name='Tạo phiếu khám'))
     admin.add_view(OfflineRegistrationView(name='Đăng ký trực tiếp'))
     admin.add_view(PaymentView(name='Thanh toán'))
-    admin.add_view(ChangePasswordView(name = 'Đổi mật khẩu'))
+    admin.add_view(ChangePasswordView(name='Đổi mật khẩu'))
     admin.add_view(LogoutView(name='Đăng xuất'))
