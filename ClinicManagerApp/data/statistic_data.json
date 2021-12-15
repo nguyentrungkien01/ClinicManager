@@ -6,7 +6,7 @@
       },
 
       {
-        "type": "frequency_of_drug_use",
+        "type": "frequency_of_medicine_use",
         "name": "Thống kê tần suất sử dụng thuốc"
       },
 
@@ -16,11 +16,6 @@
       }
   ],
   "statistic_condition": [
-    {
-      "type": "name_statistic",
-      "name": "Thống kê theo tên"
-    },
-
     {
       "type": "month_statistic",
       "name": "Thống kê theo tháng"
@@ -33,9 +28,20 @@
       "type": "year_statistic",
       "name": "Thống kê theo năm"
     },
+
     {
-      "type": "time_statistic",
-      "name": "Thống kê theo khoảng thời gian"
+      "type": "month_to_month_statistic",
+      "name": "Thống kê theo khoảng thời gian giữa 2 tháng"
+    },
+
+    {
+      "type": "quarter_to_quarter_statistic",
+      "name": "Thống kê theo khoảng thơì gian giữa 2 quý"
+    },
+
+    {
+      "type": "year_to_year_statistic",
+      "name": "Thống kê theo khoảng thời gian giữa 2 năm"
     }
   ],
   "chart_type": [

@@ -16,11 +16,6 @@ class BaseModelView(ModelView):
     can_view_details = True
     can_export = True
 
-    list_template = 'admin/test.html'
-    # edit_template =
-    # create_template =
-    # details_template =
-
     def is_accessible(self):
         return current_user.is_authenticated and \
                current_user.role.name.lower().__contains__('quản trị viên')

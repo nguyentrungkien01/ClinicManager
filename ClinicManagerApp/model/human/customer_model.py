@@ -12,7 +12,7 @@ class CustomerModel(PersonModel, db.Model):
     customer_id = Column(Integer, primary_key=True, autoincrement=True)
 
     def __str__(self):
-        return '{} {} {}'.format(self.last_name, self.middle_name, self.first_name)
+        return '{} {}'.format(self.last_name, self.first_name)
 
     # relationship
     document_list = relationship('DocumentModel', backref=backref('customer', lazy=True),

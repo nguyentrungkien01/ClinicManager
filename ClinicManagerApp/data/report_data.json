@@ -1,0 +1,27 @@
+{
+  "report_type": [
+      {
+        "type": "revenue",
+        "name": "Báo cáo doanh thu"
+      },
+
+      {
+        "type": "frequency_of_medicine_use",
+        "name": "Báo cáo tần suất sử dụng thuốc"
+      }
+  ],
+  "report_condition": [
+    {
+      "type": "month_report",
+      "name": "Báo cáo theo tháng"
+    },
+    {
+      "type": "quarter_report",
+      "name": "Báo cáo theo quý"
+    },
+    {
+      "type": "year_report",
+      "name": "Báo cáo theo năm"
+    }
+  ]
+}
