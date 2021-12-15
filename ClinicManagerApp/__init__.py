@@ -8,7 +8,7 @@ from ClinicManagerApp.view.home_view import HomeView
 
 app = Flask(__name__)
 USERNAME_DB = 'root'
-PASSWORD_DB = '12345678'
+PASSWORD_DB = 'thanhnam'
 NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
 
