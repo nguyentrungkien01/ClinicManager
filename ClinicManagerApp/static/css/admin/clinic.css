@@ -12785,6 +12785,7 @@ body[data-background-color="dark"] .auth-wrapper .form-group label {
   top: 50px;
   right: 68px;
   border-radius: 0 0 7px 7px;
+  z-index: 9999
 }
 
 .stats-choice .show-hint p {

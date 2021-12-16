@@ -398,8 +398,8 @@ $('.form-floating-label .form-control').keyup(function () {
 	}
 })
 
-var all = $(".sidebar-content > ul > li > a").map(function() {
-    return this.children().innerHTML;
+var all = $(".sidebar-content > ul > li > a").map(function () {
+	return this.children().innerHTML;
 }).get();
 console.log(all)
 // let iconSidebar = [{
