@@ -194,11 +194,11 @@ function setDataTable(datas) {
     $('#data_report_table').html('')
     if ($('#report_type').val() == 'revenue') {
         headers += `<tr>
-                        <th> ${'So thu tu'}</th>
-                        <th> ${'Ngay tao'}</th>
-                        <th> ${'So luong'}</th>
+                        <th> ${'Số thứ tự'}</th>
+                        <th> ${'Ngày tạo'}</th>
+                        <th> ${'Số lượng'}</th>
                         <th> ${'Doanh thu'}</th>
-                        <th> ${'Ti le'}</th>
+                        <th> ${'Tỷ lệ'}</th>
                     </tr>`
 
         for (let i = 0; i < datas.length; i++) {
@@ -213,11 +213,11 @@ function setDataTable(datas) {
     }
     if ($('#report_type').val() == 'frequency_of_medicine_use') {
         headers += `<tr>
-                        <th> ${'So thu tu'}</th>
-                        <th> ${'Ten thuoc'}</th>
-                        <th> ${'Don vi thuoc'}</th>
-                        <th> ${'So luong thuoc'}</th>
-                        <th> ${'So lan dung'}</th>
+                        <th> ${'Số thứ tự'}</th>
+                        <th> ${'Tên thuốc'}</th>
+                        <th> ${'Đơn vị thuốc'}</th>
+                        <th> ${'Số lượng thuốc'}</th>
+                        <th> ${'Số lần dùng'}</th>
                     </tr>`
         for (let i = 0; i < datas.length; i++)
             rows += `<tr>

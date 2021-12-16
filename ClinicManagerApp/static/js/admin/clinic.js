@@ -398,6 +398,24 @@ $('.form-floating-label .form-control').keyup(function () {
 	}
 })
 
+var all = $(".sidebar-content > ul > li > a").map(function () {
+	return this.children().innerHTML;
+}).get();
+console.log(all)
+// let iconSidebar = [{
+// 	icon_class: 'Chuyên viên An ninh mạng - Hội Sở Ngân hàng Nam Á (Nam Á Bank)'
+// }
+// ]
+
+// let iconSidebar_list = document.querySelector('#marquee')
+// renderIconSidebar = (iconSidebar) => {
+// iconSidebar.forEach(function (e) {
+// 	let prod =	`<i class="lni lni-slice"></i>`
+// 	iconSidebar_list.insertAdjacentHTML("beforeend", prod)
+// })
+// }
+// renderIconSidebar(iconSidebar);
+
 /* ---------------theme light - dark mode ------------ */
 // const dayNight = document.querySelector(".day-night")
 

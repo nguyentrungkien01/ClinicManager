@@ -22,13 +22,11 @@ danger-color : #f3545d
 :not(.stats-scroll)::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   border-radius: 0px;
-  background-color: #F5F5F5;
 }
 
 :not(.stats-scroll)::-webkit-scrollbar {
   width: 10px;
   height: 10px !important;
-  background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -7270,8 +7268,8 @@ label.error {
 }
 
 .btn-sm {
-  font-size: 11px;
-  padding: 7px 13px;
+  font-size: 11px !important;
+  padding: 7px 13px !important;
 }
 
 .btn-xs {
