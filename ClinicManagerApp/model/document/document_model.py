@@ -13,7 +13,7 @@ class DocumentModel(db.Model):
 
     # attributes
     date_created = Column(DateTime, default=datetime.now())
-    type = Column(String(50))
+    type = Column(String(100))
 
     # foreign key
     customer_id = Column(Integer, ForeignKey('customer_model.customer_id'))

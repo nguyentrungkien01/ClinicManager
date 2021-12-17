@@ -10,7 +10,7 @@ class DoctorModel(StaffModel):
     staff_id = Column(Integer, ForeignKey('staff_model.staff_id'), primary_key=True)
 
     # attributes
-    major = Column(String(20), default='')
+    major = Column(String(100), default='')
 
     # mapper
     __mapper_args__ = {
