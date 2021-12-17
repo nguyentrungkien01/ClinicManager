@@ -20,8 +20,7 @@ class RoleView(BaseModelView):
     column_labels = dict(role_id='Mã',
                          name='Vai trò',
                          account_list='Danh sách tài khoản')
-    column_editable_list = ('name',
-                            'account_list')
+    column_editable_list = ('name',)
 
     # form
     form_rules = [

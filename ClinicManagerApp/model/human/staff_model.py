@@ -25,10 +25,9 @@ class StaffModel(PersonModel, db.Model):
 
     # relationships
     account = relationship('AccountModel', backref=backref('staff', uselist=False, lazy=True),
-                           foreign_keys='[AccountModel.staff_id]', lazy=True)
-    staff_list = relationship('StaffModel', backref=backref('manager', lazy=True),
-                              foreign_keys='[StaffModel.manager_id]',
-                              remote_side='[StaffModel.staff_id]', lazy=True)
+                           foreign_keys='[AccountModel.staff_id]', uselist=False, lazy=True)
+    staff_list = relationship('StaffModel', backref=backref('manager',  remote_side=[staff_id], lazy=True),
+                              foreign_keys='[StaffModel.manager_id]', lazy=True)
 
     # mapper
     __mapper_args__ = {
@@ -37,4 +36,5 @@ class StaffModel(PersonModel, db.Model):
 
     def __str__(self):
         return '{} {}'.format(self.last_name, self.first_name)
+
 

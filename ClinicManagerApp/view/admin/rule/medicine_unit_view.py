@@ -23,8 +23,7 @@ class MedicineUnitView(BaseModelView):
                          name='Tên dơn vị',
                          medicine_list='Danh sách thuốc',
                          )
-    column_editable_list = ('name',
-                            'medicine_list')
+    column_editable_list = ('name',)
 
     # form
     form_rules = [

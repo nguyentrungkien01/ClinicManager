@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from ClinicManagerApp import db
 
 
@@ -13,7 +13,7 @@ class CategoryModel(db.Model):
     name = Column(String(50), unique=True, default='')
 
     # relationships
-    medicine_list = relationship('MedicineModel', backref='category',
+    medicine_list = relationship('MedicineModel', backref=backref('category', uselist=False),
                                  foreign_keys='[MedicineModel.category_id]', lazy=True)
 
     def __str__(self):
