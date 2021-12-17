@@ -10,7 +10,7 @@ class CategoryModel(db.Model):
     category_id = Column(Integer, primary_key=True, autoincrement=True)
 
     # attributes
-    name = Column(String(50), unique=True, default='')
+    name = Column(String(100), unique=True, default='')
 
     # relationships
     medicine_list = relationship('MedicineModel', backref=backref('category', uselist=False),

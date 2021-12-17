@@ -15,7 +15,7 @@ class PersonModel(object):
     first_name = Column(String(20), default='')
     last_name = Column(String(50), default='')
     date_of_birth = Column(DateTime, default=datetime.now())
-    address = Column(String(100), default='')
+    address = Column(String(200), default='')
     email = Column(String(50), default='')
     phone_number = Column(String(12), default='')
     sex = Column(Enum(Sex), default=Sex.MALE)
