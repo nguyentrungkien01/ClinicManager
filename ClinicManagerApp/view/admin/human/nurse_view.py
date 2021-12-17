@@ -2,7 +2,7 @@ from flask_admin.contrib.sqla.filters import FilterEqual, FilterNotEqual, Filter
     DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, BooleanEqualFilter, \
     BooleanNotEqualFilter, FloatEqualFilter, FloatNotEqualFilter, FloatGreaterFilter, FloatSmallerFilter
 from flask_admin.form import rules
-from wtforms import validators
+from wtforms import validators, DateField, EmailField, TelField
 
 from ClinicManagerApp.model.human.nurse_model import NurseModel
 from ClinicManagerApp.view.base_model_view import BaseModelView
@@ -14,7 +14,12 @@ class NurseView(BaseModelView):
                             'first_name',
                             'last_name',
                             'date_of_birth',
-                            'date_of_work']
+                            'date_of_work',
+                            'sex',
+                            'address',
+                            'email',
+                            'phone_number',
+                            'exp_year']
     column_searchable_list = ['staff_id']
     column_filters = (FilterEqual(NurseModel.first_name, name='Tên'),
                       FilterNotEqual(NurseModel.first_name, name='Tên'),
@@ -65,53 +70,9 @@ class NurseView(BaseModelView):
                          account='Tài khoản',
                          )
     column_editable_list = ('first_name',
-                            'last_name',
-                            'date_of_birth',
-                            'sex',
-                            'address',
-                            'email',
-                            'phone_number',
-                            'date_of_work',
-                            'exp_year',
-                            'manager',
-                            'contained_department',
-                            'staff_list',
-                            'medical_bill_list',
-                            'account'
-                            )
+                            'last_name')
 
     # form
-    form_args = dict(
-        first_name=dict(validators=[validators.DataRequired(),
-                                    validators.Length(min=1, max=20)],
-                        render_kw={
-                            'placeholder': 'Tên bác y tá'
-                        }),
-        last_name=dict(validators=[validators.DataRequired(),
-                                   validators.Length(min=1, max=50)],
-                       render_kw={
-                           'placeholder': 'Họ và tên đệm y tá'
-                       }),
-        date_of_birth=dict(validators=[validators.DataRequired()], ),
-        address=dict(validators=[validators.DataRequired(),
-                                 validators.Length(min=1, max=100)],
-                     render_kw={
-                         'placeholder': 'Địa chỉ y tá'
-                     }),
-        email=dict(validators=[validators.Length(min=1, max=50)],
-                   render_kw={
-                       'placeholder': 'Địa chỉ email y tá'
-                   }),
-        phone_number=dict(validators=[validators.Length(min=1, max=12)],
-                          render_kw={
-                              'placeholder': 'Số điện thoại y tá'
-                          }),
-        exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)],
-                      render_kw={
-                          'placeholder': 'Chuyên ngành y tá'
-                      })
-    )
-
     form_rules = [
         # Define field set with header text and four fields
         rules.FieldSet(('first_name',
@@ -127,10 +88,40 @@ class NurseView(BaseModelView):
         rules.FieldSet(('manager',
                         'contained_department',
                         'staff_list',
-                        'medical_bill_list',
                         'account'), 'Thông tin khác có liên quan'),
 
     ]
+    form_extra_fields = {
+        'email': EmailField('Email',
+                            validators=[validators.Length(min=0, max=50)],
+                            render_kw={
+                                'placeholder': 'Địa chỉ email y tá'
+                            }),
+        'date_of_birth': DateField('Ngày sinh', validators=[validators.DataRequired()], ),
+        'date_of_work': DateField('Ngày vào làm', validators=[validators.DataRequired()], ),
+        'phone_number': TelField('Số điện thoại', validators=[validators.Length(min=0, max=12)],
+                                 render_kw={
+                                     'placeholder': 'Số điện thoại y tá'
+                                 })
+    }
+    form_args = dict(
+        first_name=dict(validators=[validators.DataRequired(),
+                                    validators.Length(min=1, max=20)],
+                        render_kw={
+                            'placeholder': 'Tên bác y tá'
+                        }),
+        last_name=dict(validators=[validators.DataRequired(),
+                                   validators.Length(min=1, max=50)],
+                       render_kw={
+                           'placeholder': 'Họ và tên đệm y tá'
+                       }),
+        address=dict(validators=[validators.DataRequired(),
+                                 validators.Length(min=1, max=100)],
+                     render_kw={
+                         'placeholder': 'Địa chỉ y tá'
+                     }),
+        exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)],)
+    )
 
     def scaffold_list_columns(self):
         return ['staff_id',

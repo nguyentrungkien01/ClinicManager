@@ -6,11 +6,20 @@ from flask_login import LoginManager
 
 from ClinicManagerApp.view.home_view import HomeView
 
+import cloudinary
+
 app = Flask(__name__)
+
+# mysql account
 USERNAME_DB = 'root'
-PASSWORD_DB = 'thanhnam'
+PASSWORD_DB = '12345678'
 NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
+
+# cloudinary account
+CLOUD_NAME = 'nguyentrungkien'
+API_KEY = '767724846482349'
+API_SECRET = 'Tdg7DuMzN8am09wvkI05CPe8wjs'
 
 app.config["SQLALCHEMY_DATABASE_URI"] = \
     str.format(f"mysql+pymysql://{USERNAME_DB}:{PASSWORD_DB}@{IP_DB}/{NAME_DB}?charset=utf8mb4")
@@ -19,9 +28,13 @@ app.config["FLASK_ADMIN_FLUID_LAYOUT"] = True
 # app.config["SQLALCHEMY_ECHO"] = True
 app.secret_key = b'21137afa59a4dd08b708dcf106c724f9'
 db = SQLAlchemy(app=app)
-admin = Admin(app=app, name="Quản lý phòng mạch tư", template_mode="bootstrap4",
+admin = Admin(app=app, name="Phòng mạch", template_mode="bootstrap4",
               index_view=HomeView(name='Trang chủ'))
 login = LoginManager(app=app)
+
+cloudinary.config(cloud_name=CLOUD_NAME,
+                  api_key=API_KEY,
+                  api_secret=API_SECRET)
 
 from ClinicManagerApp.model.account.account_model import AccountModel
 from ClinicManagerApp.model.category.category_model import CategoryModel

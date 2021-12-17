@@ -1,4 +1,6 @@
 from flask_admin.contrib.sqla.filters import FilterEmpty, FilterEqual, FilterNotEqual, FilterLike, FilterNotLike
+from flask_admin.form import rules
+from wtforms import validators
 from wtforms.validators import DataRequired
 
 from ClinicManagerApp.model.category.category_model import CategoryModel
@@ -22,8 +24,15 @@ class CategoryView(BaseModelView):
     column_editable_list = ('name',)
                             #'medicine_list')
 
+    form_rules = [
+        rules.FieldSet(('name',), 'Thông tin kho thuốc'),
+
+        rules.FieldSet(('medicine_list',), 'Thông tin khác có liên quan'),
+
+    ]
+
     form_args = dict(
-        name=dict(validators=[DataRequired()],
+        name=dict(validators=[validators.DataRequired(),validators.Length(min=1, max=50)],
                   render_kw={
                       'placeholder': 'Tên kho thuốc'
                   }),

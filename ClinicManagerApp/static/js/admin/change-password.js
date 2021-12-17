@@ -1,35 +1,64 @@
 // click button change password
-var myInput = document.getElementById("psw");
-var letterFlag = false;
-var capitalFlag = false;
+
 var numberFlag = false;
 var lengthFlag = false;
+var titleAlert = ''
+var textAlert = ''
 
-// When the user starts to type something inside the password field
-myInput.onkeyup = function () {
-    // Validate lowercase letters
-    var lowerCaseLetters = /[a-z]/g;
-    if (myInput.value.match(lowerCaseLetters))
-        letterFlag = true;
 
-    // Validate capital letters
-    var upperCaseLetters = /[A-Z]/g;
-    if (myInput.value.match(upperCaseLetters))
-        capitalFlag = true;
+function passAccountData() {
+    fetch('/api/change_password', {
+        method: 'post',
+        body: JSON.stringify({
+            'username': document.getElementById("username").innerText,
+            'old_password': document.getElementById("oldPsw").value,
+            'new_password': document.getElementById("newPsw").value
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (res) {
+        console.info(res)
+        return res.json()
+    }).then(function (datas) {
+        console.info(datas)
 
-    // Validate numbers
-    var numbers = /[0-9]/g;
-    if (myInput.value.match(numbers))
-        numberFlag = true;
-
-    // Validate length
-    if (myInput.value.length >= 8)
-        lengthFlag = true;
+        if (datas['result']) {
+            Swal.fire(
+                'Đổi mật khẩu thành công!',
+                'Mật khẩu của bạn đã được cập nhật.',
+                'success'
+            ).then(function () {
+                window.location = '/admin/';
+            })
+        } else {
+            Swal.fire({
+                title: 'Doi mat khau khong thanh cong',
+                text: 'Xin vui lòng nhập thu lai lan nua',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
+        }
+    }).then(function (err) {
+        console.info(err)
+    })
 }
 
+$(document).ready(function () {
+    $('#cfm').click(function () {
 
-function changePass() {
-    if (letterFlag && capitalFlag && numberFlag && lengthFlag) {
+        var flag = checkAlertWrong()
+        if (!flag) {
+            Swal.fire({
+                title: titleAlert,
+                text: textAlert,
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
+            return
+        }
         Swal.fire({
             title: 'Bạn có chắc chắn đổi mật khẩu ?',
             text: 'Mọi thao tác sau khi thực hiện không thể phục hồi lại',
@@ -41,22 +70,50 @@ function changePass() {
             cancelButtonText: 'Huỷ bỏ'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Đổi mật khẩu thành công!',
-                    'Mật khẩu của bạn đã được cập nhật.',
-                    'success'
-                ).then(function () {
-                    window.location = 'http://127.0.0.1:5000/admin/';
-                })
+                passAccountData()
             }
         })
-    } else {
-        Swal.fire({
-            title: 'Bạn chưa nhập đủ hoặc sai thông tin !',
-            text: 'Xin vui lòng nhập đầy đủ thông tin',
-            icon: 'warning',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Ok',
-        })
+
+    })
+
+    $('#oldPsw').onkeyup(function () {
+        // Validate numbers
+        if ($(this).val().match(numbers))
+            numberFlag = true;
+
+        // Validate length
+        if (myInput.value.length >= 8)
+            lengthFlag = true;
+    })
+
+})
+
+function checkCondition(element, text) {
+    if (!(element.val().length >= 8 && element.val().length <= 12)) {
+        titleAlert = `'Chieu dai cua ${text} khong hop le '`
+        textAlert = 'Thong bao nhap lai'
+        return false
     }
+    var numbers = '/[0-9]/g';
+    if (!element.val().match(numbers)) {
+        titleAlert = `'${text} chi duoc nhap so'`
+        textAlert = 'Nhap lai thong tin'
+        return false
+    }
+
+    return true
+}
+
+function checkAlertWrong() {
+    if (!checkCondition($('#oldPsw'))) {
+        checkCondition($('#oldPsw'), 'Mat khau cu')
+        return false
+    }
+
+    if (!checkCondition($('#newPsw')))
+        return false
+
+    if (!checkCondition($('#cfmPsw')))
+        return false
+    return true
 }

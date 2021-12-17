@@ -1,3 +1,4 @@
+import hashlib
 from datetime import datetime
 
 from sqlalchemy import Column, Text, String, Boolean, Integer, DateTime, ForeignKey
@@ -27,3 +28,9 @@ class AccountModel(db.Model, UserMixin):
 
     def get_id(self):
         return self.account_id
+
+    def set_avatar(self, url):
+        self.avatar = url
+
+    def set_password(self, password):
+        self.password = hashlib.md5(password.encode('utf8')).hexdigest()

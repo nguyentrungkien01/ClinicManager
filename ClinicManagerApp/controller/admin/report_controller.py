@@ -92,7 +92,7 @@ def parse_json_array(datas):
             temp = {
                 'date': d[0].strftime('%A, %d/%m/%Y'),
                 'amount': int(d[1]),
-                'revenue': '{:,.1f} VND'.format(float(d[2])),
+                'revenue': '{:,.0f} VND'.format(float(d[2])),
                 'rate': '{:.2f} %'.format(float(d[2]) / sum * 100)
             }
         if len(d) == 4:

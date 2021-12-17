@@ -15,6 +15,6 @@ class CustomerModel(PersonModel, db.Model):
         return '{} {}'.format(self.last_name, self.first_name)
 
     # relationship
-    document_list = relationship('DocumentModel', backref=backref('customer', lazy=True),
+    document_list = relationship('DocumentModel', backref=backref('customer', uselist=False, lazy=True),
                                  foreign_keys='[DocumentModel.customer_id]', lazy=True)
 

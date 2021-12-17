@@ -205,7 +205,7 @@ def parse_json_array(datas):
         if len(d) == 1:
             temp = {'value': d[0]}
         if len(d) == 2:
-            temp = {'key': d[0], 'value': '{:,.1f} VNĐ'.format(float(d[1]))}
+            temp = {'key': d[0], 'value': '{:,.0f} VNĐ'.format(float(d[1]))}
         result.append(temp)
     return json.dumps(result)
 

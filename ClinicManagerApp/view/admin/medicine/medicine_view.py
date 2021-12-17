@@ -15,10 +15,10 @@ class MedicineView(BaseModelView):
     column_sortable_list = ['medicine_id',
                             'name',
                             'amount',
-                            'medicine_unit',
                             'unit_price',
                             'import_date',
-                            'expiration_date']
+                            'expiration_date',
+                            'manufacturer']
     column_searchable_list = ['medicine_id',
                               'manufacturer',
                               'description']
@@ -67,16 +67,7 @@ class MedicineView(BaseModelView):
                          )
     column_editable_list = ('name',
                             'amount',
-                            'medicine_unit',
-                            'unit_price',
-                            'import_date',
-                            'expiration_date',
-                            'dosage',
-                            'manufacturer',
-                            'description',
-                            'category',
-                            'medical_examination_list'
-                            )
+                            'unit_price')
 
     # form
     form_rules = [
@@ -90,8 +81,7 @@ class MedicineView(BaseModelView):
                         'manufacturer',
                         'description'), 'Thông tin thuốc'),
 
-        rules.FieldSet(('category',
-                        'medical_examination_list'), 'Thông tin khác có liên quan'),
+        rules.FieldSet(('category',), 'Thông tin khác có liên quan'),
 
     ]
     form_args = dict(

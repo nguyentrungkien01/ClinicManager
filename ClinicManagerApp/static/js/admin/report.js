@@ -241,7 +241,7 @@ $(document).ready(function () {
     setDataSelection()
     gMonth = parseInt($('#month_input').val())
     gYear = parseInt($('#year_input').val())
-    gPageSize = 1
+    gPageSize = 10
     gBegIdx = 0
     gEndIdx = gBegIdx + gPageSize
     getData()
@@ -332,7 +332,7 @@ $(document).ready(function () {
                 body.push(gExportDatas[i]['date'])
                 body.push(gExportDatas[i]['amount'])
                 body.push(gExportDatas[i]['revenue'])
-                sum += parseFloat(gExportDatas[i]['revenue'].slice(0, gExportDatas[i]['revenue'].length - 6).replaceAll(',', ''))
+                sum += parseFloat(gExportDatas[i]['revenue'].slice(0, gExportDatas[i]['revenue'].length - 4).replaceAll(',', ''))
                 body.push(gExportDatas[i]['rate'])
             }
             foot = `Tong doanh thu: ${sum} VND`

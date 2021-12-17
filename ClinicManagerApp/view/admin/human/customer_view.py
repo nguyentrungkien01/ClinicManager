@@ -1,6 +1,5 @@
 from flask_admin.contrib.sqla.filters import FilterEqual, FilterLike, FilterNotLike, DateEqualFilter, \
-    DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, BooleanEqualFilter, \
-    BooleanNotEqualFilter, FilterNotEqual
+    DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, FilterNotEqual
 from flask_admin.form import rules
 from wtforms import validators
 
@@ -17,7 +16,11 @@ class CustomerView(BaseModelView):
     column_sortable_list = ['customer_id',
                             'first_name',
                             'last_name',
-                            'date_of_birth']
+                            'date_of_birth',
+                            'address',
+                            'sex',
+                            'email',
+                            'phone_number']
     column_searchable_list = ['customer_id']
     column_filters = (FilterEqual(CustomerModel.first_name, name='Tên'),
                       FilterNotEqual(CustomerModel.first_name, name='Tên'),
@@ -32,8 +35,8 @@ class CustomerView(BaseModelView):
                       DateGreaterFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       DateSmallerFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       DateBetweenFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
-                      BooleanEqualFilter(CustomerModel.sex, name='Giới tính'),
-                      BooleanNotEqualFilter(CustomerModel.sex, name='Giới tính'),
+                      FilterLike(CustomerModel.sex,name='Giới tính' ),
+                      FilterNotEqual(CustomerModel.sex, name='Giới tính'),
                       FilterLike(CustomerModel.address, name='Địa chỉ'),
                       FilterNotLike(CustomerModel.address, name='Địa chỉ'),
                       FilterLike(CustomerModel.email, name='Email'),
@@ -53,13 +56,7 @@ class CustomerView(BaseModelView):
                          document_list='Danh sách tài liệu'
                          )
     column_editable_list = ('first_name',
-                            'last_name',
-                            'date_of_birth',
-                            'sex',
-                            'address',
-                            'email',
-                            'phone_number',
-                            'document_list')
+                            'last_name',)
 
     # form
     form_args = dict(
@@ -113,5 +110,4 @@ class CustomerView(BaseModelView):
                 'phone_number',
                 'document_list']
 
-    # def after_model_change(self, form, model, is_created):
-    #     pass
+
