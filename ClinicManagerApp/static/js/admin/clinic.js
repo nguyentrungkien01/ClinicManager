@@ -6,7 +6,12 @@ $(".nav-search .input-group > input").focus(function (e) {
 	$(this).parent().removeClass("focus");
 });
 
-$('.table-responsive thead tr th:nth-child(2)').text('Thao tác')
+$('.table-responsive thead tr th').map(function(){
+	console.log($(this).find("input"))
+	if (($(this).text().trim() == "" && !$(this).find("input").length == 1))
+			$(this).text('Thao tác')
+})
+
 $('.modal-dialog').removeClass('modal-xl')
 $('.modal-dialog').addClass('modal-lg')
 
@@ -398,23 +403,24 @@ $('.form-floating-label .form-control').keyup(function () {
 	}
 })
 
+// add icon to sidebar
+var iconList = [
+	'<i class = "fas fa-home"></i>',
+	'<i class="fas fa-user-nurse"></i>',
+	'<i class="fas fa-users"></i>',
+	'<i class="fas fa-clinic-medical"></i>',
+	'<i class="fas fa-capsules"></i>',
+	'<i class="fas fa-archive"></i>',
+	'<i class="fas fa-file-alt"></i>',
+	'<i class="fas fa-database"></i>',
+	'<i class="fas fa-notes-medical"></i>',
+	'<i class="fas fa-unlock-alt"></i>',
+	'<i class="fas fa-sign-out-alt"></i>'
+];
+var i = 0;
 var all = $(".sidebar-content > ul > li > a").map(function () {
-	return this.children().innerHTML;
-}).get();
-console.log(all)
-// let iconSidebar = [{
-// 	icon_class: 'Chuyên viên An ninh mạng - Hội Sở Ngân hàng Nam Á (Nam Á Bank)'
-// }
-// ]
-
-// let iconSidebar_list = document.querySelector('#marquee')
-// renderIconSidebar = (iconSidebar) => {
-// iconSidebar.forEach(function (e) {
-// 	let prod =	`<i class="lni lni-slice"></i>`
-// 	iconSidebar_list.insertAdjacentHTML("beforeend", prod)
-// })
-// }
-// renderIconSidebar(iconSidebar);
+	$(this).prepend(iconList[i++]);
+});
 
 /* ---------------theme light - dark mode ------------ */
 // const dayNight = document.querySelector(".day-night")

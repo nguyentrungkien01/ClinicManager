@@ -24,7 +24,7 @@ class MedicineUnitView(BaseModelView):
                          medicine_list='Danh sách thuốc',
                          )
     column_editable_list = ('name',)
-
+    column_list = ('medicine_unit_id', 'name')
     # form
     form_rules = [
         rules.FieldSet(('name',), 'Thông tin đơn vị thuốc'),

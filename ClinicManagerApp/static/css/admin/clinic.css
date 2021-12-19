@@ -7281,12 +7281,13 @@ label.error {
 .btn:hover:disabled {
   opacity: 0.65;
 }
+
 body[data-background-color="dark"] .bg-thead {
-background: #b5b0b038;
+  background: #b5b0b038;
 }
 
 .bg-thead {
-background: #bbbabd;
+  background: #bbbabd;
 }
 
 
@@ -7599,175 +7600,6 @@ background: #bbbabd;
   border-radius: 0px;
 }
 
-/*     Nav Pill     */
-.nav-pills>li:first-child>.nav-link {
-  border-radius: 4px 0 0 4px !important;
-}
-
-.nav-pills>li:last-child>.nav-link {
-  border-radius: 0 4px 4px 0 !important;
-}
-
-.nav-link.disabled {
-  color: #6c757d !important;
-}
-
-.nav-pills .nav-link {
-  padding: 10px 20px;
-}
-
-.nav-pills>li>.nav-link {
-  margin-left: -1px;
-  border-radius: 0 !important;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border: 1px solid #1572E8;
-  color: #585c5d;
-}
-
-.nav-pills>li>.nav-link.active {
-  background: #1572E8;
-}
-
-.nav-pills>li>.nav-link:hover {
-  background: rgba(222, 222, 222, 0.4);
-}
-
-.nav-pills.nav-pills-no-bd li {
-  margin-left: 15px !important;
-}
-
-.nav-pills.nav-pills-no-bd li .nav-link {
-  border: 0px !important;
-  border-radius: 50px !important;
-  background: rgba(222, 222, 222, 0.4);
-}
-
-.nav-pills.nav-pills-no-bd li .nav-link.active {
-  border-radius: 50px !important;
-}
-
-.nav-pills.nav-pills-no-bd li:first-child {
-  margin-left: 0px !important;
-}
-
-.nav-pills.nav-pills-no-bd.nav-pills-icons .nav-link,
-.nav-pills.nav-pills-no-bd.nav-pills-icons .nav-link.active {
-  border-radius: 5px !important;
-}
-
-.nav-pills.flex-column .nav-link {
-  border-radius: 0 !important;
-  border: 1px solid #1572E8;
-  color: #585c5d;
-  margin-top: -1px;
-  text-align: center;
-  word-wrap: normal;
-  padding: 10px 0;
-}
-
-.nav-pills.flex-column .nav-link:hover {
-  background: rgba(222, 222, 222, 0.4);
-}
-
-.nav-pills.flex-column .nav-link.active {
-  background: #1572E8;
-}
-
-.nav-pills.flex-column .nav-link:first-child {
-  border-radius: 4px 4px 0 0 !important;
-}
-
-.nav-pills.flex-column .nav-link:last-child {
-  border-radius: 0 0 4px 4px !important;
-}
-
-.nav-pills.flex-column.nav-pills-no-bd .nav-link {
-  border: 0px !important;
-  border-radius: 50px !important;
-  background: rgba(222, 222, 222, 0.4);
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.nav-pills.flex-column.nav-pills-no-bd .nav-link.active {
-  border-radius: 50px !important;
-}
-
-.nav-pills.flex-column.nav-pills-icons .nav-link,
-.nav-pills.flex-column.nav-pills-icons .nav-link.active {
-  border-radius: 5px !important;
-}
-
-.nav-pills.nav-pills-icons .nav-link,
-.nav-pills.nav-pills-icons .nav-link.active {
-  border-radius: 5px !important;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-
-.nav-pills.nav-pills-icons i {
-  display: block;
-  text-align: center;
-  font-size: 2em;
-  line-height: 50px;
-}
-
-.nav-pills.nav-default .nav-link,
-.nav-pills.nav-primary .nav-link,
-.nav-pills.nav-secondary .nav-link,
-.nav-pills.nav-info .nav-link,
-.nav-pills.nav-warning .nav-link,
-.nav-pills.nav-success .nav-link,
-.nav-pills.nav-danger .nav-link {
-  border: 1px solid #eeeeee;
-}
-
-.nav-pills.nav-default .nav-link.active,
-.nav-pills.nav-primary .nav-link.active,
-.nav-pills.nav-secondary .nav-link.active,
-.nav-pills.nav-info .nav-link.active,
-.nav-pills.nav-warning .nav-link.active,
-.nav-pills.nav-success .nav-link.active,
-.nav-pills.nav-danger .nav-link.active {
-  color: #ffffff !important;
-}
-
-.nav-pills.nav-default .nav-link.active {
-  background: #1a2035;
-  border: 1px solid #1a2035;
-}
-
-.nav-pills.nav-primary .nav-link.active {
-  background: #1572E8;
-  border: 1px solid #1572E8;
-}
-
-.nav-pills.nav-secondary .nav-link.active {
-  background: #6861CE;
-  border: 1px solid #6861CE;
-}
-
-.nav-pills.nav-info .nav-link.active {
-  background: #48ABF7;
-  border: 1px solid #48ABF7;
-}
-
-.nav-pills.nav-success .nav-link.active {
-  background: #31CE36;
-  border: 1px solid #31CE36;
-}
-
-.nav-pills.nav-warning .nav-link.active {
-  background: #FFAD46;
-  border: 1px solid #FFAD46;
-}
-
-.nav-pills.nav-danger .nav-link.active {
-  background: #F25961;
-  border: 1px solid #F25961;
-}
-
 /* Size Nav */
 .nav-sm .nav-link {
   font-size: 11px !important;
@@ -7847,6 +7679,11 @@ background: #bbbabd;
 }
 
 /*     Pagination     */
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .pagination>li>a,
 .pagination>li:first-child>a,
 .pagination>li:last-child>a,
@@ -7985,71 +7822,6 @@ background: #bbbabd;
 .activity-feed {
   padding: 15px;
   list-style: none;
-}
-
-.activity-feed .feed-item {
-  position: relative;
-  padding-bottom: 20px;
-  padding-left: 30px;
-  border-left: 2px solid #e4e8eb;
-}
-
-.activity-feed .feed-item:last-child {
-  border-color: transparent;
-}
-
-.activity-feed .feed-item::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -7px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #177dff;
-}
-
-.feed-item-default::after {
-  background: #1a2035 !important;
-}
-
-.feed-item-primary::after {
-  background: #1572E8 !important;
-}
-
-.feed-item-secondary::after {
-  background: #6861CE !important;
-}
-
-.feed-item-success::after {
-  background: #31CE36 !important;
-}
-
-.feed-item-danger::after {
-  background: #F25961 !important;
-}
-
-.feed-item-info::after {
-  background: #48ABF7 !important;
-}
-
-.feed-item-warning::after {
-  background: #FFAD46 !important;
-}
-
-.activity-feed .feed-item .date {
-  display: block;
-  position: relative;
-  top: -5px;
-  color: #8c96a3;
-  text-transform: uppercase;
-  font-size: 13px;
-}
-
-.activity-feed .feed-item .text {
-  position: relative;
-  top: -3px;
 }
 
 /*      Timeline     */
@@ -12348,10 +12120,6 @@ body[data-background-color="dark"] .card-danger .card-category {
   color: #fff;
 }
 
-body[data-background-color="dark"] .nav-pills .nav-link:not(.active) {
-  background: #fff;
-}
-
 body[data-background-color="dark"] .card-pricing .specification-list li {
   border-color: #373d4c;
 }
@@ -12984,14 +12752,20 @@ body .main-panel .modal-content .modal-body input:focus {
   margin-bottom: unset;
 }
 
-.ml--10{
-margin-left: -10px
+.ml--10 {
+  margin-left: -10px
 }
-.pl-40{
-padding-left: 40px !important
+
+.pl-40 {
+  padding-left: 40px !important
 }
 
 .page-link {
-border: 2px solid #dee2e6 !important;
+  text-align: center;
+  padding: unset !important;
+  margin: 0 3px !important;
+  height: 40px;
+  width: 40px;
+  line-height: 40px !important;
+  border-radius: 50% !important;
 }
-

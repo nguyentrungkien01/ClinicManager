@@ -88,7 +88,7 @@ function setPagegination(datas) {
         gCurrentPage = 1
         $('#pagination').html('')
         page += `<li class="page-item" id ='previous_item'>
-                <button class="page-link" onclick='setPrevious(${amountPage} )'>Truoc</button>
+                <button class="page-link" onclick='setPrevious(${amountPage} )'><</button>
             </li>`
         for (let i = 1; i <= amountPage; i++)
             page += `<li class="page-item ${i == 1 ? 'active' : ''}">
@@ -96,7 +96,7 @@ function setPagegination(datas) {
                 </li>`
 
         page += `<li class="page-item" id = 'next_item'>
-                <button class="page-link" onclick='setNext(${amountPage}, ${amountData})'>Sau</button>
+                <button class="page-link" onclick='setNext(${amountPage}, ${amountData})'>></button>
             </li>`
         $('#pagination').html(page)
     }
@@ -241,7 +241,7 @@ $(document).ready(function () {
     setDataSelection()
     gMonth = parseInt($('#month_input').val())
     gYear = parseInt($('#year_input').val())
-    gPageSize = 10
+    gPageSize = 2
     gBegIdx = 0
     gEndIdx = gBegIdx + gPageSize
     getData()
@@ -349,7 +349,7 @@ $(document).ready(function () {
         }
         pdf.text($('#report_type option:selected').text(), 10, 10, { align: 'center', lang: 'vi' })
         pdf.autoTable({
-            head: [['cột 1', 'cột 2', 'cột 3', 'cột 4', 'cột 5']],
+            head: [head],
             body: [body],
             startY: 50,
             theme: 'grid',
