@@ -22,7 +22,8 @@ class CategoryView(BaseModelView):
                          name='Tên kho thuốc',
                          medicine_list='Danh sách thuốc trong kho')
     column_editable_list = ('name',)
-                            #'medicine_list')
+
+    column_list = ('category_id', 'name')
 
     form_rules = [
         rules.FieldSet(('name',), 'Thông tin kho thuốc'),
@@ -32,7 +33,7 @@ class CategoryView(BaseModelView):
     ]
 
     form_args = dict(
-        name=dict(validators=[validators.DataRequired(),validators.Length(min=1, max=50)],
+        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=50)],
                   render_kw={
                       'placeholder': 'Tên kho thuốc'
                   }),
