@@ -94,6 +94,7 @@ function checkCondition(element, text) {
         textAlert = 'Lưu ý: độ dài từ 8 đến 12 ký tự'
         return false
     }
+    
     var numbers = /[0-9]/g;
     if (element.val().match(numbers) == null) {
         titleAlert = `${text} chỉ được nhập số`
@@ -107,7 +108,7 @@ function checkCondition(element, text) {
 function checkAlertWrong() {
     if (!checkCondition($('#oldPsw'))) {
         checkCondition($('#oldPsw'), 'Mật khẩu cũ')
- 
+
         return false
     }
 
@@ -121,7 +122,7 @@ function checkAlertWrong() {
         return false
     }
 
-    if($('#newPsw').val() != $('#cfmNewPsw').val()){
+    if ($('#newPsw').val() != $('#cfmNewPsw').val()) {
         titleAlert = 'Mật khẩu mới không trùng khớp với mật khẩu xác nhận'
         return false
     }
