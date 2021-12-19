@@ -17,9 +17,9 @@ NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
 
 # cloudinary account
-CLOUD_NAME = 'nguyentrungkien'
-API_KEY = '767724846482349'
-API_SECRET = 'Tdg7DuMzN8am09wvkI05CPe8wjs'
+CLOUD_NAME = 'ouproject'
+API_KEY = '869772182484791'
+API_SECRET = 'CoqsEkLn_nYfUaJSBPYXWkyB4lw'
 
 app.config["SQLALCHEMY_DATABASE_URI"] = \
     str.format(f"mysql+pymysql://{USERNAME_DB}:{PASSWORD_DB}@{IP_DB}/{NAME_DB}?charset=utf8mb4")
