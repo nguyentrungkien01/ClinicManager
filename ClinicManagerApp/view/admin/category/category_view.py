@@ -22,7 +22,7 @@ class CategoryView(BaseModelView):
                          name='Tên kho thuốc',
                          medicine_list='Danh sách thuốc trong kho')
     column_editable_list = ('name',)
-                            #'medicine_list')
+    column_list = ('category_id', 'name')
 
     form_rules = [
         rules.FieldSet(('name',), 'Thông tin kho thuốc'),

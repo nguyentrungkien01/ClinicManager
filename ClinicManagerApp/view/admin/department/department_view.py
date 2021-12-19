@@ -39,6 +39,7 @@ class DepartmentView(BaseModelView):
     column_editable_list = ('name',
                             'capacity',
                             'description')
+    column_list = ('department_id', 'name', 'capacity', 'manager', 'description')
 
     # form
     form_rules = [

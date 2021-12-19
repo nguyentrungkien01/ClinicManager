@@ -10,7 +10,7 @@ class DepartmentModel(db.Model):
     department_id = Column(Integer, primary_key=True, autoincrement=True)
 
     # attributes
-    name = Column(String(50), unique=True, default='')
+    name = Column(String(100), unique=True, default='')
     capacity = Column(Integer, default=1)
     description = Column(Text, default='')
 
