@@ -25,8 +25,6 @@ function getData() {
         return res.json()
     }).then(function (datas) {
         setDataTable(datas)
-    }).then(function (err) {
-        console.info(err)
     })
 }
 
@@ -51,8 +49,6 @@ function getAmount() {
         else
             $('#export_pdf').show()
 
-    }).then(function (err) {
-        console.info(err)
     })
 }
 function getAll() {
@@ -71,8 +67,6 @@ function getAll() {
         return res.json()
     }).then(function (datas) {
         gExportDatas = datas
-    }).then(function (err) {
-        console.info(err)
     })
 }
 

@@ -12543,8 +12543,7 @@ body[data-background-color="dark"] .auth-wrapper .form-group label {
 #input_name_medicine {
   position: relative;
 }
-
-.stats-choice .show-hint {
+.show-hint {
   color: #000;
   display: block;
   min-width: 204px;
@@ -12556,12 +12555,12 @@ body[data-background-color="dark"] .auth-wrapper .form-group label {
   z-index: 9999
 }
 
-.stats-choice .show-hint p {
+.show-hint p {
   padding: 5px 10px;
   margin: unset;
 }
 
-.stats-choice .show-hint p:first-child {
+.show-hint p:first-child {
   background: #04a9f5;
   margin-top: 5px;
 }

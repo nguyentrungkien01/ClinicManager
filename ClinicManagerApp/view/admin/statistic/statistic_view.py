@@ -2,7 +2,7 @@ from flask import request
 from flask_admin import expose
 
 from ClinicManagerApp import app
-from ClinicManagerApp.controller.admin.statistic_controller import statistic, parse_json_array, get_name_medicine as gnm
+from ClinicManagerApp.controller.admin.statistic_controller import statistic, parse_json_array, get_medicine_name
 from ClinicManagerApp.controller.utils_controller import readJsonFile
 from ClinicManagerApp.view.base_view import BaseView
 
@@ -39,12 +39,12 @@ def get_data_statistic():
 
 
 @app.route('/api/name_medicine', methods=['post'])
-def get_name_medicine():
+def get_medicine_name_statistic():
     # import pdb
     # pdb.set_trace()
     name_medicine = request.json.get('name_medicine')
     if name_medicine:
-        data = gnm(str(name_medicine).strip())
+        data = get_medicine_name(str(name_medicine).strip())
     else:
         data = []
     return parse_json_array(data)

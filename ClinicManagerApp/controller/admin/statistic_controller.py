@@ -210,8 +210,8 @@ def parse_json_array(datas):
     return json.dumps(result)
 
 
-def get_name_medicine(keyword=None):
+def get_medicine_name(keyword=None):
     return db.session.query(MedicineModel.name) \
-        .filter(MedicineModel.name.like('%{}%'.format(keyword))) \
-        .slice(0, 5) \
+        .filter(MedicineModel.name.like('{}%'.format(keyword))) \
+        .slice(0, 10) \
         .all()

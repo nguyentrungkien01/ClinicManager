@@ -6,7 +6,7 @@ var gFromTime = null
 var gToTime = null
 var gFlagInputTime = null
 var gBgChart = null
-
+var gIndexHint = null
 function getNameMedicine() {
     fetch('/api/name_medicine', {
         method: 'post',
@@ -21,16 +21,17 @@ function getNameMedicine() {
     }).then(function (res) {
         return res.json()
     }).then(function (datas) {
+        if (datas.length > 0)
+            gIndexHint = 1
         var row = ''
         for (let i = 0; i < datas.length; i++) {
-            row += `<p>${datas[i]['value']}</p>`
+            row += `<p onclick = "onClickHint('${datas[i]['value']}')"
+            onmouseover="onMouseOverHint(${i + 1})">
+                ${datas[i]['value']}</p>`
         }
         document.getElementById('result_input_name').innerHTML = row
-    }).then(function (err) {
-        console.info(err)
     })
 }
-
 
 function getData() {
     var data = $('#name_medicine').val()
@@ -71,9 +72,20 @@ function getData() {
             data = gData,
             labels = gLabels)
 
-    }).then(function (err) {
-        console.info(err)
     })
+}
+
+function onClickHint(hint) {
+    $('#name_medicine').val(hint.trim())
+    $('#result_input_name').html('')
+    getData()
+}
+function onMouseOverHint(position) {
+    gIndexHint = position
+    for (let i = 1; i <= $('#result_input_name').children().length; i++)
+        $(`.stats-choice .show-hint p:nth-child(${i})`).css("background-color", "white");
+    $(`.stats-choice .show-hint p:nth-child(${position})`).css("background-color", "#04a9f5");
+
 }
 
 function init() {
@@ -147,6 +159,7 @@ function setResultHeaderTable() {
     return "Tần suất sử dụng thuốc"
 
 }
+
 // load data of data table
 function loadDataTable(datas) {
     var row = ""
@@ -182,8 +195,36 @@ function loadData(datas) {
 $(document).ready(function () {
     gBgChart = $('.card').css('background-color')
 
+    $('#name_medicine').keydown(function (event) {
+        if (gIndexHint == null)
+            return;
+        if (event.keyCode == 13) {
+            event.preventDefault()
+            $('#name_medicine').val($(`.stats-choice .show-hint p:nth-child(${gIndexHint})`).text().trim())
+            $('#result_input_name').html('')
+            getData()
+        }
+
+        if (event.keyCode == 40) {
+            for (let i = 1; i <= $('#result_input_name').children().length; i++)
+                $(`.stats-choice .show-hint p:nth-child(${i})`).css("background-color", "white");
+            if (++gIndexHint > $('#result_input_name').children().length)
+                gIndexHint = 1
+            $(`.stats-choice .show-hint p:nth-child(${gIndexHint})`).css("background-color", "#04a9f5");
+
+        }
+        if (event.keyCode == 38) {
+            for (let i = 1; i <= $('#result_input_name').children().length; i++)
+                $(`.stats-choice .show-hint p:nth-child(${i})`).css("background-color", "white");
+            if (--gIndexHint <= 0)
+                gIndexHint = $('#result_input_name').children().length
+            $(`.stats-choice .show-hint p:nth-child(${gIndexHint})`).css("background-color", "#04a9f5");
+
+        }
+    })
+
     $('.changeBackgroundColor').click(function () {
-        if ($(this).css('background-color') == 'rgb(255, 255, 255)')
+        if ($(this).css('background-color') == 'rgb(241, 241, 241)')
             gBgChart = '#ffffff'
         else
             gBgChart = '#202940'
@@ -193,9 +234,7 @@ $(document).ready(function () {
             data = gData,
             labels = gLabels)
     })
-    $('.changeBackgroundColor').on('mouseup', function () {
 
-    });
 
 
     init()
@@ -207,11 +246,10 @@ $(document).ready(function () {
         getData()
     })
 
-    $('#name_medicine').blur(function () {
-        $('#result_input_name').hide()
-    })
     $('#name_medicine').focus(function () {
         $('#result_input_name').show()
+        if (gIndexHint != null)
+            $(`.stats-choice .show-hint p:nth-child(1)`).css("background-color", "#04a9f5");
 
     })
     $("#statistic_type").change(function () {

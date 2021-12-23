@@ -1,12 +1,123 @@
-{% extends 'admin/base.html'%}
+{% extends 'admin/master.html'%}
 
 
 {% block head%}
-    {{super()}}
-    <link href="{{url_for('static', filename='css/admin/test.css')}}" rel = 'stylesheet'>
+{{super()}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.22/jspdf.plugin.autotable.min.js"
+    integrity="sha512-3QG6xTKwQ+Gj16++ggVRGrg0pZbC5/u131WyV3Pg/C9JMIKubrs1SbeloGdT5tpx+fVVV1jjkuo+dzbbF080hw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="{{url_for('static', filename='js/doctor/medical_examination_creation.js')}}"></script>
 {% endblock%}
 
+
 {% block body %}
-    {{super()}}
-    <h1>Tạo phiếu khám</h1>
+{{super()}}
+<div class="row" style="margin-top: 100px; margin-left: 50px;">
+    <div class="col-md-3">
+        <form>
+            <div class="form-group id-card-choice">
+                <label for="id_card_input">Can cuoc cong dan khach hang</label>
+                <input type="text" class="form-control" placeholder="Nhap thong tin can cuoc cong dan"
+                    class="form-control" name="id_card_input" id="id_card_input" required>
+                <div id="result_id_card" class="show-hint"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="symptom">Trieu chung</label>
+                <textarea class="form-control" id="symptom" rows="3"
+                    placeholder="Nhap thong tin cac trieu chung"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="predicted_disease">Benh chan doan</label>
+                <textarea class="form-control" id="predicted_disease" rows="3"
+                    placeholder="Nhap thong tin benh chan doan"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class='col-md-9'>
+        <h4 style="text-align: center;">Danh sach thuoc can dung</h4>
+        <div>
+            <button type="button" data-toggle="modal" data-target="#add_medicine_modal" class="btn btn-success"
+                id="add_medicine"> Them (+) </button>
+        </div>
+        <table style="width: 100%; text-align: center;">
+            <thead>
+                <tr>
+                    <th>Thao tac</th>
+                    <th>So thu tu</th>
+                    <th>Ten thuoc</th>
+                    <th>So luong</th>
+                    <th>Don vi</th>
+                    <th>Lieu dung</th>
+                    <th>Phuong phap su dung</th>
+                </tr>
+            </thead>
+            <tbody id='medicine_datas'>
+            </tbody>
+        </table>
+
+        
+        <div class="modal fade" id="add_medicine_modal" tabindex="-1" role="dialog"
+            aria-labelledby="add_medicine_modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_medicine_form">
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group medicine-name-choice">
+                                        <label for="medicine_name_input">Ten thuoc</label>
+                                        <input type="text" class="form-control" id="medicine_name_input"
+                                            placeholder="Nhap ten thuoc" autocomplete="off" required>
+                                        <div id='result_name_medicine' class="show-hint"></div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="medicine_amount">So luong</label>
+                                        <input type="number" class="form-control" id="medicine_amount" value="1" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dosage">Lieu dung</label>
+                                <textarea class="form-control" id="dosage" rows="3"
+                                    placeholder="Nhap thong tin lieu dung" required></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="using_method">Phuong phap su dung</label>
+                                <textarea class="form-control" id="using_method" rows="3"
+                                    placeholder="Nhap thong tin phuong phap su dung" required></textarea>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id = 'cfm_button' data-dismiss="modal">Xac nhan</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Dong</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div>
+    <p>Bac si: <span id= 'current_doctor_info'></span></p>
+</div>
+<div class="row" style="margin-top: 100px; margin-left: 50px;">
+    <button id = "save_export_button">Luu va xuat pdf</button>
+</div>
 {% endblock %}

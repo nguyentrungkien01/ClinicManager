@@ -18,11 +18,8 @@ function passAccountData() {
             'Content-Type': 'application/json'
         }
     }).then(function (res) {
-        console.info(res)
         return res.json()
     }).then(function (datas) {
-        console.info(datas)
-
         if (datas['result']) {
             Swal.fire(
                 'Đổi mật khẩu thành công!',
@@ -40,8 +37,6 @@ function passAccountData() {
                 confirmButtonText: 'Ok',
             })
         }
-    }).then(function (err) {
-        console.info(err)
     })
 }
 

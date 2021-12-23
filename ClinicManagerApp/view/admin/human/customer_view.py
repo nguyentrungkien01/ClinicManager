@@ -20,7 +20,8 @@ class CustomerView(BaseModelView):
                             'address',
                             'sex',
                             'email',
-                            'phone_number']
+                            'phone_number',
+                            'id_card']
     column_searchable_list = ['customer_id']
     column_filters = (FilterEqual(CustomerModel.first_name, name='Tên'),
                       FilterNotEqual(CustomerModel.first_name, name='Tên'),
@@ -37,6 +38,10 @@ class CustomerView(BaseModelView):
                       DateBetweenFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       FilterLike(CustomerModel.sex,name='Giới tính' ),
                       FilterNotEqual(CustomerModel.sex, name='Giới tính'),
+                      FilterEqual(CustomerModel.id_card, name='Căn cước công dân'),
+                      FilterNotEqual(CustomerModel.id_card, name='Căn cước công dân'),
+                      FilterLike(CustomerModel.id_card, name='Căn cước công dân'),
+                      FilterNotLike(CustomerModel.id_card, name='Căn cước công dân'),
                       FilterLike(CustomerModel.address, name='Địa chỉ'),
                       FilterNotLike(CustomerModel.address, name='Địa chỉ'),
                       FilterLike(CustomerModel.email, name='Email'),
@@ -53,7 +58,8 @@ class CustomerView(BaseModelView):
                          address='Địa chỉ',
                          email='Email',
                          phone_number='Số điện thoại',
-                         document_list='Danh sách tài liệu'
+                         document_list='Danh sách tài liệu',
+                         id_card = 'Căn cước công dân'
                          )
     column_editable_list = ('first_name',
                             'last_name',)
@@ -84,6 +90,10 @@ class CustomerView(BaseModelView):
                           render_kw={
                               'placeholder': 'Số điện thoại khách hàng'
                           }),
+        id_card=dict(validators=[validators.Length(min=10, max = 12), validators.DataRequired()],
+                    render_kw={
+                        'placeholder': 'Căn cước công dân khách hàng'
+                    })
     )
 
     form_rules = [
@@ -92,6 +102,7 @@ class CustomerView(BaseModelView):
                         'last_name',
                         'date_of_birth',
                         'sex',
+                        'id_card',
                         'address',
                         'email',
                         'phone_number'), 'Thông tin khách hàng'),
@@ -105,6 +116,7 @@ class CustomerView(BaseModelView):
                 'last_name',
                 'date_of_birth',
                 'sex',
+                'id_card',
                 'address',
                 'email',
                 'phone_number',
