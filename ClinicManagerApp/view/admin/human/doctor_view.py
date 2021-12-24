@@ -15,7 +15,8 @@ class DoctorView(BaseModelView):
                             'last_name',
                             'date_of_birth',
                             'date_of_work',
-                            'exp_year']
+                            'exp_year',
+                            'id_card']
     column_searchable_list = ['staff_id']
     column_filters = (FilterEqual(DoctorModel.first_name, name='Tên'),
                       FilterNotEqual(DoctorModel.first_name, name='Tên'),
@@ -32,6 +33,10 @@ class DoctorView(BaseModelView):
                       DateBetweenFilter(DoctorModel.date_of_birth, name='Ngày sinh'),
                       BooleanEqualFilter(DoctorModel.sex, name='Giới tính'),
                       BooleanNotEqualFilter(DoctorModel.sex, name='Giới tính'),
+                      FilterEqual(DoctorModel.id_card, name='Căn cước công dân'),
+                      FilterNotEqual(DoctorModel.id_card, name='Căn cước công dân'),
+                      FilterLike(DoctorModel.id_card, name='Căn cước công dân'),
+                      FilterNotLike(DoctorModel.id_card, name='Căn cước công dân'),
                       FilterLike(DoctorModel.address, name='Địa chỉ'),
                       FilterNotLike(DoctorModel.address, name='Địa chỉ'),
                       FilterLike(DoctorModel.email, name='Email'),
@@ -67,9 +72,24 @@ class DoctorView(BaseModelView):
                          managed_department='Khoa quản lý',
                          staff_list='Danh sách nhân viên quản lý',
                          account='Tài khoản',
-                         )
+                         id_card='Căn cước công dân')
     column_editable_list = ('first_name',
                             'last_name',)
+    column_list = ('staff_id',
+                   'first_name',
+                   'last_name',
+                   'date_of_birth',
+                   'sex',
+                   'id_card',
+                   'address',
+                   'email',
+                   'phone_number',
+                   'date_of_work',
+                   'major',
+                   'exp_year',
+                   'manager',
+                   'contained_department',
+                   'account')
 
     # form
     form_rules = [
@@ -78,6 +98,7 @@ class DoctorView(BaseModelView):
                         'last_name',
                         'date_of_birth',
                         'sex',
+                        'id_card',
                         'address',
                         'email',
                         'phone_number',
@@ -98,13 +119,13 @@ class DoctorView(BaseModelView):
                             render_kw={
                                 'placeholder': 'Địa chỉ email bác sĩ'
                             }),
-        'date_of_birth': DateField('Ngày sinh',validators=[validators.DataRequired()]),
-        'date_of_work': DateField('Ngày vào làm',validators=[validators.DataRequired()]),
+        'date_of_birth': DateField('Ngày sinh', validators=[validators.DataRequired()]),
+        'date_of_work': DateField('Ngày vào làm', validators=[validators.DataRequired()]),
         'phone_number': TelField('Số điện thoại',
                                  validators=[validators.Length(min=0, max=12)],
                                  render_kw={
                                      'placeholder': 'Số điện thoại bác sĩ'
-                                 })
+                                 }),
     }
     form_args = dict(
         first_name=dict(validators=[validators.DataRequired(),
@@ -126,7 +147,12 @@ class DoctorView(BaseModelView):
                    render_kw={
                        'placeholder': 'Chuyên ngành bác sĩ'
                    }),
-        exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)],),
+        exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)], ),
+
+        id_card=dict(validators=[validators.Length(min=8, max=12), validators.DataRequired()],
+                     render_kw={
+                         'placeholder': 'Căn cước công dân bác sĩ'
+                     })
     )
 
     def scaffold_list_columns(self):
@@ -135,6 +161,7 @@ class DoctorView(BaseModelView):
                 'last_name',
                 'date_of_birth',
                 'sex',
+                'id_card',
                 'address',
                 'email',
                 'phone_number',

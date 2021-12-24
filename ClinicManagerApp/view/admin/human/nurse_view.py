@@ -19,7 +19,8 @@ class NurseView(BaseModelView):
                             'address',
                             'email',
                             'phone_number',
-                            'exp_year']
+                            'exp_year',
+                            'id_card']
     column_searchable_list = ['staff_id']
     column_filters = (FilterEqual(NurseModel.first_name, name='Tên'),
                       FilterNotEqual(NurseModel.first_name, name='Tên'),
@@ -36,6 +37,10 @@ class NurseView(BaseModelView):
                       DateBetweenFilter(NurseModel.date_of_birth, name='Ngày sinh'),
                       BooleanEqualFilter(NurseModel.sex, name='Giới tính'),
                       BooleanNotEqualFilter(NurseModel.sex, name='Giới tính'),
+                      FilterEqual(NurseModel.id_card, name='Căn cước công dân'),
+                      FilterNotEqual(NurseModel.id_card, name='Căn cước công dân'),
+                      FilterLike(NurseModel.id_card, name='Căn cước công dân'),
+                      FilterNotLike(NurseModel.id_card, name='Căn cước công dân'),
                       FilterLike(NurseModel.address, name='Địa chỉ'),
                       FilterNotLike(NurseModel.address, name='Địa chỉ'),
                       FilterLike(NurseModel.email, name='Email'),
@@ -68,6 +73,7 @@ class NurseView(BaseModelView):
                          staff_list='Danh sách nhân viên quản lý',
                          medical_bill_list='Danh sách hóa đơn thanh toán',
                          account='Tài khoản',
+                         id_card='Căn cước công dân y tá'
                          )
     column_editable_list = ('first_name',
                             'last_name')
@@ -79,6 +85,7 @@ class NurseView(BaseModelView):
                         'last_name',
                         'date_of_birth',
                         'sex',
+                        'id_card',
                         'address',
                         'email',
                         'phone_number',
@@ -120,7 +127,8 @@ class NurseView(BaseModelView):
                      render_kw={
                          'placeholder': 'Địa chỉ y tá'
                      }),
-        exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)],)
+        exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)], ),
+        id_card=dict(validators=[validators.Length(min=8, max=12), validators.DataRequired()])
     )
 
     def scaffold_list_columns(self):
@@ -129,6 +137,7 @@ class NurseView(BaseModelView):
                 'last_name',
                 'date_of_birth',
                 'sex',
+                'id_card',
                 'address',
                 'email',
                 'phone_number',

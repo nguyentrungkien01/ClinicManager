@@ -10,11 +10,11 @@ class Sex(enum.Enum):
 
 
 class PersonModel(object):
-
     # attributes
     first_name = Column(String(20), default='')
     last_name = Column(String(50), default='')
     date_of_birth = Column(DateTime, default=datetime.now())
+    id_card = Column(String(12), unique=True, default='')
     address = Column(String(200), default='')
     email = Column(String(50), default='')
     phone_number = Column(String(12), default='')
