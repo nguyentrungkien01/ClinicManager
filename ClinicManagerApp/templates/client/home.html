@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Phòng Mạch Trung Thành" />
+    <meta property="og:description" content="Phòng mạch Trung Thành - Chăm sóc sức khoẻ của bạn" />
+    <meta property="og:image"
+        content="http://ou.edu.vn/wp-content/uploads/2018/08/LOGO-TRUONGV21-12-2018-01-300x300.png" />
+
+    <title>Phòng Mạch Trung Thành</title>
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon"
+        href="https://res.cloudinary.com/ouproject/image/upload/v1639921917/img/favicon/health-care_yheaml.ico"
+        type="image/png" />
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../static/js/plugin/bootstrap/bootstrap-material.css" />
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="../static/css/client/swiper.min.css" />
+
+    <!-- Animate -->
+    <link rel="stylesheet" href="../static/js/plugin/animate/animate.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../static/css/client/style.css" />
+    <link rel="stylesheet" href="../static/css/client/reponsive.css" />
+
+    <!-- Cursor -->
+    <link rel="stylesheet" href="../static/js/plugin/cursor/cursor.css" />
+</head>
+
+<body>
+    <!-- preloader start -->
+    {% include 'includes/client/loader.html' %}
+    <!-- preloader end -->
+
+    <div class="hc-main-wraper" id="home">
+        <!-- header start -->
+        {% include 'includes/client/header.html' %}
+        <!-- header end -->
+
+        <!-- banner start -->
+        {% include 'includes/client/banner.html' %}
+        <!-- banner end -->
+
+        <!-- services start -->
+        {% include 'includes/client/services.html' %}
+        <!-- services end -->
+
+        <!-- about start -->
+        {% include 'includes/client/about.html' %}
+        <!-- about end -->
+
+        <!-- team start -->
+        {% include 'includes/client/teams.html' %}
+        <!-- team end -->
+
+        <!-- counters start -->
+        {% include 'includes/client/counter.html' %}
+        <!-- counters end -->
+
+        <!-- contact us start -->
+        {% include 'includes/client/contact.html' %}
+        <!-- contact us end -->
+
+        <!-- blog start -->
+        {% include 'includes/client/blog.html' %}
+        <!-- blog end -->
+
+        <!-- testimonial start -->
+        {% include 'includes/client/testimonial.html' %}
+        <!-- testimonial end -->
+
+        <!-- footer start -->
+        {% include 'includes/client/footer.html' %}
+        <!-- footer end -->
+
+        <!-- appointment form modal start -->
+        {% include 'includes/client/appointment-form.html' %}
+        <!-- appointment form modal end -->
+
+        <!-- go to top start -->
+        <div class="hc-go-top">
+            <i class="fas fa-angle-up"></i>
+        </div>
+        <!-- go to top end -->
+    </div>
+
+    <!-- Scripts JS start -->
+    {% include 'includes/client/scripts.html' %}
+    <!-- Scripts JS end -->
+</body>
+
+</html>

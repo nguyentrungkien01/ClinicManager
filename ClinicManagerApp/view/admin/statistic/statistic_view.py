@@ -11,7 +11,7 @@ class StatisticView(BaseView):
     @expose('/')
     def index(self):
         selection = readJsonFile('statistic_data.json')
-        return self.render('admin/statistic/statistic.html', selections=selection)
+        return self.render('admin/statistic.html', selections=selection)
 
 
 @app.route('/api/statistic', methods=['post'])
