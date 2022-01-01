@@ -73,8 +73,7 @@ a {
   color: #1572E8;
 }
 
-a:hover,
-a:focus {
+a:hover {
   color: #1269DB;
 }
 
@@ -7803,6 +7802,10 @@ body[data-background-color="dark"] .bg-thead {
 }
 
 /*     	Modal     */
+.modal {
+  z-index: 9999;
+}
+
 .modal .bg-default .modal-title,
 .modal .bg-primary .modal-title,
 .modal .bg-secondary .modal-title,
@@ -12543,6 +12546,7 @@ body[data-background-color="dark"] .auth-wrapper .form-group label {
 #input_name_medicine {
   position: relative;
 }
+
 .show-hint {
   color: #000;
   display: block;
@@ -12751,6 +12755,18 @@ body .main-panel .modal-content .modal-body input:focus {
   margin-bottom: unset;
 }
 
+@media screen and (max-width:576px) {
+
+  .main-panel .modal-content .modal-body .form-group {
+    flex-wrap: wrap;
+  }
+
+  .doctor-modal .show-hint {
+    left: 15px !important;
+    top: 75px !important;
+  }
+}
+
 .ml--10 {
   margin-left: -10px
 }
@@ -12767,4 +12783,29 @@ body .main-panel .modal-content .modal-body input:focus {
   width: 40px;
   line-height: 40px !important;
   border-radius: 50% !important;
+}
+
+#add_medicine_modal label {
+  color: #000 !important;
+}
+
+.card-save {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#medicine_datas i {
+  margin: 0 4px;
+}
+
+.doctor-form-customer .show-hint {
+  top: unset;
+  right: unset;
+  left: 35px;
+}
+
+.doctor-modal .show-hint {
+  right: unset;
+  left: 250px;
+  top: 53px;
 }
