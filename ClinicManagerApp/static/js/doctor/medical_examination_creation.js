@@ -82,6 +82,7 @@ function getMedicineUnit(OrderId) {
 
     })
 }
+
 function checkMedicineName() {
     fetch('/api/check_medicine_name_doctor', {
         method: 'post',
@@ -98,19 +99,48 @@ function checkMedicineName() {
         var dosage = $('#dosage').val()
         var usingMethod = $('#using_method').val()
         if (medicineName == null || medicineName.length <= 0) {
-            alert('Ten thuoc khong duoc de trong')
+            Swal.fire({
+                title: 'Tên thuốc không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
+
+            // .then((result) => {
+                
+            //     if (result.isConfirmed) {
+            //       Swal.fire('Saved!', '', 'success')
+            //     } else if (result.isDenied) {
+            //       Swal.fire('Changes are not saved', '', 'info')
+            //     }
+            //   })
             return
         }
         if (dosage == null || dosage.length <= 0) {
-            alert('Thong tin lieu dung khong duoc de trong')
+            Swal.fire({
+                title: 'Thông tin liều dùng không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if (usingMethod == null || usingMethod.length <= 0) {
-            alert('Phuong phap su dung khong duoc de trong')
+            Swal.fire({
+                title: 'Phương pháp sử dụng không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if (!(datas.length > 0)) {
-            alert('Thuoc khong ton tai')
+            Swal.fire({
+                title: 'Thuốc không tồn tại',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if (isCreated) {
@@ -140,23 +170,48 @@ function checkCustomerIdCard() {
         var symptom = $('#symptom').val()
         var predictedDisease = $('#predicted_disease').val()
         if (idCard == null || idCard.length <= 0) {
-            alert('Thong tin can cuoc cong dan khong duoc de trong')
+            Swal.fire({
+                title: 'Thông tin CCCD không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if (symptom == null || symptom.length <= 0) {
-            alert('Thong tin trieu chung khong duoc de trong')
+            Swal.fire({
+                title: 'Thông tin triệu chứng không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if (predictedDisease == null || predictedDisease.length <= 0) {
-            alert('Thong tin benh chan doan khong duoc de trong')
+            Swal.fire({
+                title: 'Thông tin bệnh chuẩn đoán không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if (!(datas.length > 0)) {
-            alert('Khach hang khong ton tai')
+            Swal.fire({
+                title: 'Khách hàng không tồn tại',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         if ($('#medicine_datas').children().length <= 0) {
-            alert('Danh sach thuoc khong duoc de trong')
+            Swal.fire({
+                title: 'Danh sách thuốc không được để trống',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
         //save and export
@@ -190,10 +245,21 @@ function saveData() {
     }).then(function (datas) {
         if (datas['result']) {
             exportPDF()
-            alert('Tao phieu kham moi thanh cong')
+            Swal.fire({
+                title: 'Tạo phiếu khám mới thành công',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             clearData()
         } else {
-            alert('Tao phieu kham that bai, vui long thu lai')
+            Swal.fire({
+                title: 'Tạo phiếu khám thất bại',
+                text: 'Vui lòng thử lại',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
         }
     })
 }
@@ -204,6 +270,7 @@ function onClickHintCustomerIdCard(hint) {
     $('#id_card_input').val(hint.trim())
     $('#result_id_card').html('')
 }
+
 function onMouseOverHintCustomerIdCard(position) {
     gIndexHintIdCard = position
     for (let i = 1; i <= $('#result_id_card').children().length; i++)
@@ -217,6 +284,7 @@ function onClickHintMedicineName(hint) {
     $('#medicine_name_input').val(hint.trim())
     $('#result_name_medicine').html('')
 }
+
 function onMouseOverHintMedicineName(position) {
     gIndexHintMedicineName = position
     for (let i = 1; i <= $('#result_name_medicine').children().length; i++)
@@ -230,7 +298,12 @@ function addMedicine() {
     var nameMedicine = $('#medicine_name_input').val()
     for (let i = 1; i <= $('#medicine_datas').children().length; i++)
         if (nameMedicine == $(`#medicine_datas tr:nth-child(${i}) td:nth-child(3)`).text().trim()) {
-            alert('Ten thuoc da ton tai')
+            Swal.fire({
+                title: 'Tên thuốc đã tồn tại',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             return
         }
 
@@ -239,14 +312,15 @@ function addMedicine() {
     var usinMethod = $('#using_method').val()
 
     var row = `<tr>
-        <td> <button type="button" class="btn btn-warning" onclick = "editMedicine(${order_id})">Sua (?) </button>
-            <button type="button" class="btn btn-danger" onclick = "removeMedicine(${order_id})">Xoa (-) </button>
+        <td> 
+        <i class="far fa-trash-alt" onclick = "removeMedicine(${order_id})"></i>
+        <i class="far fa-edit" onclick = "editMedicine(${order_id})"></i>
         </td>
         <td>${order_id}</td>
         <td>${nameMedicine} </td>
         <td><span>${amountMedicine}</span>
-            <button type="button" class="btn btn-success" onclick = "addAmount(${order_id})"> + </button>
-            <button type="button" class="btn btn-danger" onclick = "subtractAmount(${order_id})"> - </button>
+            <a href="javascript:;" class="btn btn-xs btn-secondary btn-success "onclick = "addAmount(${order_id})"> + </a>
+            <a href="javascript:;" class="btn btn-xs btn-secondary btn-danger "onclick = "subtractAmount(${order_id})"> - </a>
         </td>
         <td></td>
         <td>${dosage}</td>
@@ -297,6 +371,7 @@ function addAmount(order_id) {
     amount++
     element.text(amount)
 }
+
 function subtractAmount(order_id) {
     var element = $(`#medicine_datas tr:nth-child(${order_id}) td:nth-child(4) span`)
     var amount = parseInt(element.text())
@@ -366,12 +441,14 @@ function exportPDF() {
             }
         }
     })
-    pdf.autoPrint({ variant: 'non-conform' });
+    pdf.autoPrint({
+        variant: 'non-conform'
+    });
     pdf.save('medical examination.pdf')
 }
 
 //clear data
-function clearData(){
+function clearData() {
     $('#id_card_input').val('')
     $('#symptom').val('')
     $('#predicted_disease').val('')
