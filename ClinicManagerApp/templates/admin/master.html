@@ -52,8 +52,8 @@
     <div class="wrapper">
 
         {% block header %}
-        {% include 'includes/navigation.html' %}
-        {% include 'includes/sidebar.html' %}
+        {% include 'admin/home/navigation.html' %}
+        {% include 'admin/home/sidebar.html' %}
         {% endblock %}
 
         {% block container %}
@@ -75,13 +75,13 @@
             {% endblock content %}
 
             {%block footer %}
-            {% include 'includes/footer.html' %}
+            {% include 'admin/home/footer.html' %}
             {% endblock %}
         </div>
         {% endblock %}
         <!-- setting color - swich mode -->
         {% if current_user.is_authenticated %}
-            {% include 'includes/configuration-plugin.html' %}
+            {% include 'admin/home/configuration-plugin.html' %}
         {% endif %}
     </div>
 

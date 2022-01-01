@@ -8,5 +8,4 @@ class HomeView(AdminIndexView):
 
     @expose('/')
     def index(self):
-        return self.render(
-            'admin/home.html')
+        return self.render('admin/home/home_page.html')

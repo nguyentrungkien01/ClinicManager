@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # mysql account
 USERNAME_DB = 'root'
-PASSWORD_DB = 'thanhnam'
+PASSWORD_DB = '12345678'
 NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
 
@@ -28,6 +28,7 @@ app.config["FLASK_ADMIN_FLUID_LAYOUT"] = True
 # app.config["SQLALCHEMY_ECHO"] = True
 app.secret_key = b'21137afa59a4dd08b708dcf106c724f9'
 db = SQLAlchemy(app=app)
+
 admin = Admin(app=app, name="Phòng mạch", template_mode="bootstrap4",
               index_view=HomeView(name='Trang chủ'))
 login = LoginManager(app=app)
