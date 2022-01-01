@@ -1,0 +1,64 @@
+<div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-head-row">
+                            <div class="card-title">Lựa chọn thống kê</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-choice">
+                            <form class="d-flex flex-wrap">
+                                <div class="form-group">
+                                    <label for="statistic_type">Loại thống kê</label>
+                                    <select name="statistic_type" id="statistic_type">
+                                        {% for s in selections['statistic_type'] %}
+                                        <option value={{s['type']}}>{{s['name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="form-group ml--10" id="input_name_medicine">
+                                        <label for="chart_type">Ten thuốc</label>
+                                        <input type="text" placeholder="Nhập mã thuốc" id='name_medicine' />
+                                        <div id="result_input_name" class="show-hint">
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label for="chart_type">Loại biểu đồ</label>
+                                    <select name="chart_type" id="chart_type">
+                                        {% for s in selections['chart_type'] %}
+                                        <option value={{s['type']}}>{{s['name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="statistic_condition">Điều kiện thống kê </label>
+                                    <select name="statistic_condition" id="statistic_condition">
+                                        {% for s in selections['statistic_condition'] %}
+                                        <option value={{s['type']}}>{{s['name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                        
+                                    <div class="form-group ml--10"  id='input_time'>
+                                        <div class="form-grou p-0">
+                                            <label for="left_time">Bắt đầu</label>
+                                            <select name="left_time" id="left_time">
+                                            </select>
+                                        </div>
+                                      
+                                        <div class="form-group p-0 pl-40" >
+                                            <label for="right_time">Kết thúc</label>
+                                            <select name="right_time" id="right_time">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>

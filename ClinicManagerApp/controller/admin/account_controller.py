@@ -1,6 +1,7 @@
 import datetime
 import hashlib
 
+
 from ClinicManagerApp import db
 from ClinicManagerApp.model.account.account_model import AccountModel
 
