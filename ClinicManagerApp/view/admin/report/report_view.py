@@ -11,7 +11,7 @@ class ReportView(BaseView):
     @expose('/')
     def index(self):
         selection = readJsonFile('report_data.json')
-        return self.render('admin/report/report.html', selections=selection)
+        return self.render('admin/report.html', selections=selection)
 
 
 @app.route('/api/report', methods=['post'])

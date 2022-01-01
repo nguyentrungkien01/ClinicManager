@@ -1,0 +1,32 @@
+<div class="modal fade" id="hc-appointment" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Đặt lịch</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="hc-contact-box">
+                    <form>
+                        <input type="text" placeholder="Họ và tên" name="full_name" id="full_name"
+                            class="require" />
+                        <input type="email" placeholder="Email" name="email" id="email" class="require"
+                            data-valid="email" data-error="Email should be valid." />
+                        <input type="number" placeholder="Số điện thoại" name="contact" id="contact"
+                            class="require" /> 
+                        <input type="text" placeholder="Địa chỉ" name="address" id="address"
+                            class="require" />
+                        <textarea placeholder="Lời nhắn..." name="message" id="message"
+                            class="require"></textarea>
+                        <button type="submit" class="hc-btn submitForm">
+                            Xác nhận
+                        </button>
+                        <div class="response"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
