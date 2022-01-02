@@ -1,38 +1,54 @@
 {% extends 'admin/master.html' %}
 {% block head %}
-    {{ super() }}
-    <!-- Chart JS -->
-    <script src="/static/js/plugin/chart.js/chart.min.js"></script>
+{{ super() }}
+<!-- Chart JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/static/js/plugin/chart.js/chart.min.js"></script>
+<!-- Owl carousel -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
 {% endblock %}
 {% block header %}
-    {% if current_user.is_authenticated %}
-        {% include 'includes/admin/home/navigation.html' %}
-        {% include 'includes/admin/home/sidebar.html' %}
-    {% endif %}
+{% if current_user.is_authenticated %}
+{% include 'includes/admin/home/navigation.html' %}
+{% include 'includes/admin/home/sidebar.html' %}
+{% endif %}
 {% endblock %}
 {% block container %}
-    {% block body %}
-        {% if not current_user.is_authenticated %}
-            {% include 'includes/admin/home/login.html' %}
-        {% else %}
-            <div class="main-panel">
-                {% block content %}
-                    {% if current_user.role_id == 1 %}
-                        {% include 'includes/admin/home/home_admin.html' %}
-                    {% else %}
-                        {% include 'includes/admin/home/home_non_admin.html' %}
-                    {% endif %}
-                    {% block footer %}
-                        {% if current_user.is_authenticated %}
-                            {% include 'includes/admin/home/footer.html' %}
-                        {% endif %}
-                    {% endblock %}
-                {% endblock content %}
-                <!-- Specific Page JS goes HERE  -->
-                {% block javascripts %}{% endblock javascripts %}
-            </div>
-        {% endif %}
-        <!-- Script -->
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% block body %}
+{% if not current_user.is_authenticated %}
+{% include 'includes/admin/home/login.html' %}
+{% else %}
+<div class="main-panel">
+    {% block content %}
+    {% if current_user.role_id == 1 %}
+    {% include 'includes/admin/home/home_admin.html' %}
+    {% else %}
+    {% include 'includes/admin/home/home_non_admin.html' %}
+    {% endif %}
+    {% block footer %}
+    {% if current_user.is_authenticated %}
+    {% include 'includes/admin/home/footer.html' %}
+    {% endif %}
     {% endblock %}
+    {% endblock content %}
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+</div>
+{% endif %}
+<!-- Script -->z
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        $('#owl-intro').owlCarousel({
+            loop: true,
+            nav: false,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            margin: 10,
+            items: 1
+        });
+    })
+</script>
+{% endblock %}
 {% endblock %}

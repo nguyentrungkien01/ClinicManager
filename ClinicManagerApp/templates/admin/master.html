@@ -40,6 +40,7 @@
         {% block head %}
             <script src="/static/js/plugin/webfont/webfont.min.js"></script>
             <script src="https://kit.fontawesome.com/9922726b65.js" crossorigin="anonymous"></script>
+        
         {% endblock %}
         {% block head_tail %}{% endblock %}
     </head>
@@ -94,6 +95,9 @@
             <!-- Clinic JS -->
             <script src="/static/js/admin/clinic.js"></script>
             <script src="/static/js/admin/setting-demo.js"></script>
+            <!-- Carousel -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+            
             {% if admin_view.extra_js %}
                 {% for js_url in admin_view.extra_js %}
                     <script src="{{ js_url }}" type="text/javascript"></script>
