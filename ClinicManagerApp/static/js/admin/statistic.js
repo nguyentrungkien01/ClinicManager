@@ -8,7 +8,7 @@ var gFlagInputTime = null
 var gBgChart = null
 var gIndexHint = null
 function getNameMedicine() {
-    fetch('/api/name_medicine', {
+    fetch('/api/admin/name_medicine', {
         method: 'post',
         body: JSON.stringify(
             {
@@ -40,7 +40,7 @@ function getData() {
     else
         data = $('#name_medicine').val()
 
-    fetch('/api/statistic', {
+    fetch('/api/admin/statistic', {
         method: 'post',
         body: JSON.stringify(
             {

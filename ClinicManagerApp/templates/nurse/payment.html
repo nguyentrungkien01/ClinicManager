@@ -1,12 +1,11 @@
-{% extends 'admin/base.html'%}
+{% extends 'admin/master.html'%}
 
 
 {% block head%}
     {{super()}}
-    <link href="{{url_for('static', filename='css/admin/test.css')}}" rel = 'stylesheet'>
 {% endblock%}
 
 {% block body %}
     {{super()}}
-    <h1>Thanh toán hóa đơn</h1>
+    <h1 style="margin-top: 100px">Thanh toán hóa đơn</h1>
 {% endblock %}

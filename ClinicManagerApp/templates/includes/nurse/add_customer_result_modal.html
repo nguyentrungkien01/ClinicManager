@@ -1,0 +1,24 @@
+
+
+{%if add_customer_result != None %}
+<div class="modal fade" id="add_customer_result" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_customer_result_title">Ket qua dang ky</h5>
+            </div>
+            <div class="modal-body">
+                {%if add_customer_result %}
+                <p>Dang ky thanh cong</p>
+                {%else%}
+                <p>Dang ky that bai</p>
+                {%endif%}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Dong</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endif%}
