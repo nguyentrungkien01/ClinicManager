@@ -14,10 +14,8 @@ class ReportView(BaseView):
         return self.render('admin/report.html', selections=selection)
 
 
-@app.route('/api/report', methods=['post'])
+@app.route('/api/admin/report', methods=['post'])
 def get_data_report():
-    # import pdb
-    # pdb.set_trace()
     report_type = request.json.get('report_type')
     month = request.json.get('month')
     quarter = request.json.get('quarter')
@@ -29,7 +27,7 @@ def get_data_report():
     return parse_json_array(data)
 
 
-@app.route('/api/amount_report', methods=['post'])
+@app.route('/api/admin/amount_report', methods=['post'])
 def get_amount():
     report_type = request.json.get('report_type')
     month = request.json.get('month')
@@ -38,7 +36,7 @@ def get_amount():
     return {'amount': ga(report_type=report_type, month=month, quarter=quarter, year=year)}
 
 
-@app.route('/api/export_report', methods=['post'])
+@app.route('/api/admin/export_report', methods=['post'])
 def get_all():
     report_type = request.json.get('report_type')
     month = request.json.get('month')

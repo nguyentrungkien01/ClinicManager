@@ -4,7 +4,7 @@ var isCreated = true
 var gOrderId = null
 
 function getCurrentDoctorInfo() {
-    fetch('/api/current_doctor', {
+    fetch('/api/doctor/current_doctor', {
         method: 'post',
         body: {},
         headers: {
@@ -20,7 +20,7 @@ function getCurrentDoctorInfo() {
 
 
 function getCustomerIdCard() {
-    fetch('/api/customer_id_card_doctor', {
+    fetch('/api/doctor/customer_id_card', {
         method: 'post',
         body: JSON.stringify({
             'id_card': $('#id_card_input').val() == undefined ? null : $('#id_card_input').val()
@@ -43,7 +43,7 @@ function getCustomerIdCard() {
 }
 
 function getMedicineName() {
-    fetch('/api/medicine_name_doctor', {
+    fetch('/api/doctor/medicine_name', {
         method: 'post',
         body: JSON.stringify({
             'medicine_name': $('#medicine_name_input').val() == undefined ? null : $('#medicine_name_input').val()
@@ -66,7 +66,7 @@ function getMedicineName() {
 }
 
 function getMedicineUnit(OrderId) {
-    fetch('/api/medicine_unit_doctor', {
+    fetch('/api/doctor/medicine_unit', {
         method: 'post',
         body: JSON.stringify({
             'medicine_name': $('#medicine_name_input').val()
@@ -84,7 +84,7 @@ function getMedicineUnit(OrderId) {
 }
 
 function checkMedicineName() {
-    fetch('/api/check_medicine_name_doctor', {
+    fetch('/api/doctor/check_medicine_name', {
         method: 'post',
         body: JSON.stringify({
             'medicine_name': $('#medicine_name_input').val()
@@ -155,7 +155,7 @@ function checkMedicineName() {
 }
 
 function checkCustomerIdCard() {
-    fetch('/api/check_customer_id_card_doctor', {
+    fetch('/api/doctor/check_customer_id_card', {
         method: 'post',
         body: JSON.stringify({
             'id_card': $('#id_card_input').val()
@@ -229,7 +229,7 @@ function saveData() {
             'using_method': $(`#medicine_datas tr:nth-child(${i}) td:nth-child(7)`).text().trim(),
         })
 
-    fetch('/api/save_medical_examination_data', {
+    fetch('/api/doctor/save_medical_examination_data', {
         method: 'post',
         body: JSON.stringify({
             'id_card': $('#id_card_input').val(),

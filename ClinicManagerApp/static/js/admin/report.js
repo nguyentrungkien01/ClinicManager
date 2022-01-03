@@ -8,7 +8,7 @@ var gExportDatas = null
 var gCurrentPage = null
 
 function getData() {
-    fetch('/api/report', {
+    fetch('/api/admin/report', {
         method: 'post',
         body: JSON.stringify({
             'report_type': $('#report_type').val() == undefined ? 'revenue' : $('#report_type').val(),
@@ -29,7 +29,7 @@ function getData() {
 }
 
 function getAmount() {
-    fetch('/api/amount_report', {
+    fetch('/api/admin/amount_report', {
         method: 'post',
         body: JSON.stringify({
             'report_type': $('#report_type').val() == undefined ? 'revenue' : $('#report_type').val(),
@@ -52,7 +52,7 @@ function getAmount() {
     })
 }
 function getAll() {
-    fetch('/api/export_report', {
+    fetch('/api/admin/export_report', {
         method: 'post',
         body: JSON.stringify({
             'report_type': $('#report_type').val() == undefined ? 'revenue' : $('#report_type').val(),

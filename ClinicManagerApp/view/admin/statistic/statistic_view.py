@@ -14,7 +14,7 @@ class StatisticView(BaseView):
         return self.render('admin/statistic.html', selections=selection)
 
 
-@app.route('/api/statistic', methods=['post'])
+@app.route('/api/admin/statistic', methods=['post'])
 def get_data_statistic():
     # import pdb
     # pdb.set_trace()
@@ -38,7 +38,7 @@ def get_data_statistic():
     return parse_json_array(data)
 
 
-@app.route('/api/name_medicine', methods=['post'])
+@app.route('/api/admin/name_medicine', methods=['post'])
 def get_medicine_name_statistic():
     # import pdb
     # pdb.set_trace()

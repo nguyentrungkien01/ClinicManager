@@ -18,7 +18,7 @@ class ChangePasswordView(BaseView):
         return current_user.is_authenticated
 
 
-@app.route('/api/change_password', methods=['post'])
+@app.route('/api/staff/change_password', methods=['post'])
 def change_password():
     username = request.json.get('username')
     old_password = request.json.get('old_password')

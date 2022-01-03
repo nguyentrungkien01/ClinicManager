@@ -1,12 +1,22 @@
-{% extends 'admin/base.html'%}
+{% extends 'admin/master.html'%}
 
 
 {% block head%}
-    {{super()}}
-    <link href="{{url_for('static', filename='css/admin/test.css')}}" rel = 'stylesheet'>
+{{super()}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="{{url_for('static', filename='js/nurse/offline_registration.js')}}"></script>
+
 {% endblock%}
 
 {% block body %}
-    {{super()}}
-    <h1>Đăng kí trực tiếp</h1>
+{{super()}}
+
+{% if amount >0 %}
+<h1 style="margin-top:100px">So luot dang ky con lai trong ngay {{amount}}</h1>
+{% include 'includes/nurse/add_customer_result_modal.html' %}
+{% include 'includes/nurse/input_customer_infor.html' %}
+{%else %}
+<h1 style="margin-top:100px">So luot dang ky trong ngay da het</h1>
+{% endif %}
 {% endblock %}
