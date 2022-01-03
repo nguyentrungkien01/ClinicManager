@@ -6,10 +6,10 @@ $(".nav-search .input-group > input").focus(function (e) {
 	$(this).parent().removeClass("focus");
 });
 
-$('.table-responsive thead tr th').map(function(){
+$('.table-responsive thead tr th').map(function () {
 	console.log($(this).find("input"))
 	if (($(this).text().trim() == "" && !$(this).find("input").length == 1))
-			$(this).text('Thao tác')
+		$(this).text('Thao tác')
 })
 
 $('.modal-dialog').removeClass('modal-xl')
@@ -350,8 +350,12 @@ function showPassword(button) {
 	var inputPassword = $(button).parent().find('input');
 	if (inputPassword.attr('type') === "password") {
 		inputPassword.attr('type', 'text');
+		$(".show-password i").removeClass("far fa-eye");
+		$(".show-password i").addClass("far fa-eye-slash");
 	} else {
 		inputPassword.attr('type', 'password');
+		$(".show-password i").removeClass("far fa-eye-slash");
+		$(".show-password i").addClass("far fa-eye");
 	}
 }
 

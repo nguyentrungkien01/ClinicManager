@@ -16,7 +16,8 @@ class OfflineRegistrationView(BaseView):
     def index(self):
         return self.render('nurse/offline_registration.html',
                            amount=(get_amount_registration_daily()- len(detail_registration['customer_list'])),
-                           add_customer_result=get_add_customer_result())
+                           add_customer_result=get_add_customer_result(),
+                           daily_customer_list=detail_registration['customer_list'])
 
     def is_accessible(self):
         return current_user.is_authenticated and \

@@ -10,7 +10,7 @@ def get_amount_registration_daily():
 
 
 def check_amount_registration_daily():
-    return get_amount_registration_daily() < len(detail_registration['customer_list'])
+    return len(detail_registration['customer_list']) <= get_amount_registration_daily()
 
 
 def is_exist_customer_daily(id_card=None):
@@ -20,7 +20,7 @@ def is_exist_customer_daily(id_card=None):
     dt = datetime.datetime.now().strftime('%Y-%m-%d')
     if pdt == dt:
         for c in detail_registration['customer_list']:
-            if str(c).__eq__(str(id_card).strip()):
+            if c.__eq__(id_card):
                 return True
     return False
 
@@ -41,19 +41,19 @@ def reset_daily_list():
 
 def add_customer_db(customer=None):
     if is_exist_customer_db(customer.id_card):
-        return False
+        return True
     try:
         db.session.add(customer)
         db.session.commit()
         return True
     except:
         db.session.rollback()
-        return False
+    return False
 
 
 def add_customer_daily(id_card=None):
     reset_daily_list()
-    if not check_amount_registration_daily or is_exist_customer_daily():
+    if not check_amount_registration_daily() or is_exist_customer_daily(id_card=id_card):
         return False
     detail_registration['date'] = datetime.datetime.now().strftime('%Y-%m-%d')
     detail_registration['customer_list'].append(id_card)
