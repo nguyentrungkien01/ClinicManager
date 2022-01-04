@@ -1,7 +1,6 @@
-from locale import format
 
 import cloudinary.uploader
-from flask import request
+from flask import request, render_template
 from flask_admin.contrib.sqla.filters import BooleanEqualFilter, FilterLike, FilterEmpty, DateEqualFilter, \
     DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, FilterNotLike, BooleanNotEqualFilter
 from flask_admin.form import rules

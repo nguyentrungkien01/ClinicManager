@@ -1,0 +1,23 @@
+<div class="col-12 col-md-5">
+    <div class="card card-stats card-primary card-round">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-5">
+                    <div class="icon-big text-center">
+                        <i class="fas fa-hospital-user"></i>
+                    </div>
+                </div>
+                <div class="col-7 col-stats">
+                    <div class="numbers">
+                        {% if amount >0 %}
+                        <p class="card-category">Số lượt đăng ký còn lại</p>
+                        <h4 class="card-title">{{amount}}</h4>
+                        {%else %}
+                        <p class="card-category">Số lượt đăng ký đã đạt giới hạn trong ngày</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

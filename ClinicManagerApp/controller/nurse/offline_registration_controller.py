@@ -51,6 +51,15 @@ def add_customer_db(customer=None):
     return False
 
 
+def get_fullname_customer_list_by_id_card():
+    result_list = []
+    for id_card in detail_registration['customer_list']:
+        data = db.session.query(CustomerModel.last_name, CustomerModel.first_name) \
+            .filter(CustomerModel.id_card.__eq__(id_card)).first()
+        result_list.append('{} {}'.format(data[0], data[1]))
+    return result_list
+
+
 def add_customer_daily(id_card=None):
     reset_daily_list()
     if not check_amount_registration_daily() or is_exist_customer_daily(id_card=id_card):

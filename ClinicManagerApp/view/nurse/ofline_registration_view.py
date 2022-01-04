@@ -1,4 +1,3 @@
-
 from flask_admin import expose
 from flask_login import current_user
 from flask import redirect, request, url_for
@@ -6,7 +5,7 @@ from ClinicManagerApp import app, detail_registration
 from ClinicManagerApp.view.base_view import BaseView
 from ClinicManagerApp.model.human.customer_model import CustomerModel
 from ClinicManagerApp.controller.nurse.offline_registration_controller import \
-    add_customer_daily, add_customer_db, get_amount_registration_daily
+    add_customer_daily, add_customer_db, get_amount_registration_daily, get_fullname_customer_list_by_id_card
 
 
 class OfflineRegistrationView(BaseView):
@@ -15,9 +14,12 @@ class OfflineRegistrationView(BaseView):
     @expose('/')
     def index(self):
         return self.render('nurse/offline_registration.html',
-                           amount=(get_amount_registration_daily()- len(detail_registration['customer_list'])),
+                           amount=(get_amount_registration_daily() - len(detail_registration['customer_list'])),
                            add_customer_result=get_add_customer_result(),
-                           daily_customer_list=detail_registration['customer_list'])
+                           daily_customer_list={
+                               'id_card': detail_registration['customer_list'],
+                               'fullname': get_fullname_customer_list_by_id_card()
+                           })
 
     def is_accessible(self):
         return current_user.is_authenticated and \
