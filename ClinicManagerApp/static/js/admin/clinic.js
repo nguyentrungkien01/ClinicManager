@@ -6,10 +6,9 @@ $(".nav-search .input-group > input").focus(function (e) {
 	$(this).parent().removeClass("focus");
 });
 
-$('.table-responsive thead tr th').map(function(){
-	console.log($(this).find("input"))
+$('.table-responsive thead tr th').map(function () {
 	if (($(this).text().trim() == "" && !$(this).find("input").length == 1))
-			$(this).text('Thao tác')
+		$(this).text('Thao tác')
 })
 
 $('.modal-dialog').removeClass('modal-xl')
@@ -350,8 +349,12 @@ function showPassword(button) {
 	var inputPassword = $(button).parent().find('input');
 	if (inputPassword.attr('type') === "password") {
 		inputPassword.attr('type', 'text');
+		$(".show-password i").removeClass("far fa-eye");
+		$(".show-password i").addClass("far fa-eye-slash");
 	} else {
 		inputPassword.attr('type', 'password');
+		$(".show-password i").removeClass("far fa-eye-slash");
+		$(".show-password i").addClass("far fa-eye");
 	}
 }
 
@@ -422,24 +425,259 @@ var all = $(".sidebar-content > ul > li > a").map(function () {
 	$(this).prepend(iconList[i++]);
 });
 
-/* ---------------theme light - dark mode ------------ */
-// const dayNight = document.querySelector(".day-night")
+/* --------------- logo header - navbar header - side bar - background switched color ------------ */
+// background switch
+$(".bg-switch button").on('click', function () {
+	if ($(this).attr("data-color") === "bg1") {
+		$(this).attr("data-color", "bg1");
+		localStorage.setItem("theme-bg", "bg1");
+	} else if ($(this).attr("data-color") === "bg2") {
+		$(this).attr("data-color", "bg2");
+		localStorage.setItem("theme-bg", "bg2");
+	} else if ($(this).attr("data-color") === "bg3") {
+		$(this).attr("data-color", "bg3");
+		localStorage.setItem("theme-bg", "bg3");
+	} else {
+		$(this).attr("data-color", "dark");
+		localStorage.setItem("theme-bg", "dark");
+	}
+})
 
-// dayNight.addEventListener("click", () => {
-// 	document.body.classList.toggle("dark");
-// 	if (document.body.classList.contains("dark"))
-// 		localStorage.setItem("theme", "dark");
-// 	else
-// 		localStorage.setItem("theme", "light");
-// });
+// sidebar switch
+$(".sidebar-switch button").on('click', function () {
+	if ($(this).attr("data-color") === "white") {
+		$(this).attr("data-color", "white");
+		localStorage.setItem("theme-sidebar", "white");
+	} else if ($(this).attr("data-color") === "dark2") {
+		$(this).attr("data-color", "dark2");
+		localStorage.setItem("theme-sidebar", "dark2");
+	} else {
+		$(this).attr("data-color", "dark");
+		localStorage.setItem("theme-sidebar", "dark");
+	}
+})
 
-// function themeMode() {
-// 	// checking if 'theme' key exists
-// 	if (localStorage.getItem("theme") !== null) {
-// 		if (localStorage.getItem("theme") === "light")
-// 			document.body.classList.remove("dark");
-// 		else
-// 			document.body.classList.add("dark");
-// 	}
-// }
-// themeMode();
+// navbar switch
+$(".navbar-switch button").on('click', function () {
+	if ($(this).attr("data-color") === "dark") {
+		$(this).attr("data-color", "dark");
+		localStorage.setItem("theme-navbar", "dark");
+
+	} else if ($(this).attr("data-color") === "blue") {
+		$(this).attr("data-color", "blue");
+		localStorage.setItem("theme-navbar", "blue");
+
+	} else if ($(this).attr("data-color") === "purple") {
+		$(this).attr("data-color", "purple");
+		localStorage.setItem("theme-navbar", "purple");
+
+	} else if ($(this).attr("data-color") === "light-blue") {
+		$(this).attr("data-color", "light-blue");
+		localStorage.setItem("theme-navbar", "light-blue");
+
+	} else if ($(this).attr("data-color") === "green") {
+		$(this).attr("data-color", "green");
+		localStorage.setItem("theme-navbar", "green");
+
+	} else if ($(this).attr("data-color") === "orange") {
+		$(this).attr("data-color", "orange");
+		localStorage.setItem("theme-navbar", "orange");
+
+	} else if ($(this).attr("data-color") === "red") {
+		$(this).attr("data-color", "red");
+		localStorage.setItem("theme-navbar", "red");
+
+	} else if ($(this).attr("data-color") === "white") {
+		$(this).attr("data-color", "white");
+		localStorage.setItem("theme-navbar", "white");
+
+	} else if ($(this).attr("data-color") === "dark2") {
+		$(this).attr("data-color", "dark2");
+		localStorage.setItem("theme-navbar", "dark2");
+
+	} else if ($(this).attr("data-color") === "blue2") {
+		$(this).attr("data-color", "blue2");
+		localStorage.setItem("theme-navbar", "blue2");
+
+	} else if ($(this).attr("data-color") === "purple2") {
+		$(this).attr("data-color", "purple2");
+		localStorage.setItem("theme-navbar", "purple2");
+
+	} else if ($(this).attr("data-color") === "light-blue2") {
+		$(this).attr("data-color", "light-blue2");
+		localStorage.setItem("theme-navbar", "light-blue2");
+
+	} else if ($(this).attr("data-color") === "green2") {
+		$(this).attr("data-color", "green2");
+		localStorage.setItem("theme-navbar", "green2");
+
+	} else if ($(this).attr("data-color") === "orange2") {
+		$(this).attr("data-color", "orange2");
+		localStorage.setItem("theme-navbar", "orange2");
+
+	} else {
+		$(this).attr("data-color", "red2");
+		localStorage.setItem("theme-navbar", "red2");
+	}
+})
+
+// logo switch
+$(".logo-switch button").on('click', function () {
+	if ($(this).attr("data-color") === "dark") {
+		$(this).attr("data-color", "dark");
+		localStorage.setItem("theme-logo", "dark");
+
+	} else if ($(this).attr("data-color") === "blue") {
+		$(this).attr("data-color", "blue");
+		localStorage.setItem("theme-logo", "blue");
+
+	} else if ($(this).attr("data-color") === "purple") {
+		$(this).attr("data-color", "purple");
+		localStorage.setItem("theme-logo", "purple");
+
+	} else if ($(this).attr("data-color") === "light-blue") {
+		$(this).attr("data-color", "light-blue");
+		localStorage.setItem("theme-logo", "light-blue");
+
+	} else if ($(this).attr("data-color") === "green") {
+		$(this).attr("data-color", "green");
+		localStorage.setItem("theme-logo", "green");
+
+	} else if ($(this).attr("data-color") === "orange") {
+		$(this).attr("data-color", "orange");
+		localStorage.setItem("theme-logo", "orange");
+
+	} else if ($(this).attr("data-color") === "red") {
+		$(this).attr("data-color", "red");
+		localStorage.setItem("theme-logo", "red");
+
+	} else if ($(this).attr("data-color") === "white") {
+		$(this).attr("data-color", "white");
+		localStorage.setItem("theme-logo", "white");
+
+	} else if ($(this).attr("data-color") === "dark2") {
+		$(this).attr("data-color", "dark2");
+		localStorage.setItem("theme-logo", "dark2");
+
+	} else if ($(this).attr("data-color") === "blue2") {
+		$(this).attr("data-color", "blue2");
+		localStorage.setItem("theme-logo", "blue2");
+
+	} else if ($(this).attr("data-color") === "purple2") {
+		$(this).attr("data-color", "purple2");
+		localStorage.setItem("theme-logo", "purple2");
+
+	} else if ($(this).attr("data-color") === "light-blue2") {
+		$(this).attr("data-color", "light-blue2");
+		localStorage.setItem("theme-logo", "light-blue2");
+
+	} else if ($(this).attr("data-color") === "green2") {
+		$(this).attr("data-color", "green2");
+		localStorage.setItem("theme-logo", "green2");
+
+	} else if ($(this).attr("data-color") === "orange2") {
+		$(this).attr("data-color", "orange2");
+		localStorage.setItem("theme-logo", "orange2");
+
+	} else {
+		$(this).attr("data-color", "red2");
+		localStorage.setItem("theme-logo", "red2");
+	}
+})
+
+function themeMode() {
+	// checking if 'theme-bg' key exists
+	if (localStorage.getItem("theme-bg") !== null) {
+		if (localStorage.getItem("theme-bg") === "bg1") {
+			$("body").attr("data-background-color", "bg1");
+		} else if (localStorage.getItem("theme-bg") === "bg2") {
+			$("body").attr("data-background-color", "bg2");
+		} else if (localStorage.getItem("theme-bg") === "bg3") {
+			$("body").attr("data-background-color", "bg3");
+		} else {
+			$("body").attr("data-background-color", "dark");
+		}
+	}
+
+	// checking if 'theme-sidebar' key exists
+	if (localStorage.getItem("theme-sidebar") !== null) {
+		if (localStorage.getItem("theme-sidebar") === "white") {
+			$(".sidebar").attr("data-background-color", "white");
+		} else if (localStorage.getItem("theme-sidebar") === "dark") {
+			$(".sidebar").attr("data-background-color", "dark");
+		} else {
+			$(".sidebar").attr("data-background-color", "dark2");
+		}
+	}
+
+	// checking if 'theme-navbar' key exists
+	if (localStorage.getItem("theme-navbar") !== null) {
+		if (localStorage.getItem("theme-navbar") === "dark") {
+			$(".navbar-header").attr("data-background-color", "dark");
+		} else if (localStorage.getItem("theme-navbar") === "blue") {
+			$(".navbar-header").attr("data-background-color", "blue");
+		} else if (localStorage.getItem("theme-navbar") === "purple") {
+			$(".navbar-header").attr("data-background-color", "purple");
+		} else if (localStorage.getItem("theme-navbar") === "light-blue") {
+			$(".navbar-header").attr("data-background-color", "light-blue");
+		} else if (localStorage.getItem("theme-navbar") === "green") {
+			$(".navbar-header").attr("data-background-color", "green");
+		} else if (localStorage.getItem("theme-navbar") === "orange") {
+			$(".navbar-header").attr("data-background-color", "orange");
+		} else if (localStorage.getItem("theme-navbar") === "red") {
+			$(".navbar-header").attr("data-background-color", "red");
+		} else if (localStorage.getItem("theme-navbar") === "white") {
+			$(".navbar-header").attr("data-background-color", "white");
+		} else if (localStorage.getItem("theme-navbar") === "dark2") {
+			$(".navbar-header").attr("data-background-color", "dark2");
+		} else if (localStorage.getItem("theme-navbar") === "blue2") {
+			$(".navbar-header").attr("data-background-color", "blue2");
+		} else if (localStorage.getItem("theme-navbar") === "purple2") {
+			$(".navbar-header").attr("data-background-color", "purple2");
+		} else if (localStorage.getItem("theme-navbar") === "light-blue2") {
+			$(".navbar-header").attr("data-background-color", "light-blue2");
+		} else if (localStorage.getItem("theme-navbar") === "green2") {
+			$(".navbar-header").attr("data-background-color", "green2");
+		} else if (localStorage.getItem("theme-navbar") === "orange2") {
+			$(".navbar-header").attr("data-background-color", "orange2");
+		} else {
+			$(".navbar-header").attr("data-background-color", "red2");
+		}
+	}
+
+	// checking if 'theme-logo' key exists
+	if (localStorage.getItem("theme-logo") !== null) {
+		if (localStorage.getItem("theme-logo") === "dark") {
+			$(".logo-header").attr("data-background-color", "dark");
+		} else if (localStorage.getItem("theme-logo") === "blue") {
+			$(".logo-header").attr("data-background-color", "blue");
+		} else if (localStorage.getItem("theme-logo") === "purple") {
+			$(".logo-header").attr("data-background-color", "purple");
+		} else if (localStorage.getItem("theme-logo") === "light-blue") {
+			$(".logo-header").attr("data-background-color", "light-blue");
+		} else if (localStorage.getItem("theme-logo") === "green") {
+			$(".logo-header").attr("data-background-color", "green");
+		} else if (localStorage.getItem("theme-logo") === "orange") {
+			$(".logo-header").attr("data-background-color", "orange");
+		} else if (localStorage.getItem("theme-logo") === "red") {
+			$(".logo-header").attr("data-background-color", "red");
+		} else if (localStorage.getItem("theme-logo") === "white") {
+			$(".logo-header").attr("data-background-color", "white");
+		} else if (localStorage.getItem("theme-logo") === "dark2") {
+			$(".logo-header").attr("data-background-color", "dark2");
+		} else if (localStorage.getItem("theme-logo") === "blue2") {
+			$(".logo-header").attr("data-background-color", "blue2");
+		} else if (localStorage.getItem("theme-logo") === "purple2") {
+			$(".logo-header").attr("data-background-color", "purple2");
+		} else if (localStorage.getItem("theme-logo") === "light-blue2") {
+			$(".logo-header").attr("data-background-color", "light-blue2");
+		} else if (localStorage.getItem("theme-logo") === "green2") {
+			$(".logo-header").attr("data-background-color", "green2");
+		} else if (localStorage.getItem("theme-logo") === "orange2") {
+			$(".logo-header").attr("data-background-color", "orange2");
+		} else {
+			$(".logo-header").attr("data-background-color", "red2");
+		}
+	}
+}
+themeMode();

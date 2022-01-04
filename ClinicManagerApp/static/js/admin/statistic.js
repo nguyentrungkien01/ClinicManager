@@ -7,14 +7,13 @@ var gToTime = null
 var gFlagInputTime = null
 var gBgChart = null
 var gIndexHint = null
+
 function getNameMedicine() {
     fetch('/api/admin/name_medicine', {
         method: 'post',
-        body: JSON.stringify(
-            {
-                'name_medicine': $('#name_medicine').val() == undefined ? null : $('#name_medicine').val()
-            }
-        ),
+        body: JSON.stringify({
+            'name_medicine': $('#name_medicine').val() == undefined ? null : $('#name_medicine').val()
+        }),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -42,15 +41,13 @@ function getData() {
 
     fetch('/api/admin/statistic', {
         method: 'post',
-        body: JSON.stringify(
-            {
-                'statistic_type': $('#statistic_type').val(),
-                'name_medicine': data,
-                'statistic_condition': $('#statistic_condition').val(),
-                'from_time': gFromTime,
-                'to_time': gToTime
-            }
-        ),
+        body: JSON.stringify({
+            'statistic_type': $('#statistic_type').val(),
+            'name_medicine': data,
+            'statistic_condition': $('#statistic_condition').val(),
+            'from_time': gFromTime,
+            'to_time': gToTime
+        }),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -80,6 +77,7 @@ function onClickHint(hint) {
     $('#result_input_name').html('')
     getData()
 }
+
 function onMouseOverHint(position) {
     gIndexHint = position
     for (let i = 1; i <= $('#result_input_name').children().length; i++)
@@ -223,19 +221,38 @@ $(document).ready(function () {
         }
     })
 
-    $('.changeBackgroundColor').click(function () {
-        if ($(this).css('background-color') == 'rgb(241, 241, 241)')
-            gBgChart = '#ffffff'
+    // check theme color when user refesh page
+    window.onload = function () {
+        if ($("body").attr('data-background-color') == 'bg1')
+            gBgChart = '#ffffff';
+        else if ($("body").attr('data-background-color') == 'bg2')
+            gBgChart = '#ffffff';
+        else if ($("body").attr('data-background-color') == 'bg3')
+            gBgChart = '#ffffff';
         else
-            gBgChart = '#202940'
+            gBgChart = '#202940';
+
+        createChart(type = gType,
+            label = $("#statistic_type option:selected").text(),
+            data = gData,
+            labels = gLabels)
+    };
+    // check theme color when user click change bg
+    $('.changeBackgroundColor').click(function () {
+        if ($("body").attr('data-background-color') == 'bg1')
+            gBgChart = '#ffffff';
+        else if ($("body").attr('data-background-color') == 'bg2')
+            gBgChart = '#ffffff';
+        else if ($("body").attr('data-background-color') == 'bg3')
+            gBgChart = '#ffffff';
+        else
+            gBgChart = '#202940';
 
         createChart(type = gType,
             label = $("#statistic_type option:selected").text(),
             data = gData,
             labels = gLabels)
     })
-
-
 
     init()
     $('#input_time').hide()
@@ -258,8 +275,7 @@ $(document).ready(function () {
         if ($(this).val() == 'frequency_of_medicine_use') {
             $('#input_name_medicine').show()
 
-        }
-        else {
+        } else {
             $('#input_name_medicine').hide()
             $('#name_medicine').val('')
             $('#result_input_name').html('')
@@ -305,8 +321,7 @@ $(document).ready(function () {
     $('#left_time').change(function () {
         if (parseInt($(this).val()) > parseInt($('#right_time').val())) {
             this.selectedIndex = $(this).data('lastSelectedIndex')
-        }
-        else {
+        } else {
             gFromTime = parseInt($(this).val())
             getData()
         }
@@ -314,8 +329,7 @@ $(document).ready(function () {
     $('#right_time').change(function () {
         if (parseInt($(this).val()) < parseInt($('#left_time').val())) {
             this.selectedIndex = $(this).data('lastSelectedIndex')
-        }
-        else {
+        } else {
             gToTime = parseInt($(this).val())
 
             getData()
@@ -371,7 +385,9 @@ $(document).ready(function () {
         })
         pdf.text('@CopyRight: Open University', 77, pdf.lastAutoTable.finalY + 5)
 
-        pdf.autoPrint({ variant: 'non-conform' });
+        pdf.autoPrint({
+            variant: 'non-conform'
+        });
         pdf.save('statistic.pdf')
     })
 });
@@ -394,7 +410,11 @@ function createChart(type = 'pie', label = '', data = [], labels = []) {
     const bgColorPDF = {
         id: 'bgColorPDF',
         beforeDraw: (chart) => {
-            const { ctx, width, height } = chart
+            const {
+                ctx,
+                width,
+                height
+            } = chart
             ctx.fillStyle = gBgChart
             ctx.fillRect(0, 0, width, height)
             ctx.restore()
