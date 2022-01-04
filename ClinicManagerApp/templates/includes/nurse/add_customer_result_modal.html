@@ -1,22 +1,31 @@
-
-
 {%if add_customer_result != None %}
 <div class="modal fade" id="add_customer_result" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="add_customer_result_title">Ket qua dang ky</h5>
+        <div class="swal2-popup" style="display: grid;">
+            {%if add_customer_result %}
+            <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;">
+                <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div>
+                <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
             </div>
-            <div class="modal-body">
-                {%if add_customer_result %}
-                <p>Dang ky thanh cong</p>
-                {%else%}
-                <p>Dang ky that bai</p>
-                {%endif%}
+            <h2 class="swal2-title" id="swal2-title" style="display: block;">Đăng ký thành công !</h2>
+            {%else%}
+            <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark">
+                    <span class="swal2-x-mark-line-left"></span>
+                    <span class="swal2-x-mark-line-right"></span>
+                </span>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Dong</button>
+            <h2 class="swal2-title" id="swal2-title" style="display: block;">Đăng ký thất bại</h2>
+            <div class="swal2-html-container" id="swal2-html-container" style="display: block;">CCCD không đúng hoặc
+                không đủ độ dài tối thiểu</div>
+            {%endif%}
+            <div class="swal2-actions" style="display: flex;">
+                <div class="swal2-loader"></div>
+                <button type="button" class="swal2-confirm swal2-styled" aria-label="" style="display: inline-block;"
+                    data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
