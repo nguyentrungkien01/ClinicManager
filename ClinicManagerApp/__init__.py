@@ -76,7 +76,7 @@ from ClinicManagerApp.view.doctor.medical_examination_creation_view import Medic
 from ClinicManagerApp.view.nurse.ofline_registration_view import OfflineRegistrationView
 from ClinicManagerApp.view.nurse.payment_view import PaymentView
 from ClinicManagerApp.view.change_password_view import ChangePasswordView
-
+from ClinicManagerApp.view.profile_view import ProfileView
 
 def initTables():
     try:
@@ -105,5 +105,6 @@ def initAdmin():
     admin.add_view(MedicalExaminationCreationView(name='Tạo phiếu khám'))
     admin.add_view(OfflineRegistrationView(name='Đăng ký trực tiếp'))
     admin.add_view(PaymentView(name='Thanh toán'))
+    admin.add_view(ProfileView(name='Thông tin cá nhân'))
     admin.add_view(ChangePasswordView(name='Đổi mật khẩu'))
     admin.add_view(LogoutView(name='Đăng xuất'))
