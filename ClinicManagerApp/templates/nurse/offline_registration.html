@@ -14,7 +14,9 @@
 
 {% if amount >0 %}
 <h1 style="margin-top:100px">So luot dang ky con lai trong ngay {{amount}}</h1>
-{% include 'includes/nurse/add_customer_result_modal.html' %}
+{%if add_customer_result != None %}
+    {% include 'includes/nurse/add_customer_result_modal.html' %}
+{%endif%}
 {% include 'includes/nurse/input_customer_infor.html' %}
 {%else %}
 <h1 style="margin-top:100px">So luot dang ky trong ngay da het</h1>

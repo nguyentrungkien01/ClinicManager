@@ -1,4 +1,6 @@
-from sqlalchemy import Column, DECIMAL, String, ForeignKey, Integer
+import datetime
+
+from sqlalchemy import Column, DECIMAL, ForeignKey, Integer
 
 from ClinicManagerApp.model.document.document_model import DocumentModel
 
@@ -22,3 +24,11 @@ class MedicalBillModel(DocumentModel):
     __mapper_args__ = {
         'polymorphic_identity': 'medical_bill'
     }
+
+    def __init__(self, **kwargs):
+        self.medical_examination_price = kwargs.get('medical_examination_price')
+        self.medical_examination_id = kwargs.get('medical_examination_id')
+        self.customer_id = kwargs.get('customer_id')
+        self.medical_price = kwargs.get('medical_price')
+        self.nurse_id = kwargs.get('nurse_id')
+        self.total_price = kwargs.get('total_price')

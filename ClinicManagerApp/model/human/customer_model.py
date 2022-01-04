@@ -16,14 +16,13 @@ class CustomerModel(PersonModel, db.Model):
 
     def __init__(self, **kwargs):
         self.id_card = kwargs.get('id_card')
-        self.first_name= kwargs.get('first_name')
-        self.last_name=kwargs.get('last_name')
-        self.sex= kwargs.get('sex')
-        self.address=kwargs.get('address')
+        self.first_name = kwargs.get('first_name')
+        self.last_name = kwargs.get('last_name')
+        self.sex = kwargs.get('sex')
+        self.address = kwargs.get('address')
         self.phone_number = kwargs.get('phone_number')
         self.email = kwargs.get('email')
 
     # relationship
     document_list = relationship('DocumentModel', backref=backref('customer', uselist=False, lazy=True),
                                  foreign_keys='[DocumentModel.customer_id]', lazy=True)
-

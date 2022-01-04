@@ -41,7 +41,7 @@ def reset_daily_list():
 
 def add_customer_db(customer=None):
     if is_exist_customer_db(customer.id_card):
-        return False
+        return True
     try:
         db.session.add(customer)
         db.session.commit()
