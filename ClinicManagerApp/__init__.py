@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # mysql account
 USERNAME_DB = 'root'
-PASSWORD_DB = 'thanhnam'
+PASSWORD_DB = '12345678'
 NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
 

@@ -21,10 +21,6 @@ def get_customer_id_card(keyword=None):
         .all()
 
 
-def get_customer_id_by_id_card(id_card=None):
-    return db.session.query(CustomerModel.customer_id) \
-        .filter(CustomerModel.id_card.__eq__(id_card)).first()
-
 
 def get_medicine_unit(medicine_name=None):
     return db.session.query(MedicineUnitModel.name) \
@@ -112,13 +108,9 @@ def save_medicine_examination(**kwargs):
         return False
 
 
-
-
-
 def parse_json_array(datas):
     result = []
     for d in datas:
         if len(d) == 1:
-            temp = {'value': d[0]}
-        result.append(temp)
+            result.append({'value': d[0]})
     return json.dumps(result)

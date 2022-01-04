@@ -1,0 +1,48 @@
+<div id="bill_detail">
+    <h1>Thong tin hoa don</h1>
+    <p >Khach hang: <span id ="customer_fullname_pay"> {{medical_examination_search_result['customer']['last_name']}}
+        {{medical_examination_search_result['customer']['first_name']}}</span></p>
+    <p >Ngay sinh: <span id="date_of_birth_pay">{{medical_examination_search_result['customer']['date_of_birth']}}</span></p>
+    <p >Gioi tinh: <span id="sex_pay">{{medical_examination_search_result['customer']['sex']}}</span></p>
+    <p >Can cuoc cong dan: <span id="customer_id_pay">{{medical_examination_search_result['customer']['id_card']}} </span></p>
+    <p>Ma phieu kham benh: <span id = "medical_examination_id_pay">{{medical_examination_search_result['medical_examination_id']}}</span></p>
+    <p >Bac si kham: <span id = "doctor_fullname_pay">{{medical_examination_search_result['doctor']['last_name']}}
+        {{medical_examination_search_result['doctor']['first_name']}} </span>
+        Ma nhan vien: <span id="doctor_code_pay">{{medical_examination_search_result['doctor']['staff_id']}}</span>
+    </p>
+    <p >Y ta thanh toan: <span id ="nurse_fullname_pay"> {{medical_examination_search_result['nurse']['last_name']}}
+        {{medical_examination_search_result['nurse']['first_name']}} </span> Ma nhan vien: 
+        <span id ="nurse_code_pay">{{medical_examination_search_result['nurse']['staff_id']}}</span>
+    </p>
+    <p >Ngay tao hoa don: <span id="bill_date_created_pay">{{medical_examination_search_result['date_created']}}</span></p>
+    <h3>Danh sach thuoc</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>So thu tu</th>
+                <th>Ten thuoc</th>
+                <th>Don vi</th>
+                <th>So luong</th>
+                <th>Don gia</th>
+                <th>Tong tien</th>
+            </tr>
+        </thead>
+        <tbody id="medicine_list_datas">
+            {%for medicine in medical_examination_search_result['medicine_list']%}
+            <tr>
+                <td>{{medical_examination_search_result['medicine_list'].index(medicine)+1}}</td>
+                <td>{{medicine['name']}}</td>
+                <td>{{medicine['unit']}}</td>
+                <td>{{medicine['amount']}}</td>
+                <td>{{medicine['unit_price']}} / {{medicine['unit']}}</td>
+                <td>{{medicine['sum']}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <h4 >Tong tien thuoc: <span id="medicine_price_total_pay">{{medical_examination_search_result['medicine_price_total']}}</span></h4>
+    <h4 >Tien kham benh: <span id="medical_examination_price_pay">{{medical_examination_search_result['medical_examination_price']}}</span></h4>
+    <h4 >Tong tien can thanh toan: 
+        <span id="total_price_pay">{{medical_examination_search_result['total']}}</span></h4>
+    <button id= "confirm">Thanh toan</button>
+</div>

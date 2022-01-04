@@ -107,7 +107,7 @@ function checkMedicineName() {
             })
 
             // .then((result) => {
-                
+
             //     if (result.isConfirmed) {
             //       Swal.fire('Saved!', '', 'success')
             //     } else if (result.isDenied) {
@@ -401,19 +401,21 @@ function exportPDF() {
     pdf.text(`Predicted desease: ${$('#predicted_disease').val()}`, 10, 80)
     pdf.text(`Doctor: ${$('#current_doctor_info').text()}`, 10, 100)
     pdf.text('MEDICINE LIST', 85, 120)
-    var head = ['Ordered id', 'Name', 'Amount', 'Unit', 'Dosage', 'Using method']
+    var head = ['Id', 'Name', 'Amount', 'Unit', 'Dosage', 'Using method']
     var body = []
     for (let i = 1; i <= $('#medicine_datas').children().length; i++) {
-        body.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(2)`).text())
-        body.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(3)`).text())
-        body.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(4) span`).text())
-        body.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(5)`).text())
-        body.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(6)`).text())
-        body.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(7)`).text())
+        row = []
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(2)`).text())
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(3)`).text())
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(4) span`).text())
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(5)`).text())
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(6)`).text())
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(7)`).text())
+        body.push(row)
     }
     pdf.autoTable({
         head: [head],
-        body: [body],
+        body: body,
         startY: 140,
         theme: 'grid',
         styles: {
