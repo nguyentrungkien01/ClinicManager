@@ -143,7 +143,7 @@ class DoctorView(BaseModelView):
                      render_kw={
                          'placeholder': 'Địa chỉ bác sĩ'
                      }),
-        major=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=20)],
+        major=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=100)],
                    render_kw={
                        'placeholder': 'Chuyên ngành bác sĩ'
                    }),

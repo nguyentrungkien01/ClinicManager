@@ -12672,7 +12672,7 @@ body[data-background-color="dark"] .main-panel .modal-body .table-hover tbody tr
   margin: unset !important;
 }
 
-.main-panel .nav-item .form-control:focus {
+.main-panel .form-control:focus {
   background: white;
   color: #111;
   transition: all 0.5s;
@@ -13535,9 +13535,10 @@ body .main-panel .modal-content .modal-body input:focus {
   border: 0;
 }
 
-/* Offline registration */
+/* Offline registration, payments */
 @media (min-width: 576px) {
-  #add_customer_result .modal-dialog {
+  #add_customer_result .modal-dialog,
+  #search_result .modal-dialog {
     max-width: 500px !important;
   }
 }
