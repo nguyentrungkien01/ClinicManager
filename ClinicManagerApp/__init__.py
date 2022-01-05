@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 from flask_login import LoginManager
 
-from ClinicManagerApp.view.home_view import HomeView
 
 import cloudinary
 
@@ -28,6 +27,7 @@ app.config["FLASK_ADMIN_FLUID_LAYOUT"] = True
 # app.config["SQLALCHEMY_ECHO"] = True
 app.secret_key = b'21137afa59a4dd08b708dcf106c724f9'
 db = SQLAlchemy(app=app)
+from ClinicManagerApp.view.home_view import HomeView
 
 admin = Admin(app=app, name="Phòng mạch", template_mode="bootstrap4",
               index_view=HomeView(name='Trang chủ'))

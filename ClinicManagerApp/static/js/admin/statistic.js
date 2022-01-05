@@ -168,7 +168,14 @@ function loadDataTable(datas) {
                 </tr>`
 
     for (let i = 0; i < datas.length; i++)
-        row += `<tr> 
+        if (!$('#statistic_type').val().includes('revenue'))
+            row += `<tr> 
+                    <td>${i + 1}</td>
+                    <td>${datas[i]['key']}</td>
+                    <td>${datas[i]['value'].substring(0, datas[i]['value'].indexOf(' ')).replaceAll(',','')}</td>
+                </tr>`
+        else
+            row += `<tr> 
                     <td>${i + 1}</td>
                     <td>${datas[i]['key']}</td>
                     <td>${datas[i]['value']}</td>

@@ -22,6 +22,7 @@
 <div class="main-panel">
     {% block content %}
     {% if current_user.role_id == 1 %}
+    <script src="{{ url_for('static', filename='js/admin/home_page.js') }}"></script>
     {% include 'includes/admin/home/home_admin.html' %}
     {% else %}
     {% include 'includes/admin/home/home_non_admin.html' %}
