@@ -19,11 +19,29 @@
                 <div class="card full-height">
                     <div class="card-body">
                         <div class="card-title">Thống kê tổng quan</div>
-                        <div class="card-category">Dữ liệu thống kê hằng ngày</div>
                         <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
                             <div class="px-2 pb-2 pb-md-0 text-center">
-                                <div id="circles-1">biểu đồ xuất hiện ở đây</div>
-                                <h6 class="fw-bold mt-3 mb-0">Khách hàng mới</h6>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>So khoa kham</th>
+                                            <th>So nhan vien</th>
+                                            <th>So khach hang</th>
+                                            <th>So loai thuoc</th>
+                                            <th>So kho thuoc</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="department_amount"></td>
+                                            <td id="staff_amount"></td>
+                                            <td id="customer_amount"></td>
+                                            <td id="medicine_amount"></td>
+                                            <td id="category_amount"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
                     </div>
@@ -36,17 +54,17 @@
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-success op-8">Doanh thu</h6>
-                                    <h3 class="fw-bold">$9.782</h3>
+                                    <h6 class="fw-bold text-uppercase text-success op-8">Doanh thu hom nay</h6>
+                                    <h3 class="fw-bold" id="today_revenue"></h3>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-danger op-8">Doanh thu</h6>
-                                    <h3 class="fw-bold">$1,248</h3>
+                                    <h6 class="fw-bold text-uppercase text-danger op-8">Doanh thu hom qua</h6>
+                                    <h3 class="fw-bold" id="yesterday_revenue"></h3>
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div id="chart-container">Biểu đồ doanh thu ở đây
-                                    <canvas id="totalIncomeChart"></canvas>
+                                <div id="chart-container">
+                                    <canvas id="total_income_chart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -59,21 +77,15 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-head-row">
-                            <div class="card-title">Thống kê khách hàng đến</div>
+                            <div class="card-title">Thống kê khách hàng đến trong thang</div>
                             <div class="card-tools">
-                                <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-                                    <span class="btn-label">
-                                        <i class="fa fa-pencil"></i>
-                                    </span>
-                                    Lưu PDF
-                                </a>
+                                <span id="month"></span> / <span id=year></span>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container" style="min-height: 375px">
-                            Biểu đồ xuất hiện ở đây
-                            <canvas id="statisticsChart"></canvas>
+                        <div class="chart-container" style="min-height: 375px;">
+                            <canvas id="customer_arrive_frequently_chart"></canvas>
                         </div>
                         <div id="myChartLegend"></div>
                     </div>
@@ -84,58 +96,31 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Danh sách thuốc bán chạy</div>
+                        <div class="card-title">Danh sách {{top_medicine_list|length}} thuốc bán chạy nhat</div>
                     </div>
                     <div class="card-body pb-0">
+                        {%for medicine in top_medicine_list%}
                         <div class="d-flex">
                             <div class="avatar">
-                                <img src="https://res.cloudinary.com/ouproject/image/upload/v1639921915/img/profile/profile_r6b0jg.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
+                                <img src="https://res.cloudinary.com/ouproject/image/upload/v1641306649/medicine_cigwp6.jpg"
+                                    alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="flex-1 pt-1 ml-2">
-                                <h6 class="fw-bold mb-1">Tên thuốc 1</h6>
-                                <small class="text-muted">Giới thiệu thuốc 1</small>
+                                <h6 class="fw-bold mb-1">{{medicine['name']}}</h6>
+                                <small class="text-muted">Don vi: {{medicine['unit']}}</small>
                             </div>
                             <div class="d-flex ml-auto align-items-center">
-                                <h3 class="text-info fw-bold">+17.000.000 VNĐ</h3>
+                                <h3 class="text-info fw-bold">{{medicine['total_price']}}</h3>
                             </div>
                         </div>
                         <div class="separator-dashed"></div>
-                        <div class="d-flex">
-                            <div class="avatar">
-                                <img src="https://res.cloudinary.com/ouproject/image/upload/v1639921915/img/profile/profile_r6b0jg.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
-                            </div>
-                            <div class="flex-1 pt-1 ml-2">
-                                <h6 class="fw-bold mb-1">Tên thuốc 1</h6>
-                                <small class="text-muted">Giới thiệu thuốc 1</small>
-                            </div>
-                            <div class="d-flex ml-auto align-items-center">
-                                <h3 class="text-info fw-bold">+17.000.000 VNĐ</h3>
-                            </div>
-                        </div>
-                        <div class="separator-dashed"></div>
-                        <div class="d-flex">
-                            <div class="avatar">
-                                <img src="https://res.cloudinary.com/ouproject/image/upload/v1639921915/img/profile/profile_r6b0jg.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
-                            </div>
-                            <div class="flex-1 pt-1 ml-2">
-                                <h6 class="fw-bold mb-1">Tên thuốc 1</h6>
-                                <small class="text-muted">Giới thiệu thuốc 1</small>
-                            </div>
-                            <div class="d-flex ml-auto align-items-center">
-                                <h3 class="text-info fw-bold">+17.000.000 VNĐ</h3>
-                            </div>
-                        </div>
-                        <div class="separator-dashed"></div>
+                        {%endfor%}
                     </div>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="pull-in card">
-                    Biểu đồ xuất hiện ở đây
-                    <canvas id="topProductsChart"></canvas>
+                    <canvas id="top_medicine_chart"></canvas>
                 </div>
             </div>
         </div>

@@ -13,3 +13,6 @@ class ProfileView(BaseView):
 
     def is_accessible(self):
         return current_user.is_authenticated
+
+    def is_visible(self):
+        return False

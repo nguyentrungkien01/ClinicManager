@@ -16,6 +16,8 @@ class ChangePasswordView(BaseView):
     def is_accessible(self):
         return current_user.is_authenticated
 
+    def is_visible(self):
+        return False
 
 @app.route('/api/staff/change_password', methods=['post'])
 def change_password():
