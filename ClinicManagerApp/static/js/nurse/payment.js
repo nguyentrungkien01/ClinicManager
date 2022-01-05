@@ -1,7 +1,7 @@
 window.onload = function () {
     $("#search_result").modal("toggle");
-  };
-  
+};
+
 function confirm_pay() {
     fetch("/api/nurse/payment", {
         method: "post",
@@ -15,14 +15,27 @@ function confirm_pay() {
         return res.json();
     }).then(function (datas) {
         if (datas["result"]) {
-            alert("Thanh toan thanh cong!");
+            Swal.fire({
+                title: 'Thanh toán thành công',
+                text: 'Đã xuất phiếu khám',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+            })
             exportPDF();
             resetData();
             return;
         }
-        alert("Thanh toan that bai! Vui long kiem tra lai");
+        Swal.fire({
+            title: 'Thanh toán thất bại',
+            text: 'Vui lòng kiểm tra lại',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok',
+        })
     });
 }
+
 function resetData() {
     $("#bill_detail").hide();
 }
@@ -36,7 +49,7 @@ function exportPDF() {
     });
     pdf.setFontSize(13);
     pdf.text("MEDICAL BILL", 77, 10);
-    pdf.text(`Customer's fullname: ${$("#customer_fullname_pay").text()}`, 10,20)
+    pdf.text(`Customer's fullname: ${$("#customer_fullname_pay").text()}`, 10, 20)
     pdf.text(`Customer's date of birth: ${$("#date_of_birth_pay").text()}`, 10, 30)
     pdf.text(`Customer's sex: ${$("#sex_pay").text()}`, 10, 40)
     pdf.text(`Customer's id card: ${$("#customer_id_pay").text()}`, 10, 50)
@@ -55,8 +68,8 @@ function exportPDF() {
         "Total price",
     ]
     var body = [];
-    for (let i = 1; i <= $("#medicine_list_datas").children().length; i++){
-        row=[]
+    for (let i = 1; i <= $("#medicine_list_datas").children().length; i++) {
+        row = []
         for (let j = 1; j <= head.length; j++)
             row.push($(`#medicine_list_datas tr:nth-child(${i}) td:nth-child(${j})`).text())
         body.push(row)

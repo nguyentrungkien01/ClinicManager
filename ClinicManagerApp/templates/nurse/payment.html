@@ -16,13 +16,19 @@
 
 {% block body %}
 {{super()}}
-<h1 style="margin-top: 100px">Thanh toán hóa đơn</h1>
-{% include 'includes/nurse/input_medical_examination.html' %}
-{%if medical_examination_search_result !=None %}
-    {%if medical_examination_search_result !=True%}
-     {% include 'includes/nurse/medical_examination_payment_infor.html' %}
-    {%else%}
-    {% include 'includes/nurse/search_medical_examination_result_modal.html' %}
-    {%endif%}
-{% endif %}
+<div class="content">
+    <div class="page-inner">
+        <h4 class="page-title">Thanh toán hóa đơn</h4>
+        {% include 'includes/nurse/input_medical_examination.html' %}
+        {%if medical_examination_search_result !=None %}
+            {%if medical_examination_search_result !=True%}
+                {% include 'includes/nurse/medical_examination_payment_infor.html' %}
+            {%else%}
+                {% include 'includes/nurse/search_medical_examination_result_modal.html' %}
+            {%endif%}
+        {% endif %}
+
+    </div>
+</div>
+
 {% endblock %}

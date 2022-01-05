@@ -1,10 +1,25 @@
-<form action= "/api/nurse/medical_examination_id" method="post">
-    <div class="form-group">
-        <label for="medical_examination_id">Ma phieu kham benh</label>
-        <input type="text" class="form-control" name="medical_examination_id"
-         placeholder="Nhap ma phieu kham benh can thanh toan" id="medical_examination_id" required>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Hoá đơn</div>
+                <div class="card-category">Nhập thông tin mã phiếu khám bệnh</div>
+            </div>
+            <form action="/api/nurse/medical_examination_id" method="post">
+                <div class="form-group row">
+                    <label for="medical_examination_id" class="col-lg-3 col-md-3 col-sm-12 mt-sm-2 text-center pt-2">
+                        Mã phiếu khám bệnh
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-12 pt-2 pb-2">
+                        <input type="text" class="form-control" name="medical_examination_id"
+                            placeholder="Nhập mã phiếu khám bệnh cần thanh toán..." id="medical_examination_id"
+                            required>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-12 text-center pt-2 pb-2">
+                        <input type="submit" id="search" value="Tìm kiếm" class="btn btn-success">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="submit" id="search" value="Tim kiem"></input>
-    </div>
-</form>
+</div>

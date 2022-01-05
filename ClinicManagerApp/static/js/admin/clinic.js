@@ -103,11 +103,6 @@ $(document).ready(function () {
 		quickActionsScrollbar.scrollbar();
 	}
 
-	var userScrollbar = $('.dropdown-user-scroll');
-	if (userScrollbar.length > 0) {
-		userScrollbar.scrollbar();
-	}
-
 	var statsScrollbar = $('.stats-scroll');
 	if (statsScrollbar.length > 0) {
 		statsScrollbar.scrollbar();
@@ -417,6 +412,7 @@ var iconList = [
 	'<i class="fas fa-file-alt"></i>',
 	'<i class="fas fa-database"></i>',
 	'<i class="fas fa-notes-medical"></i>',
+	'<i class="fas fa-info-circle"></i>',
 	'<i class="fas fa-unlock-alt"></i>',
 	'<i class="fas fa-sign-out-alt"></i>'
 ];

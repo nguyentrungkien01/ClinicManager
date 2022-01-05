@@ -1,48 +1,202 @@
-<div id="bill_detail">
-    <h1>Thong tin hoa don</h1>
-    <p >Khach hang: <span id ="customer_fullname_pay"> {{medical_examination_search_result['customer']['last_name']}}
-        {{medical_examination_search_result['customer']['first_name']}}</span></p>
-    <p >Ngay sinh: <span id="date_of_birth_pay">{{medical_examination_search_result['customer']['date_of_birth']}}</span></p>
-    <p >Gioi tinh: <span id="sex_pay">{{medical_examination_search_result['customer']['sex']}}</span></p>
-    <p >Can cuoc cong dan: <span id="customer_id_pay">{{medical_examination_search_result['customer']['id_card']}} </span></p>
-    <p>Ma phieu kham benh: <span id = "medical_examination_id_pay">{{medical_examination_search_result['medical_examination_id']}}</span></p>
-    <p >Bac si kham: <span id = "doctor_fullname_pay">{{medical_examination_search_result['doctor']['last_name']}}
-        {{medical_examination_search_result['doctor']['first_name']}} </span>
-        Ma nhan vien: <span id="doctor_code_pay">{{medical_examination_search_result['doctor']['staff_id']}}</span>
-    </p>
-    <p >Y ta thanh toan: <span id ="nurse_fullname_pay"> {{medical_examination_search_result['nurse']['last_name']}}
-        {{medical_examination_search_result['nurse']['first_name']}} </span> Ma nhan vien: 
-        <span id ="nurse_code_pay">{{medical_examination_search_result['nurse']['staff_id']}}</span>
-    </p>
-    <p >Ngay tao hoa don: <span id="bill_date_created_pay">{{medical_examination_search_result['date_created']}}</span></p>
-    <h3>Danh sach thuoc</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>So thu tu</th>
-                <th>Ten thuoc</th>
-                <th>Don vi</th>
-                <th>So luong</th>
-                <th>Don gia</th>
-                <th>Tong tien</th>
-            </tr>
-        </thead>
-        <tbody id="medicine_list_datas">
-            {%for medicine in medical_examination_search_result['medicine_list']%}
-            <tr>
-                <td>{{medical_examination_search_result['medicine_list'].index(medicine)+1}}</td>
-                <td>{{medicine['name']}}</td>
-                <td>{{medicine['unit']}}</td>
-                <td>{{medicine['amount']}}</td>
-                <td>{{medicine['unit_price']}} / {{medicine['unit']}}</td>
-                <td>{{medicine['sum']}}</td>
-            </tr>
-            {%endfor%}
-        </tbody>
-    </table>
-    <h4 >Tong tien thuoc: <span id="medicine_price_total_pay">{{medical_examination_search_result['medicine_price_total']}}</span></h4>
-    <h4 >Tien kham benh: <span id="medical_examination_price_pay">{{medical_examination_search_result['medical_examination_price']}}</span></h4>
-    <h4 >Tong tien can thanh toan: 
-        <span id="total_price_pay">{{medical_examination_search_result['total']}}</span></h4>
-    <button id= "confirm">Thanh toan</button>
+<div class="row" id="bill_detail">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Thông tin hoá đơn</div>
+                <div class="card-category">Thông tin chi tiết hoá đơn từ bác sỹ</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Khách hàng:</span>
+                                <span id="customer_fullname_pay">
+                                    {{medical_examination_search_result['customer']['last_name']}}
+                                    {{medical_examination_search_result['customer']['first_name']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Ngày sinh:</span>
+                                <span
+                                    id="date_of_birth_pay">{{medical_examination_search_result['customer']['date_of_birth']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Giới tính:</span>
+                                <span id="sex_pay">{{medical_examination_search_result['customer']['sex']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">CCCD:</span>
+                                <span id="customer_id_pay">{{medical_examination_search_result['customer']['id_card']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Mã phiếu khám bệnh:</span>
+                                <span
+                                    id="medical_examination_id_pay">{{medical_examination_search_result['medical_examination_id']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Bác sỹ khám bệnh: </span>
+                                <span
+                                    id="doctor_fullname_pay">{{medical_examination_search_result['doctor']['last_name']}}
+                                    {{medical_examination_search_result['doctor']['first_name']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Mã nhân viên (Bác sỹ): </span>
+                                <span id="doctor_code_pay">{{medical_examination_search_result['doctor']['staff_id']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Y tá thanh toán:</span>
+                                <span id="nurse_fullname_pay">
+                                    {{medical_examination_search_result['nurse']['last_name']}}
+                                    {{medical_examination_search_result['nurse']['first_name']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Mã nhân viên (Y tá): </span>
+                                <span id="nurse_code_pay">{{medical_examination_search_result['nurse']['staff_id']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Ngày tạo hoá đơn:</span>
+                                <span
+                                    id="bill_date_created_pay">{{medical_examination_search_result['date_created']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Danh sách thuốc</div>
+                <div class="card-category">Thông tin thuốc được liệt kê từ bác sỹ</div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover model-list">
+                        <thead class="bg-thead">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên thuốc</th>
+                                <th>Đơn vị</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicine_list_datas">
+                            {%for medicine in medical_examination_search_result['medicine_list']%}
+                            <tr>
+                                <td>{{medical_examination_search_result['medicine_list'].index(medicine)+1}}</td>
+                                <td>{{medicine['name']}}</td>
+                                <td>{{medicine['unit']}}</td>
+                                <td>{{medicine['amount']}}</td>
+                                <td>{{medicine['unit_price']}} / {{medicine['unit']}}</td>
+                                <td>{{medicine['sum']}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Thanh toán hoá đơn</div>
+                <div class="card-category">Số tiền khách hàng cần phải thanh toán</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Tổng tiền thuốc:</span>
+                                <span
+                                    id="medicine_price_total_pay">{{medical_examination_search_result['medicine_price_total']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Tiền khám bệnh:</span>
+                                <span
+                                    id="medical_examination_price_pay">{{medical_examination_search_result['medical_examination_price']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group-default">
+                            <div class="pt-2 pb-2">
+                                <span class="text-success fw-bold">Tổng tiền cần thanh toán:</span>
+                                <span id="total_price_pay">{{medical_examination_search_result['total']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-action">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-success" id="confirm">Thanh toán</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,16 +1,21 @@
-<div class="modal fade" id="search_result" tabindex="-1" role="dialog" 
-aria-labelledby="search_result" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h1>Thong bao</h1>
-        </div>
-        <div class="modal-body">
-            <p>Thong tin ma phieu kham benh can thanh toan khong chinh xac! Vui long kiem tra lai</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Dong</button>
-        </div>
+<div class="modal fade" id="search_result" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="swal2-popup" style="display: grid;">
+      <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark">
+          <span class="swal2-x-mark-line-left"></span>
+          <span class="swal2-x-mark-line-right"></span>
+        </span>
+      </div>
+      <h2 class="swal2-title" id="swal2-title" style="display: block;">Tìm kiếm thất bại</h2>
+      <div class="swal2-html-container" id="swal2-html-container" style="display: block;">
+        Thông tin mã phiếu khám bệnh không chính xác <br> Vui lòng kiểm tra lại !
+      </div>
+      <div class="swal2-actions" style="display: flex;">
+        <div class="swal2-loader"></div>
+        <button type="button" class="swal2-confirm swal2-styled" aria-label="" style="display: inline-block;"
+          data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
+</div>

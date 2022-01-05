@@ -1,128 +1,145 @@
-<div class="container">
-    <div class="page-inner">
-        <h4 class="page-title" style="margin-top:50px">Thông tin tài khoản</h4>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card card-with-nav">
-                    <div class="card-header">
-                        <div class="card-title">Thông tin cá nhân</div>
+<div class="col-md-8">
+    <div class="card card-with-nav">
+        <div class="card-body">
+            {%if infor_current_user == None %}
+            <span class="text-danger">Thông tin nhân viên đang được cập nhật. Vui lòng quay lại sau !</span>
+            {%else%}
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Họ và tên đệm:</span>
+                            <span>{{infor_current_user['last_name']}}</span>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        {%if infor_current_user == None %}
-                        <p>Thong tin nhan vien dang duoc cap nhat! Vui long quay lai sau</p>
-                        {%else%}
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <div class="form-group-default">
-                                    <h6>Ho va ten dem</h6>
-                                    <p>{{infor_current_user['last_name']}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group-default">
-                                    <h6>Ten</h6>
-                                    <p>{{infor_current_user['first_name']}}</p>
-                                </div>
-                            </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Tên:</span>
+                            <span>{{infor_current_user['first_name']}}</span>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <div class="form-group-default">
-                                    <h6>Ngay sinh</h6>
-                                    <p>{{infor_current_user['date_of_birth']}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group-default">
-                                    <h6>Gioi tinh</h6>
-                                    <p>{{infor_current_user['sex']}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group-default">
-                                    <h6>So dien thoai</h6>
-                                    {%if infor_current_user['phone_number'] !=None%}
-                                    <p>{{infor_current_user['phone_number']}}</p>
-                                    {%else%}
-                                    <p>Chua co</p>
-                                    {%endif%}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <div class="form-group-default">
-                                    <h6>Dia chi email</h6>
-                                    {%if infor_current_user['email'] !=None%}
-
-                                    <p>{{infor_current_user['email']}}</p>
-                                    {%else%}
-                                    <p>Chua co</p>
-                                    {%endif%}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group-default">
-                                    <h6>Khoa truc thuoc</h6>
-                                    <p>{{infor_current_user['department']}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <div class="form-group-default">
-                                    <h6>Dia chi</h6>
-                                    <p>{{infor_current_user['address']}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3 mb-1">
-                            <div class="col-md-12">
-                                <div class="form-group-default">
-                                    <h6>Ngay vao lam</h6>
-                                    <p>{{infor_current_user['date_of_work']}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card card-profile">
-                    <div class="card-header"
-                        style="background-image: url('https://appsrv1-147a1.kxcdn.com/atlantis-pro/img/blogpost.jpg')">
-                        <div class="profile-picture">
-                            <div class="avatar avatar-xl">
-                                {%if current_user.avatar %}
-                                <img src="{{current_user.avatar}}" alt="..." class="avatar-img rounded-circle">
-                                {%else%}
-                                <img src="https://res.cloudinary.com/ouproject/image/upload/v1639923764/img/default_avatar_mvuqgu.png"
-                                    alt="..." class="avatar-img rounded-circle">
-                                {%endif%}
-                            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Ngày sinh:</span>
+                            <span>{{infor_current_user['date_of_birth']}}</span>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="user-profile text-center">
-                            {%if infor_current_user == None %}
-                            <p>Thong tin nhan vien dang duoc cap nhat! Vui long quay lai sau</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Giới tính:</span>
+                            <span>{{infor_current_user['sex']}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Số điện thoại:</span>
+                            {%if infor_current_user['phone_number'] !=None and infor_current_user['phone_number']!= '' %}
+                            <span>{{infor_current_user['phone_number']}}</span>
                             {%else%}
-                            <div class="name">
-                                {{infor_current_user['last_name']}} {{infor_current_user['first_name']}}
-                            </div>
-                            <div class="job">{{infor_current_user['role']}}</div>
-                            {%if infor_current_user['phone_number']!= None%}
-                            <div class="desc">{{infor_current_user['phone_number']}}</div>
-                            {%endif%}
+                            <span>Chưa cập nhật thông tin !</span>
                             {%endif%}
                         </div>
-
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Ngày vào làm:</span>
+                            <span>{{infor_current_user['date_of_work']}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Địa chỉ email:</span>
+                            {%if infor_current_user['email'] !=None and infor_current_user['email'] != ''%}
+                            <span>{{infor_current_user['email']}}</span>
+                            {%else%}
+                            <span>Chưa cập nhật thông tin !</span>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Khoa trực thuộc:</span>
+                            <span>{{infor_current_user['department']}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-12">
+                    <div class="form-group-default">
+                        <div class="pt-2 pb-2">
+                            <span class="text-success fw-bold">Địa chỉ:</span>
+                            <span>{{infor_current_user['address']}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endif%}
         </div>
     </div>
 </div>
+<div class="col-md-4">
+    <div class="card card-profile">
+        <div class="card-header"
+            style="border-radius: 10px 10px 0 0;background-image: url('https://appsrv1-147a1.kxcdn.com/atlantis-pro/img/blogpost.jpg');">
+            <div class="profile-picture">
+                <div class="avatar avatar-xl">
+                    {%if current_user.avatar %}
+                    <img src="{{current_user.avatar}}" alt="avatar" class="avatar-img rounded-circle">
+                    {%else%}
+                    <img src="https://res.cloudinary.com/ouproject/image/upload/v1639923764/img/default_avatar_mvuqgu.png"
+                        alt="avatar" class="avatar-img rounded-circle">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="user-profile text-center">
+                {%if infor_current_user == None %}
+                <span class="text-danger">Thông tin nhân viên đang được cập nhật <br> Vui lòng quay lại sau !</span>
+                {%else%}
+                <div class="name">
+                    <spanc class="text-primary fw-bold">{{infor_current_user['last_name']}}
+                        {{infor_current_user['first_name']}}
+                    </spanc>
+                </div>
+                <div class="job">
+                    <span class="text-warning fw-bold">Chức vụ:</span>
+                    {{infor_current_user['role']}}
+                </div>
+                {%if infor_current_user['phone_number']!= None and infor_current_user['phone_number']!= ''%}
+                <div class="desc">
+                    <span class="text-warning fw-bold">Số điện thoại:</span>
+                    {{infor_current_user['phone_number']}}</div>
+                {%else%}
+                <div class="desc">
+                    <span class="text-warning fw-bold">Số điện thoại:</span> chưa cập nhật
+                </div>
+                {%endif%}
+                {%endif%}
+            </div>
+        </div>
+    </div>
 </div>
