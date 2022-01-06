@@ -17,31 +17,50 @@
         <div class="row mt--2">
             <div class="col-md-6">
                 <div class="card full-height">
-                    <div class="card-body">
+                    <div class="card-header">
                         <div class="card-title">Thống kê tổng quan</div>
-                        <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                            <div class="px-2 pb-2 pb-md-0 text-center">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>So khoa kham</th>
-                                            <th>So nhan vien</th>
-                                            <th>So khach hang</th>
-                                            <th>So loai thuoc</th>
-                                            <th>So kho thuoc</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td id="department_amount"></td>
-                                            <td id="staff_amount"></td>
-                                            <td id="customer_amount"></td>
-                                            <td id="medicine_amount"></td>
-                                            <td id="category_amount"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group-default">
+                                    <div class="pt-2 pb-2">
+                                        <span class="text-success fw-bold">Số khoa:</span>
+                                        <span id="department_amount"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-default">
+                                    <div class="pt-2 pb-2">
+                                        <span class="text-success fw-bold">Số nhân viên:</span>
+                                        <span id="staff_amount"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-default">
+                                    <div class="pt-2 pb-2">
+                                        <span class="text-success fw-bold">Số khách hàng:</span>
+                                        <span id="customer_amount"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-default">
+                                    <div class="pt-2 pb-2">
+                                        <span class="text-success fw-bold">Số loại thuốc:</span>
+                                        <span id="medicine_amount"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-default">
+                                    <div class="pt-2 pb-2">
+                                        <span class="text-success fw-bold">Số kho thuốc:</span>
+                                        <span id="category_amount"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,17 +68,19 @@
             </div>
             <div class="col-md-6">
                 <div class="card full-height">
-                    <div class="card-body">
+                    <div class="card-header">
                         <div class="card-title">Tổng doanh thu</div>
+                    </div>
+                    <div class="card-body">
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-success op-8">Doanh thu hom nay</h6>
-                                    <h3 class="fw-bold" id="today_revenue"></h3>
+                                    <span class="fw-bold text-success op-8">Doanh thu hôm nay</span>
+                                    <p class="fw-bold" id="today_revenue"></p>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-danger op-8">Doanh thu hom qua</h6>
-                                    <h3 class="fw-bold" id="yesterday_revenue"></h3>
+                                    <span class="fw-bold text-danger op-8">Doanh thu hôm qua</span>
+                                    <p class="fw-bold" id="yesterday_revenue"></p>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -77,14 +98,13 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-head-row">
-                            <div class="card-title">Thống kê khách hàng đến trong thang</div>
-                            <div class="card-tools">
-                                <span id="month"></span> / <span id=year></span>
+                            <div class="card-title">
+                                Thống kê khách hàng đến trong tháng <span id="month"></span>/<span id=year></span>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container" style="min-height: 375px;">
+                        <div class="chart-container" style="min-height: 250px;">
                             <canvas id="customer_arrive_frequently_chart"></canvas>
                         </div>
                         <div id="myChartLegend"></div>
@@ -96,21 +116,21 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Danh sách {{top_medicine_list|length}} thuốc bán chạy nhat</div>
+                        <div class="card-title">Danh sách {{top_medicine_list|length}} thuốc bán chạy nhất</div>
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 stats-scroll">
                         {%for medicine in top_medicine_list%}
-                        <div class="d-flex">
+                        <div class="d-flex pt-2 pl-3 pr-3">
                             <div class="avatar">
                                 <img src="https://res.cloudinary.com/ouproject/image/upload/v1641306649/medicine_cigwp6.jpg"
-                                    alt="..." class="avatar-img rounded-circle">
+                                    alt="medicine" class="avatar-img rounded-circle">
                             </div>
                             <div class="flex-1 pt-1 ml-2">
-                                <h6 class="fw-bold mb-1">{{medicine['name']}}</h6>
+                                <h5 class="fw-bold mb-1">{{medicine['name']}}</h5>
                                 <small class="text-muted">Don vi: {{medicine['unit']}}</small>
                             </div>
                             <div class="d-flex ml-auto align-items-center">
-                                <h3 class="text-info fw-bold">{{medicine['total_price']}}</h3>
+                                <span class="text-info fw-bold">{{medicine['total_price']}}</span>
                             </div>
                         </div>
                         <div class="separator-dashed"></div>
