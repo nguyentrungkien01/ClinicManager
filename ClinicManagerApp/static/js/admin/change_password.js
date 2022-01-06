@@ -70,17 +70,16 @@ $(document).ready(function () {
         })
 
     })
-
-    $('#oldPsw').onkeyup(function () {
+    var numbers = /[0-9]/g;
+    $('#oldPsw').keyup(function () {
         // Validate numbers
         if ($(this).val().match(numbers))
             numberFlag = true;
 
         // Validate length
-        if (myInput.value.length >= 8)
+        if ($(this).val().length >= 8 && $(this).val().length <= 12)
             lengthFlag = true;
     })
-
 })
 
 function checkCondition(element, text) {

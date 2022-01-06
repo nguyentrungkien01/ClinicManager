@@ -2,7 +2,6 @@
 {% block head %}
 {{ super() }}
 <!-- Chart JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/static/js/plugin/chart.js/chart.min.js"></script>
 <!-- Owl carousel -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -22,8 +21,9 @@
 <div class="main-panel">
     {% block content %}
     {% if current_user.role_id == 1 %}
-    <script src="{{ url_for('static', filename='js/admin/home_page.js') }}"></script>
     {% include 'includes/admin/home/home_admin.html' %}
+    <!-- Main JS -->
+    <script src="{{ url_for('static', filename='js/admin/home_page.js') }}"></script>
     {% else %}
     {% include 'includes/admin/home/home_non_admin.html' %}
     {% endif %}
@@ -37,8 +37,12 @@
     {% block javascripts %}{% endblock javascripts %}
 </div>
 {% endif %}
-<!-- Script -->z
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% block script %}
+
+<!-- Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- Script Intro -->
 <script>
     $(document).ready(function () {
         $('#owl-intro').owlCarousel({
@@ -51,5 +55,7 @@
         });
     })
 </script>
+{% endblock %}
+
 {% endblock %}
 {% endblock %}

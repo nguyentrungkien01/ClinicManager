@@ -21,7 +21,7 @@ function getCustomerArriveFrequently() {
       createChart(
         (id = "customer_arrive_frequently_chart"),
         (type = "bar"),
-        (label = `Tan suat khach hang den cac ngay trong thang ${datas["month"]} / ${datas["year"]}`),
+        (label = `Tần suất khách hàng đến trong tháng ${datas["month"]} / ${datas["year"]}`),
         (data = data),
         (labels = labels)
       );
@@ -40,14 +40,14 @@ function getTopMedicine() {
         labels.push(datas[i]["name"]);
         data.push(
           datas[i]["total_price"]
-            .substring(0, datas[i]["total_price"].indexOf(" "))
-            .replaceAll(",", "")
+          .substring(0, datas[i]["total_price"].indexOf(" "))
+          .replaceAll(",", "")
         );
       }
       createChart(
         (id = "top_medicine_chart"),
         (type = "line"),
-        (label = "Cac loai thuoc ban chay nhat"),
+        (label = "Các loại thuốc bán chạy nhất"),
         (data = data),
         (labels = labels)
       );
@@ -62,17 +62,17 @@ function getRevenue() {
     .then(function (datas) {
       $("#today_revenue").text(datas["today"]);
       $("#yesterday_revenue").text(datas["yesterday"]);
-      labels = ["doanh thu hom nay"];
-      data = ["Doanh thu hom qua"];
+      labels = ["Doanh thu hôm qua", "Doanh thu hôm nay"];
+      data = [];
       data.push(
         datas["today"]
-          .substring(0, datas["today"].indexOf(" "))
-          .replaceAll(",", "")
+        .substring(0, datas["today"].indexOf(" "))
+        .replaceAll(",", "")
       );
       data.push(
         datas["yesterday"]
-          .substring(0, datas["yesterday"].indexOf(" "))
-          .replaceAll(",", "")
+        .substring(0, datas["yesterday"].indexOf(" "))
+        .replaceAll(",", "")
       );
       createChart(
         (id = "total_income_chart"),
@@ -114,7 +114,11 @@ function createChart(id = "", type = "", label = "", data = [], labels = []) {
   const bgColorPDF = {
     id: "bgColorPDF",
     beforeDraw: (chart) => {
-      const { ctx, width, height } = chart;
+      const {
+        ctx,
+        width,
+        height
+      } = chart;
       ctx.fillStyle = gBgChart;
       ctx.fillRect(0, 0, width, height);
       ctx.restore();
@@ -124,15 +128,13 @@ function createChart(id = "", type = "", label = "", data = [], labels = []) {
     type: type,
     data: {
       labels: labels,
-      datasets: [
-        {
-          label: label,
-          data: data,
-          backgroundColor: backgroundColor,
-          borderColor: borderColor,
-          borderWidth: 1,
-        },
-      ],
+      datasets: [{
+        label: label,
+        data: data,
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        borderWidth: 1,
+      }, ],
     },
     options: {
       scales: {
@@ -148,6 +150,21 @@ function createChart(id = "", type = "", label = "", data = [], labels = []) {
 $(document).ready(function () {
   gBgChart = $(".card").css("background-color");
 
+  // check theme color when user refesh page
+  window.onload = function () {
+    if ($("body").attr('data-background-color') == 'bg1')
+      gBgChart = '#ffffff';
+    else if ($("body").attr('data-background-color') == 'bg2')
+      gBgChart = '#ffffff';
+    else if ($("body").attr('data-background-color') == 'bg3')
+      gBgChart = '#ffffff';
+    else
+      gBgChart = '#202940';
+    getRevenue();
+    getCustomerArriveFrequently();
+    getTopMedicine();
+  };
+  // check theme color when user click change bg
   $(".changeBackgroundColor").click(function () {
     if ($("body").attr("data-background-color") == "bg1") gBgChart = "#ffffff";
     else if ($("body").attr("data-background-color") == "bg2")

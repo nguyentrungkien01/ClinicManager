@@ -396,6 +396,13 @@ $(document).ready(function () {
             variant: 'non-conform'
         });
         pdf.save('statistic.pdf')
+
+        Swal.fire({
+            title: 'Xuất phiếu thành công',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok',
+        })
     })
 });
 //create chart

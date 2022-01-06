@@ -51,6 +51,7 @@ function getAmount() {
 
     })
 }
+
 function getAll() {
     fetch('/api/admin/export_report', {
         method: 'post',
@@ -110,8 +111,7 @@ function setPrevious(amountPage) {
         gBegIdx -= gPageSize
         gEndIdx = gBegIdx + gPageSize
         getData()
-    }
-    else {
+    } else {
         $('#previous_item').hide()
     }
     $('#pagination').children().removeClass('active')
@@ -137,24 +137,23 @@ function setNext(amountPage, amountData) {
     $('#pagination').children().removeClass('active')
     $(`#pagination li:nth-child(${gCurrentPage + 1})`).addClass('active')
 }
+
 function setPage(itemIdx, amountPage) {
     gCurrentPage = itemIdx
     if (itemIdx == amountPage) {
         $('#next_item').hide()
         if (itemIdx != 1)
             $('#previous_item').show()
-    }
-    else
-        if (itemIdx == 1) {
-            $('#previous_item').hide()
-            if (itemIdx != amountPage)
-                $('#next_item').show()
-
-        }
-        else {
-            $('#previous_item').show()
+    } else
+    if (itemIdx == 1) {
+        $('#previous_item').hide()
+        if (itemIdx != amountPage)
             $('#next_item').show()
-        }
+
+    } else {
+        $('#previous_item').show()
+        $('#next_item').show()
+    }
     gBegIdx = (itemIdx - 1) * gPageSize
     gEndIdx = gBegIdx + gPageSize
     getData()
@@ -341,7 +340,10 @@ $(document).ready(function () {
                 body.push(gExportDatas[i]['examination_amount'])
             }
         }
-        pdf.text($('#report_type option:selected').text(), 10, 10, { align: 'center', lang: 'vi' })
+        pdf.text($('#report_type option:selected').text(), 10, 10, {
+            align: 'center',
+            lang: 'vi'
+        })
         pdf.autoTable({
             head: [head],
             body: [body],
@@ -376,11 +378,17 @@ $(document).ready(function () {
 
         pdf.text(foot, 20, pdf.lastAutoTable.finalY + 15)
 
-        pdf.autoPrint({ variant: 'non-conform' });
+        pdf.autoPrint({
+            variant: 'non-conform'
+        });
 
         pdf.save('report.pdf')
-
+        Swal.fire({
+            title: 'Xuất phiếu thành công',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok',
+        })
     })
 
 })
-
