@@ -5377,6 +5377,10 @@ label {
   border-color: #3e93ff;
 }
 
+.not-fill {
+color:red
+}
+
 /*     Form Control Sizes    */
 .form-control-lg,
 .input-group-lg>.form-control,

@@ -6,7 +6,7 @@ from ClinicManagerApp import app
 from ClinicManagerApp.view.base_view import BaseView
 from ClinicManagerApp.controller.doctor.medical_examination_controller import get_customer_id_card as gcid, \
     parse_json_array, get_medicine_unit as gmu, get_medicine_name as gmn, get_customer_id_card_eq, get_doctor_infor, \
-    save_medicine_examination as sme
+    save_medicine_examination as sme, get_customer_name_by_id_card
 from ClinicManagerApp.controller.admin.statistic_controller import get_medicine_name
 
 
@@ -80,10 +80,23 @@ def save_medical_examination():
     symptom = request.json.get('symptom')
     predicted_disease = request.json.get('predicted_disease')
     medicine_list = request.json.get('medicine_list')
+    add_result = sme(id_card=id_card,
+                     symptom=symptom,
+                     predicted_disease=predicted_disease,
+                     medicine_list=medicine_list)
+
     return jsonify({
-        'result': sme(id_card=id_card,
-                      symptom=symptom,
-                      predicted_disease=predicted_disease,
-                      medicine_list=medicine_list)
+        'result': add_result['result'],
+        'medical_examination_id': add_result['medical_examination_id']
 
     })
+
+
+@app.route('/api/doctor/customer_name', methods=['post'])
+def get_customer_fullname():
+    id_card = request.json.get('id_card')
+    customer_fullname = get_customer_name_by_id_card(id_card)
+    return jsonify({
+        'result': '{} {}'.format(customer_fullname[1], customer_fullname[0])
+    })
+

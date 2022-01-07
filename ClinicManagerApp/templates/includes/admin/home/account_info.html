@@ -48,7 +48,7 @@
                             {%if infor_current_user['phone_number'] !=None and infor_current_user['phone_number']!= '' %}
                             <span>{{infor_current_user['phone_number']}}</span>
                             {%else%}
-                            <span>Chưa cập nhật thông tin !</span>
+                            <span class="not-fill">Chưa cập nhật thông tin !</span>
                             {%endif%}
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                             {%if infor_current_user['email'] !=None and infor_current_user['email'] != ''%}
                             <span>{{infor_current_user['email']}}</span>
                             {%else%}
-                            <span>Chưa cập nhật thông tin !</span>
+                            <span class="not-fill">Chưa cập nhật thông tin !</span>
                             {%endif%}
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                     {{infor_current_user['phone_number']}}</div>
                 {%else%}
                 <div class="desc">
-                    <span class="text-warning fw-bold">Số điện thoại:</span> chưa cập nhật
+                    <span class="text-warning fw-bold">Số điện thoại:</span> <span class="not-fill"> chưa cập nhật</span> 
                 </div>
                 {%endif%}
                 {%endif%}

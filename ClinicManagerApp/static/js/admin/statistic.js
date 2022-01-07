@@ -172,7 +172,7 @@ function loadDataTable(datas) {
             row += `<tr> 
                     <td>${i + 1}</td>
                     <td>${datas[i]['key']}</td>
-                    <td>${datas[i]['value'].substring(0, datas[i]['value'].indexOf(' ')).replaceAll(',','')}</td>
+                    <td>${datas[i]['value'].substring(0, datas[i]['value'].indexOf(' ')).replaceAll(',', '')}</td>
                 </tr>`
         else
             row += `<tr> 
@@ -354,12 +354,12 @@ $(document).ready(function () {
             floatPrecision: 16
         })
         pdf.setFontSize(13)
-
+        pdf.text(`Bieu do thong ke ${$('#statistic_type option:selected').text()}`.toUpperCase(), 10, 15)
         pdf.addImage({
             imageData: canvas,
             format: 'JPEG',
-            x: 5,
-            y: 15,
+            x: 30,
+            y: 45,
             width: 250,
             height: 200
         })
@@ -390,7 +390,8 @@ $(document).ready(function () {
                 }
             }
         })
-        pdf.text('@CopyRight: Open University', 77, pdf.lastAutoTable.finalY + 5)
+
+        pdf.text('@CopyRight: Open University', 77, pdf.lastAutoTable.finalY + 10)
 
         pdf.autoPrint({
             variant: 'non-conform'
