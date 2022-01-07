@@ -12,14 +12,19 @@ from ClinicManagerApp.model.human.doctor_model import DoctorModel
 from ClinicManagerApp.model.account.account_model import AccountModel
 from ClinicManagerApp.model.document.medical_examination_model import MedicalExaminationModel
 from ClinicManagerApp.model.intermediary.medicine_examination_detail_model import medicine_examination_detail_model
+from ClinicManagerApp.controller.utils_controller import readJsonFile
 
 
 def get_customer_id_card(keyword=None):
-    return db.session.query(CustomerModel.id_card) \
-        .filter(CustomerModel.id_card.like('{}%'.format(keyword))) \
-        .slice(0, 10) \
-        .all()
-
+    detail_customer_list = readJsonFile('daily_customer_list.json')
+    data = []
+    for id_card in detail_customer_list['customer_list']:
+        if id_card.__contains__(keyword):
+            tp = (id_card,)
+            data.append(tp)
+    if len(data) > 10:
+        data = data[0: 10]
+    return data
 
 
 def get_medicine_unit(medicine_name=None):
@@ -79,6 +84,12 @@ def get_id_medical_examination(medical_examination=None):
         .first()[0]
 
 
+def get_customer_name_by_id_card(id_card=None):
+    return db.session.query(CustomerModel.first_name,
+                            CustomerModel.last_name) \
+        .filter(CustomerModel.id_card.__eq__(id_card)).first()
+
+
 def save_medicine_examination(**kwargs):
     try:
         id_card = kwargs.get('id_card')
@@ -96,16 +107,23 @@ def save_medicine_examination(**kwargs):
         for medicine in medicine_list:
             statement = medicine_examination_detail_model.insert().values(
                 medicine_id=get_medicine_id_by_name(medicine['name']),
-                medical_examination_id=get_id_medical_examination(medical_examination),
+                medical_examination_id=get_id_medical_examination(
+                    medical_examination=medical_examination),
                 amount=int(medicine['amount']),
                 dosage=medicine['dosage'],
                 using_method=medicine['using_method'])
             db.session.execute(statement)
             db.session.commit()
-        return True
+        return {
+            'result': True,
+            'medical_examination_id': get_id_medical_examination(medical_examination=medical_examination)
+        }
     except:
         db.session.rollback()
-        return False
+        return {
+            'result': False,
+            'medical_examination_id': None
+        }
 
 
 def parse_json_array(datas):

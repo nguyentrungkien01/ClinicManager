@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # mysql account
 USERNAME_DB = 'root'
-PASSWORD_DB = 'thanhnam'
+PASSWORD_DB = '12345678'
 NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
 
@@ -36,11 +36,6 @@ login = LoginManager(app=app)
 cloudinary.config(cloud_name=CLOUD_NAME,
                   api_key=API_KEY,
                   api_secret=API_SECRET)
-
-detail_registration = {
-    'date': None,
-    'customer_list': []
-}
 
 from ClinicManagerApp.model.account.account_model import AccountModel
 from ClinicManagerApp.model.category.category_model import CategoryModel

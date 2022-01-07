@@ -43,3 +43,5 @@ def get_all():
     quarter = request.json.get('quarter')
     year = request.json.get('year')
     return parse_json_array(report(report_type=report_type, month=month, quarter=quarter, year=year))
+
+

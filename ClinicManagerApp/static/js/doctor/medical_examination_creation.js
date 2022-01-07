@@ -2,7 +2,7 @@ var gIndexHintIdCard = null
 var gIndexHintMedicineName = null
 var isCreated = true
 var gOrderId = null
-
+var gCustomerName = ''
 function getCurrentDoctorInfo() {
     fetch('/api/doctor/current_doctor', {
         method: 'post',
@@ -18,6 +18,21 @@ function getCurrentDoctorInfo() {
     })
 }
 
+function getNameCustomer() {
+    fetch('/api/doctor/customer_name', {
+        method: 'post',
+        body: JSON.stringify({
+            'id_card': $('#id_card_input').val()
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (res) {
+        return res.json()
+    }).then(function (datas) {
+        gCustomerName = datas['result']
+    })
+}
 
 function getCustomerIdCard() {
     fetch('/api/doctor/customer_id_card', {
@@ -99,48 +114,23 @@ function checkMedicineName() {
         var dosage = $('#dosage').val()
         var usingMethod = $('#using_method').val()
         if (medicineName == null || medicineName.length <= 0) {
-            Swal.fire({
-                title: 'Tên thuốc không được để trống',
-                icon: 'warning',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Ok',
-            })
-
-            // .then((result) => {
-
-            //     if (result.isConfirmed) {
-            //       Swal.fire('Saved!', '', 'success')
-            //     } else if (result.isDenied) {
-            //       Swal.fire('Changes are not saved', '', 'info')
-            //     }
-            //   })
+            title = 'Tên thuốc không được để trống'
+            alertMedicineModal(title)
             return
         }
         if (dosage == null || dosage.length <= 0) {
-            Swal.fire({
-                title: 'Thông tin liều dùng không được để trống',
-                icon: 'warning',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Ok',
-            })
+            title='Thông tin liều dùng không được để trống'
+            alertMedicineModal(title)
             return
         }
         if (usingMethod == null || usingMethod.length <= 0) {
-            Swal.fire({
-                title: 'Phương pháp sử dụng không được để trống',
-                icon: 'warning',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Ok',
-            })
+            title= 'Phương pháp sử dụng không được để trống',
+            alertMedicineModal(title)
             return
         }
         if (!(datas.length > 0)) {
-            Swal.fire({
-                title: 'Thuốc không tồn tại',
-                icon: 'error',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Ok',
-            })
+            title= 'Thuốc không tồn tại'
+            alertMedicineModal(title)
             return
         }
         if (isCreated) {
@@ -215,6 +205,7 @@ function checkCustomerIdCard() {
             return
         }
         //save and export
+        getNameCustomer()
         saveData()
     })
 }
@@ -244,7 +235,7 @@ function saveData() {
         return res.json()
     }).then(function (datas) {
         if (datas['result']) {
-            exportPDF()
+            exportPDF(datas['medical_examination_id'])
             Swal.fire({
                 title: 'Tạo phiếu khám mới thành công',
                 icon: 'success',
@@ -333,7 +324,6 @@ function addMedicine() {
 function editMedicine(OrderId) {
     isCreated = false
     $('#add_medicine_modal').modal('toggle')
-    var element = $(`#medicine_datas tr:nth-child(${OrderId})`)
     var name = $(`#medicine_datas tr:nth-child(${OrderId}) td:nth-child(3)`).text()
     var amount = parseInt($(`#medicine_datas tr:nth-child(${OrderId}) td:nth-child(4) span`).text())
     var dosage = $(`#medicine_datas tr:nth-child(${OrderId}) td:nth-child(6)`).text()
@@ -382,9 +372,9 @@ function subtractAmount(order_id) {
 }
 
 // export pdf
-function exportPDF() {
+function exportPDF(medical_examination_id) {
     var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date + ' ' + time;
     const pdf = new jsPDF({
@@ -394,29 +384,26 @@ function exportPDF() {
         floatPrecision: 16
     })
     pdf.setFontSize(13)
-    pdf.text('MEDICAL EXAMINATION', 77, 10)
-    pdf.text(`Customer's identity card: ${$('#id_card_input').val()}`, 10, 20)
-    pdf.text(`Time: ${dateTime}`, 10, 40)
-    pdf.text(`Symptom: ${$('#dosage').val()}`, 10, 60)
-    pdf.text(`Predicted desease: ${$('#predicted_disease').val()}`, 10, 80)
-    pdf.text(`Doctor: ${$('#current_doctor_info').text()}`, 10, 100)
-    pdf.text('MEDICINE LIST', 85, 120)
-    var head = ['Id', 'Name', 'Amount', 'Unit', 'Dosage', 'Using method']
+    pdf.text('PHIEU KHAM BENH', 82, 10)
+    pdf.text(`Ho ten: ${gCustomerName}`, 10, 20)
+    pdf.text(`Ngay kham: ${dateTime}`, 120, 20)
+    pdf.text(`Trieu chung: ${$('#dosage').val()}`, 10, 30)
+    pdf.text(`Du doan benh: ${$('#predicted_disease').val()}`, 120, 30)
+    var head = ['STT', 'Thuoc', 'Don vi', 'So luong', 'Cach dung']
     var body = []
     for (let i = 1; i <= $('#medicine_datas').children().length; i++) {
         row = []
         row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(2)`).text())
         row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(3)`).text())
-        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(4) span`).text())
         row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(5)`).text())
-        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(6)`).text())
+        row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(4) span`).text())
         row.push($(`#medicine_datas tr:nth-child(${i}) td:nth-child(7)`).text())
         body.push(row)
     }
     pdf.autoTable({
         head: [head],
         body: body,
-        startY: 140,
+        startY: 40,
         theme: 'grid',
         styles: {
             font: 'Arial',
@@ -443,6 +430,7 @@ function exportPDF() {
             }
         }
     })
+    pdf.text(`Ma phieu kham benh: ${medical_examination_id}`, 85, pdf.lastAutoTable.finalY + 10)
     pdf.autoPrint({
         variant: 'non-conform'
     });
@@ -456,6 +444,29 @@ function clearData() {
     $('#predicted_disease').val('')
     $('#medicine_datas').html('')
 }
+
+//alert
+function alertMedicineModal(title) {
+    medicine_name = $('#medicine_name_input').val()
+    medicine_amount = $('#medicine_amount').val()
+    dosage = $('#dosage').val()
+    using_method = $('#using_method').val()
+    Swal.fire({
+        title: title,
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $('#add_medicine_modal').modal('toggle')
+            $('#medicine_name_input').val(medicine_name)
+            $('#medicine_amount').val(medicine_amount)
+            $('#dosage').val(dosage)
+            $('#using_method').val(using_method)
+        }
+    })
+}
+
 
 $(document).ready(function () {
     //info current doctor
