@@ -48,8 +48,9 @@ def get_amount_customer_in_month():
         'month': month,
         'year': year,
         'days': days,
-        'datas': [10, 3, 4, 12, 9, 21, 23, 13, 5, 21, 34, 5, 1, 23, 23, 13, 27, 12, 2, 3, 4, 1, 0, 30, 2, 1, 3, 1, 28,
-                  29, 16]  # datas
+        'datas': [100, 3, 4, 12, 9, 21, 23, 13, 5, 21, 34, 5, 1, 23, 23, 13, 27, 12, 2, 3, 4, 1, 0, 30, 2, 1, 3, 1, 28,
+                  29, 16]
+        # 'datas': datas
     }
 
 
@@ -70,8 +71,8 @@ def get_revenue_yesterday():
 
 def get_revenue():
     return {
-        'yesterday': '{:,.0f} VNĐ'.format(50 if get_revenue_yesterday() is None else get_revenue_yesterday()),
-        'today': '{:,.0f} VNĐ'.format(50 if get_revenue_today() is None else get_revenue_today())
+        'yesterday': '{:,.0f} VNĐ'.format(0 if get_revenue_yesterday() is None else get_revenue_yesterday()),
+        'today': '{:,.0f} VNĐ'.format(0 if get_revenue_today() is None else get_revenue_today())
     }
 
 

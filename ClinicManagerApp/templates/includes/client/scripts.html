@@ -19,7 +19,6 @@
 
         scrollLink.each(function () {
             var sectionOffset = $(this.hash).offset().top - 73;
-
             if (sectionOffset <= scrollbarLocation) {
                 $(".hc-navbar>ul>li>a").removeClass("active");
                 $(this).addClass("active");

@@ -3,7 +3,7 @@ from ClinicManagerApp import initTables, initAdmin, app
 
 
 @app.route('/')
-def homePage():
+def home_page():
     return render_template('/client/home.html')
 
 

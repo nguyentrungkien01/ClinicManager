@@ -1,13 +1,6 @@
 var gChart = null;
 var gBgChart = null;
 
-window.onload = function () {
-  getGeneralAmount();
-  getRevenue();
-  getCustomerArriveFrequently();
-  getTopMedicine();
-};
-
 function getCustomerArriveFrequently() {
   fetch("/api/homepage/customer_arrive_frequenly")
     .then(function (res) {
@@ -160,6 +153,7 @@ $(document).ready(function () {
       gBgChart = '#ffffff';
     else
       gBgChart = '#202940';
+    getGeneralAmount();
     getRevenue();
     getCustomerArriveFrequently();
     getTopMedicine();
