@@ -72,6 +72,7 @@ from ClinicManagerApp.view.nurse.ofline_registration_view import OfflineRegistra
 from ClinicManagerApp.view.nurse.payment_view import PaymentView
 from ClinicManagerApp.view.change_password_view import ChangePasswordView
 from ClinicManagerApp.view.profile_view import ProfileView
+from ClinicManagerApp.view.client.client_view import *
 
 def initTables():
     try:

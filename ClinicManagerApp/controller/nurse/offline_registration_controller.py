@@ -72,7 +72,6 @@ def get_customer_daily_list():
                                 CustomerModel.sex) \
             .filter(CustomerModel.id_card.__eq__(id_card)).first()
         result_list.append({
-            'id_card': id_card,
             'fullname': '{} {}'.format(data[0], data[1]),
             'date_of_birth': data[2].strftime('%d/%m/%Y'),
             'address': data[3],

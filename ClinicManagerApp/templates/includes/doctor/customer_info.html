@@ -11,19 +11,19 @@
             <form>
                 <div class="form-group id-card-choice">
                     <label for="id_card_input">CCCD khách hàng<strong style="color: red"> *</strong></label>
-                    <input type="text" class="form-control" placeholder="Nhập thông tin CCCD" class="form-control"
-                        name="id_card_input" id="id_card_input" required>
+                    <input type="number" class="form-control" placeholder="Nhập thông tin CCCD" class="form-control"
+                        minlength="10" maxlength="12" name="id_card_input" id="id_card_input" required>
                     <div id="result_id_card" class="show-hint"></div>
 
                 </div>
                 <div class="form-group">
                     <label for="symptom">Triệu chứng<strong style="color: red"> *</strong></label>
-                    <textarea class="form-control" id="symptom" rows="3"
+                    <textarea class="form-control" id="symptom" rows="3" minlength="1"
                         placeholder="Nhập thông tin các triệu chứng"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="predicted_disease">Bệnh chuẩn đoán<strong style="color: red"> *</strong></label>
-                    <textarea class="form-control" id="predicted_disease" rows="3"
+                    <textarea class="form-control" id="predicted_disease" rows="3" minlength="1"
                         placeholder="Nhập thông tin bệnh chuẩn đoán"></textarea>
                 </div>
             </form>
