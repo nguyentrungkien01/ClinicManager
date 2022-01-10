@@ -6,7 +6,7 @@ from ClinicManagerApp.controller.nurse.offline_registration_controller import ge
 from ClinicManagerApp.model.human.customer_model import CustomerModel
 from ClinicManagerApp.controller.client.client_controller import get_amount_department as gad, \
     get_infor_department as gid, get_amount_doctor as gmd, get_major as gm, \
-    get_infor_doctor as gido
+    get_infor_doctor as gido, add_feedback
 
 
 class AddingResult:
@@ -78,3 +78,19 @@ def get_infor_doctor():
     begin_index = request.json.get('begin_index')
     end_index = request.json.get('end_index')
     return json.dumps(gido(major_id=major_id, begin_index=begin_index, end_index=end_index))
+
+
+@app.route('/api/client/send_feedback', methods=['post'])
+def send_feedback():
+  
+    customer_fullname = request.json.get('customer_fullname')
+    customer_email = request.json.get('customer_email')
+    feedback_subject = request.json.get('feedback_subject')
+    feedback_content = request.json.get('feedback_content')
+
+    return jsonify({
+        'result': add_feedback(customer_fullname=customer_fullname,
+                               customer_email=customer_email,
+                               feedback_subject=feedback_subject,
+                               feedback_content=feedback_content)
+    })

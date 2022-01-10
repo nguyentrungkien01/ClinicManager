@@ -1,0 +1,18 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/admin/feedback.js') }}"></script>
+{% endblock %}
+
+
+{% block body %}
+{{ super() }}
+<h1 style="margin-top: 100px" >Danh sách các phản hồi từ khách hàng</h1>
+<div id = "feedback_dashboard">
+</div>
+<div>
+    <ul class="pagination" id="pagination">
+    </ul>
+</div>
+{% endblock %}

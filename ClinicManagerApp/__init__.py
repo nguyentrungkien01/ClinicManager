@@ -73,6 +73,7 @@ from ClinicManagerApp.view.admin.rule.rule_view import RuleView
 from ClinicManagerApp.view.admin.rule.role_view import RoleView
 from ClinicManagerApp.view.admin.rule.medicine_unit_view import MedicineUnitView
 from ClinicManagerApp.view.admin.rule.major_view import MajorView
+from ClinicManagerApp.view.admin.feedback.feedback_view import FeedbackView
 from ClinicManagerApp.view.doctor.medical_examination_creation_view import MedicalExaminationCreationView
 from ClinicManagerApp.view.nurse.ofline_registration_view import OfflineRegistrationView
 from ClinicManagerApp.view.nurse.payment_view import PaymentView
@@ -105,7 +106,7 @@ def initAdmin():
     admin.add_view(RoleView(RoleModel, db.session, name='Vai trò nhân viên', category='Quy định phòng khám'))
     admin.add_view(MajorView(MajorModel, db.session, name="Chuyên ngành bác sĩ", category="Quy định phòng khám"))
     admin.add_view(MedicineUnitView(MedicineUnitModel, db.session, name='Đơn vị thuốc', category='Quy định phòng khám'))
-
+    admin.add_view(FeedbackView(name='Phản hồi từ khách hàng'))
     admin.add_view(MedicalExaminationCreationView(name='Tạo phiếu khám'))
     admin.add_view(OfflineRegistrationView(name='Đăng ký trực tiếp'))
     admin.add_view(PaymentView(name='Thanh toán'))

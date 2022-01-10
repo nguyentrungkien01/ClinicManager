@@ -7,8 +7,11 @@ from ClinicManagerApp import db
 class MedicineUnitModel(db.Model):
     __tablename__ = 'medicine_unit_model'
 
-    # attribute
+    # primary key
     medicine_unit_id = Column(Integer, primary_key=True, autoincrement=True)
+
+
+    # attribute
     name = Column(String(30), nullable=False, unique=True, default='')
 
     # relationship

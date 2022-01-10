@@ -7,8 +7,10 @@ from ClinicManagerApp import db
 class MajorModel(db.Model):
     __tablename__ = 'major_model'
 
-    # attribute
+    # primary key
     major_id = Column(Integer, primary_key=True, autoincrement=True)
+
+    # attribute
     name = Column(String(30), nullable=False, unique=True, default='')
 
     # relationship
