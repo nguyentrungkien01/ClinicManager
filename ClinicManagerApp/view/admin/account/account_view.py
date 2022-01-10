@@ -1,6 +1,6 @@
 
 import cloudinary.uploader
-from flask import request, render_template
+from flask import request
 from flask_admin.contrib.sqla.filters import BooleanEqualFilter, FilterLike, FilterEmpty, DateEqualFilter, \
     DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, FilterNotLike, BooleanNotEqualFilter
 from flask_admin.form import rules
@@ -9,7 +9,7 @@ from werkzeug.utils import redirect
 from wtforms import validators, FileField, PasswordField
 from wtforms.validators import DataRequired
 
-from ClinicManagerApp import login, app, db
+from ClinicManagerApp import login, app
 from ClinicManagerApp.controller.admin.account_controller import get_account, get_account_by_id, set_lass_access
 from ClinicManagerApp.model.account.account_model import AccountModel
 from ClinicManagerApp.model.rule.role_model import RoleModel
@@ -77,7 +77,7 @@ class AccountView(BaseModelView):
 
     def on_model_change(self, form, account_model, is_created):
         if form.avatar.data:
-            res = cloudinary.uploader.upload(form.avatar.data)
+            res = cloudinary.uploader.upload(form.avatar.data, folder='avatar_account')
             account_model.set_avatar(str(res['secure_url']))
         else:
             account_model.set_avatar('')

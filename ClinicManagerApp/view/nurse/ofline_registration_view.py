@@ -42,10 +42,11 @@ def get_data_offline_registration():
     last_name = request.form['last_name']
     sex = request.form['sex']
     date_of_birth = request.form['date_of_birth']
+    email = request.form['email']
     address = request.form['address']
     phone_number = request.form['phone_number']
     customer = CustomerModel(id_card=id_card, first_name=first_name, last_name=last_name,
                              sex=sex.upper(), date_of_birth=date_of_birth, address=address,
-                             phone_number=phone_number)
+                             phone_number=phone_number, email=email)
     add_customer(customer=customer)
     return redirect(url_for('offlineregistrationview.index'))
