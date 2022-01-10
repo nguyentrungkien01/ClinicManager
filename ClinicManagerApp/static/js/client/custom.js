@@ -13,15 +13,14 @@
             }
 
             // Functions Calling
-
             this.menu_toggle();
             this.submenu();
-            this.filter();
             this.counter();
             this.testimonial_thumb();
             this.go_top();
             this.preloader();
         },
+
         // menu toggle start
         menu_toggle: function () {
             if ($(".hc-main-header").length > 0) {
@@ -38,7 +37,8 @@
             };
         },
         // menu toggle end
-        // menu toggle start
+        
+        // menu submenu start
         submenu: function () {
             if ($(".hc-has-submenu").length > 0) {
                 $(".hc-has-submenu").on('click', function () {
@@ -46,27 +46,8 @@
                 });
             };
         },
-        // menu toggle end
+        // menu submenu end
 
-
-
-        // filter
-        filter: function () {
-            $(window).on('load', function () {
-                $('.hc-team-grid').isotope({
-                    itemSelector: '.hc-team-box',
-                    filter: '*'
-                });
-                $('.hc-team-tab-list > ul > li').on('click', 'a', function () {
-                    var filterValue = $(this).attr('data-filter');
-                    $('.hc-team-grid').isotope({
-                        filter: filterValue
-                    });
-                    $('a').removeClass('hc-team-tab-active');
-                    $(this).addClass('hc-team-tab-active');
-                });
-            });
-        },
         // counter start
         counter: function () {
             if ($('.hc-counter').length > 0) {
@@ -224,9 +205,6 @@ var cursors = [{
     blending_mode: "normal"
 }];
 
-
 window.onload = function () {
     $("#add_customer_result").modal("toggle");
-
 };
-

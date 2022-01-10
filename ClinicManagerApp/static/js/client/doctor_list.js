@@ -3,6 +3,7 @@ var gBegIdxDoctor = null
 var gEndIdxDoctor = null
 var gCurrentPageDoctor = null
 var gCurrentTabId = null
+
 function getMajor() {
     fetch('/api/client/major_doctor').then(function (res) {
         return res.json()
@@ -89,7 +90,7 @@ function setPageginationDoctor(amount) {
         gCurrentPageDoctor = 1
         $('#pagination_doctor').html('')
         page += `<li class="page-item" id ='previous_item_doctor'>
-                <button class="page-link" onclick='setPreviousDoctor(${amountPage} )'><</button>
+                <button class="page-link" onclick='setPreviousDoctor(${amountPage} )'><<</button>
             </li>`
         for (let i = 1; i <= amountPage; i++)
             page += `<li class="page-item ${i == 1 ? 'active' : ''}">
@@ -97,7 +98,7 @@ function setPageginationDoctor(amount) {
                 </li>`
 
         page += `<li class="page-item" id = 'next_item_doctor'>
-                <button class="page-link" onclick='setNextDoctor(${amountPage}, ${amount})'>></button>
+                <button class="page-link" onclick='setNextDoctor(${amountPage}, ${amount})'>>></button>
             </li>`
         $('#pagination_doctor').html(page)
     }
@@ -152,15 +153,15 @@ function setPageDoctor(itemIdx, amountPage) {
         if (itemIdx != 1)
             $('#previous_item_doctor').show()
     } else
-        if (itemIdx == 1) {
-            $('#previous_item_doctor').hide()
-            if (itemIdx != amountPage)
-                $('#next_item_doctor').show()
-
-        } else {
-            $('#previous_item_doctor').show()
+    if (itemIdx == 1) {
+        $('#previous_item_doctor').hide()
+        if (itemIdx != amountPage)
             $('#next_item_doctor').show()
-        }
+
+    } else {
+        $('#previous_item_doctor').show()
+        $('#next_item_doctor').show()
+    }
     gBegIdxDoctor = (itemIdx - 1) * gPageSizeDoctor
     gEndIdxDoctor = gBegIdxDoctor + gPageSizeDoctor
     getInforDoctor(tab_id = gCurrentTabId)
@@ -197,7 +198,8 @@ function setDoctorData(datas) {
         if (twitterLink == null)
             twitterLink = ''
         cols += `
-                <div class="hc-team-box col-lg-4 col-md-6 col-sm-12">
+                <div class="d-flex col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="hc-team-box">
                     <span class="hc-dr-rating"><i class="fas fa-star"></i> 4.5</span>
                 <div class="hc-team-img">
                     <img src="${avatar}" alt="team" />
@@ -216,13 +218,14 @@ function setDoctorData(datas) {
                         <a href="tel:${phoneNumber}"><i class="fas fa-phone-alt"></i></a>
                     </li>
                 </ul>
+                </div>
             </div>`
     }
     $('#doctor_list').html(cols)
 }
 
 function initDataDoctor() {
-    gPageSizeDoctor = 9
+    gPageSizeDoctor = 6
     getMajor()
     setIndexPaginationDoctor()
     getAmountDoctor()
