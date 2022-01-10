@@ -19,6 +19,7 @@ class ChangePasswordView(BaseView):
     def is_visible(self):
         return False
 
+
 @app.route('/api/staff/change_password', methods=['post'])
 def change_password():
     username = request.json.get('username')

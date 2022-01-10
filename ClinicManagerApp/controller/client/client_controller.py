@@ -1,10 +1,10 @@
-
 from sqlalchemy import func
 
 from ClinicManagerApp import db
 from ClinicManagerApp.model.department.department_model import DepartmentModel
 from ClinicManagerApp.model.human.doctor_model import DoctorModel
 from ClinicManagerApp.model.rule.major_model import MajorModel
+from ClinicManagerApp.model.feedback.feedback_model import FeedbackModel
 
 
 def get_amount_department():
@@ -91,3 +91,22 @@ def get_major():
             'major_name': major[1]
         })
     return major_list
+
+
+def add_feedback(**kwargs):
+    customer_fullname = kwargs.get('customer_fullname')
+    customer_email = kwargs.get('customer_email')
+    feedback_subject = kwargs.get('feedback_subject')
+    feedback_content = kwargs.get('feedback_content')
+    try:
+        feedback = FeedbackModel(customer_name=customer_fullname,
+                                 gmail=customer_email,
+                                 content=feedback_content,
+                                 subject=feedback_subject)
+        db.session.add(feedback)
+        db.session.commit()
+        return True
+    except:
+        db.session.rollback()
+        return False
+    pass

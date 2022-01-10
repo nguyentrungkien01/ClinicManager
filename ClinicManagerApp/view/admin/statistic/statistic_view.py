@@ -16,8 +16,6 @@ class StatisticView(BaseView):
 
 @app.route('/api/admin/statistic', methods=['post'])
 def get_data_statistic():
-    # import pdb
-    # pdb.set_trace()
     statistic_type = request.json.get('statistic_type')
     statistic_condition = request.json.get('statistic_condition')
     keyword = request.json.get('name_medicine')

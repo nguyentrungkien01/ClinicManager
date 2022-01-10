@@ -6,8 +6,11 @@ from ClinicManagerApp import db
 
 class RoleModel(db.Model):
     __tablename__ = 'role_model'
-    # attribute
+
+    # primary key
     role_id = Column(Integer, primary_key=True, autoincrement=True)
+
+    # attribute
     name = Column(String(30), nullable=False, unique=True, default='')
 
     # relationship

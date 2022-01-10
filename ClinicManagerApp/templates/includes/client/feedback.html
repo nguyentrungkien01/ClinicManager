@@ -4,10 +4,11 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="hc-heading-wrap">
                     <h2 class="hc-sub-heading">Liên hệ</h2>
-                    <h1 class="hc-heading">Cách thức liên hệ</h1>
+                    <h1 class="hc-heading">Phản hồi khách hàng</h1>
                 </div>
                 <div class="hc-map-box">
-                    <img src="https://res.cloudinary.com/ouproject/image/upload/v1639921918/img/map_a4epmy.png" alt="map" />
+                    <img src="https://res.cloudinary.com/ouproject/image/upload/v1639921918/img/map_a4epmy.png"
+                        alt="map" />
                     <ul>
                         <li>
                             <span><i class="fas fa-plus"></i></span>
@@ -33,18 +34,16 @@
             <div class="col-lg-5">
                 <div class="hc-contact-box">
                     <form>
-                        <label>Họ và tên</label>
-                        <input type="text" name="full_name" id="full_name" class="require" />
-                        <label>Email</label>
-                        <input type="email" name="email" id="email" class="require" data-valid="email"
-                            data-error="Email should be valid." />
-                        <label>Lời nhắn</label>
-                        <textarea name="message" id="message" class="require"></textarea>
-                        <button type="submit" class="hc-btn submitForm">
-                            Xác nhận
-                        </button>
-                        <div class="response"></div>
+                        <label for="customer_fullname">Họ và tên <span> * </span></label>
+                        <input type="text" id="customer_fullname" class="require" />
+                        <label for="customer_email">Email <span> * </span></label>
+                        <input type="email" id="customer_email" class="require"  />
+                        <label for = "feedback_subject">Tiêu đề <span> * </span> </label>
+                        <input type="text" id="feedback_subject" class="require" />
+                        <label for ="feedback_content">Lời nhắn <span> * </span></label>
+                        <textarea id="feedback_content" class="require"></textarea>
                     </form>
+                    <button class="hc-btn" id="feed_back_cfm">Xác nhận</button>
                 </div>
             </div>
         </div>
