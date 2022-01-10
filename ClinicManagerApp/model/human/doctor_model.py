@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, ForeignKey, Integer
+from sqlalchemy import Column, ForeignKey, Integer
 
 from ClinicManagerApp.model.human.staff_model import StaffModel
 
@@ -9,8 +9,8 @@ class DoctorModel(StaffModel):
     # primary keys
     staff_id = Column(Integer, ForeignKey('staff_model.staff_id'), primary_key=True)
 
-    # attributes
-    major = Column(String(100), default='')
+    # foreign key
+    major_id = Column(Integer, ForeignKey('major_model.major_id'))
 
     # mapper
     __mapper_args__ = {

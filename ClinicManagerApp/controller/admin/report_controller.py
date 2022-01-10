@@ -31,7 +31,7 @@ def report_revenue(month=None, quarter=None, year=None, **kwargs):
         data = data.filter(func.year(MedicalBillModel.date_created) == year)
 
     if kwargs.get('begin_index') and kwargs.get('end_index'):
-        data.slice(kwargs.get('begin_index'), kwargs.get('end_index'))
+        data = data.slice(kwargs.get('begin_index'), kwargs.get('end_index'))
 
     return data.all()
 

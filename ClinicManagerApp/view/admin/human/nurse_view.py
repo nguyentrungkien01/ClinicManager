@@ -2,7 +2,8 @@ from flask_admin.contrib.sqla.filters import FilterEqual, FilterNotEqual, Filter
     DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, BooleanEqualFilter, \
     BooleanNotEqualFilter, FloatEqualFilter, FloatNotEqualFilter, FloatGreaterFilter, FloatSmallerFilter
 from flask_admin.form import rules
-from wtforms import validators, DateField, EmailField, TelField
+from wtforms import validators, DateField, EmailField, TelField, FileField
+import cloudinary.uploader
 
 from ClinicManagerApp.model.human.nurse_model import NurseModel
 from ClinicManagerApp.view.base_model_view import BaseModelView
@@ -73,7 +74,10 @@ class NurseView(BaseModelView):
                          staff_list='Danh sách nhân viên quản lý',
                          medical_bill_list='Danh sách hóa đơn thanh toán',
                          account='Tài khoản',
-                         id_card='Căn cước công dân y tá'
+                         id_card='Căn cước công dân y tá',
+                         avatar='Ảnh đại diện',
+                         facebook_link= 'Facebook',
+                         twitter_link='Twitter'
                          )
     column_editable_list = ('first_name',
                             'last_name')
@@ -90,7 +94,10 @@ class NurseView(BaseModelView):
                         'email',
                         'phone_number',
                         'date_of_work',
-                        'exp_year'), 'Thông tin y tá'),
+                        'exp_year',
+                        'avatar',
+                        'facebook_link',
+                        'twitter_link'), 'Thông tin y tá'),
 
         rules.FieldSet(('manager',
                         'contained_department',
@@ -109,7 +116,9 @@ class NurseView(BaseModelView):
         'phone_number': TelField('Số điện thoại', validators=[validators.Length(min=0, max=12)],
                                  render_kw={
                                      'placeholder': 'Số điện thoại y tá'
-                                 })
+                                 }),
+        'avatar': FileField('Ảnh đại diện')
+
     }
     form_args = dict(
         first_name=dict(validators=[validators.DataRequired(),
@@ -131,6 +140,13 @@ class NurseView(BaseModelView):
         id_card=dict(validators=[validators.Length(min=8, max=12), validators.DataRequired()])
     )
 
+    def on_model_change(self, form, staff_model, is_created):
+        if form.avatar.data:
+            res = cloudinary.uploader.upload(form.avatar.data, folder='avatar_staff')
+            staff_model.set_avatar(str(res['secure_url']))
+        else:
+            staff_model.set_avatar('')
+
     def scaffold_list_columns(self):
         return ['staff_id',
                 'first_name',
@@ -143,9 +159,12 @@ class NurseView(BaseModelView):
                 'phone_number',
                 'date_of_work',
                 'exp_year',
+                'avatar',
                 'manager',
                 'contained_department',
                 'staff_list',
                 'medical_bill_list',
-                'account'
+                'account',
+                'facebook_link',
+                'twitter_link'
                 ]

@@ -1,12 +1,22 @@
 var gChart = null;
 var gBgChart = null;
 
-window.onload = function () {
-  getGeneralAmount();
-  getRevenue();
-  getCustomerArriveFrequently();
-  getTopMedicine();
-};
+  // check theme color when user refesh page
+  window.onload = function () {
+    if ($("body").attr('data-background-color') == 'bg1')
+      gBgChart = '#ffffff';
+    else if ($("body").attr('data-background-color') == 'bg2')
+      gBgChart = '#ffffff';
+    else if ($("body").attr('data-background-color') == 'bg3')
+      gBgChart = '#ffffff';
+    else
+      gBgChart = '#202940';
+    getGeneralAmount();
+    getRevenue();
+    getCustomerArriveFrequently();
+    getTopMedicine();
+  };
+
 
 function getCustomerArriveFrequently() {
   fetch("/api/homepage/customer_arrive_frequenly")
@@ -150,20 +160,7 @@ function createChart(id = "", type = "", label = "", data = [], labels = []) {
 $(document).ready(function () {
   gBgChart = $(".card").css("background-color");
 
-  // check theme color when user refesh page
-  window.onload = function () {
-    if ($("body").attr('data-background-color') == 'bg1')
-      gBgChart = '#ffffff';
-    else if ($("body").attr('data-background-color') == 'bg2')
-      gBgChart = '#ffffff';
-    else if ($("body").attr('data-background-color') == 'bg3')
-      gBgChart = '#ffffff';
-    else
-      gBgChart = '#202940';
-    getRevenue();
-    getCustomerArriveFrequently();
-    getTopMedicine();
-  };
+
   // check theme color when user click change bg
   $(".changeBackgroundColor").click(function () {
     if ($("body").attr("data-background-color") == "bg1") gBgChart = "#ffffff";

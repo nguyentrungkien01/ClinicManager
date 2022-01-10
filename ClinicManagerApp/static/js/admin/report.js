@@ -1,3 +1,5 @@
+
+
 var gMonth = null
 var gQuarter = null
 var gYear = null
@@ -44,6 +46,7 @@ function getAmount() {
         return res.json()
     }).then(function (datas) {
         setPagegination(parseInt(datas['amount']))
+
         if (parseInt(datas['amount']) == 0)
             $('#export_pdf').hide()
         else
@@ -76,7 +79,7 @@ function getAll() {
 function setPagegination(amount) {
     var page = ''
     var amountPage = Math.ceil(amount / gPageSize)
-    if (amountPage <= gPageSize) {
+    if (amount <= gPageSize) {
         $('#pagination').html('')
         return
     }
@@ -162,6 +165,11 @@ function setPage(itemIdx, amountPage) {
     $(`#pagination li:nth-child(${gCurrentPage + 1})`).addClass('active')
 }
 
+function setIndexPagination() {
+    gBegIdx = 0
+    gEndIdx = gBegIdx + gPageSize
+}
+
 function setDataSelection() {
     var minYear = 2021
     var maxYear = 2100
@@ -238,23 +246,25 @@ function setDataTable(datas) {
 }
 
 
-
-$(document).ready(function () {
+function initData(){
     setDataSelection()
     gMonth = parseInt($('#month_input').val())
     gYear = parseInt($('#year_input').val())
-    gPageSize = 2
-    gBegIdx = 0
-    gEndIdx = gBegIdx + gPageSize
+    gPageSize=10
+    setIndexPagination()
     getData()
     getAmount()
 
 
+}
+
+$(document).ready(function () {
+    initData()
 
     $('#quarter_selection').hide()
     $('#report_type').change(function () {
-        gBegIdx = 0
-        gEndIdx = gBegIdx + gPageSize
+        setIndexPagination()
+
         getData()
         getAmount()
     })
@@ -279,8 +289,8 @@ $(document).ready(function () {
             gQuarter = null
         }
         gYear = parseInt($('#year_input').val())
-        gBegIdx = 0
-        gEndIdx = gBegIdx + gPageSize
+        setIndexPagination()
+
         getData()
         getAmount()
 
@@ -288,8 +298,8 @@ $(document).ready(function () {
 
     $('#month_input').change(function () {
         gMonth = parseInt($(this).val())
-        gBegIdx = 0
-        gEndIdx = gBegIdx + gPageSize
+        setIndexPagination()
+
         getData()
         getAmount()
 
@@ -297,8 +307,8 @@ $(document).ready(function () {
 
     $('#quarter_input').change(function () {
         gQuarter = parseInt($(this).val())
-        gBegIdx = 0
-        gEndIdx = gBegIdx + gPageSize
+        setIndexPagination()
+
         getData()
         getAmount()
 
@@ -306,8 +316,8 @@ $(document).ready(function () {
 
     $('#year_input').change(function () {
         gYear = parseInt($(this).val())
-        gBegIdx = 0
-        gEndIdx = gBegIdx + gPageSize
+        setIndexPagination()
+
         getData()
         getAmount()
 

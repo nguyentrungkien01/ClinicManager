@@ -13,6 +13,7 @@ class DepartmentModel(db.Model):
     name = Column(String(150), unique=True, default='')
     capacity = Column(Integer, default=1)
     description = Column(Text, default='')
+    logo = Column(Text, default='')
 
     # relationships
     staff_list = relationship('StaffModel', backref=backref('contained_department', uselist=False),
@@ -22,3 +23,6 @@ class DepartmentModel(db.Model):
 
     def __str__(self):
         return '{}'.format(self.name)
+
+    def set_logo(self, url):
+        self.logo = url

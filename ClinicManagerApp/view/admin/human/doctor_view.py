@@ -1,8 +1,9 @@
+import cloudinary.uploader
 from flask_admin.contrib.sqla.filters import FilterEqual, FilterNotEqual, FilterLike, FilterNotLike, DateEqualFilter, \
     DateNotEqualFilter, DateGreaterFilter, DateSmallerFilter, DateBetweenFilter, BooleanEqualFilter, \
     BooleanNotEqualFilter, FloatEqualFilter, FloatNotEqualFilter, FloatGreaterFilter, FloatSmallerFilter
 from flask_admin.form import rules
-from wtforms import validators, EmailField, DateField, TelField
+from wtforms import validators, EmailField, DateField, TelField, FileField
 
 from ClinicManagerApp.model.human.doctor_model import DoctorModel
 from ClinicManagerApp.view.base_model_view import BaseModelView
@@ -47,8 +48,6 @@ class DoctorView(BaseModelView):
                       DateGreaterFilter(DoctorModel.date_of_work, name='Ngày vào làm'),
                       DateSmallerFilter(DoctorModel.date_of_work, name='Ngày vào làm'),
                       DateBetweenFilter(DoctorModel.date_of_work, name='Ngày vào làm'),
-                      FilterLike(DoctorModel.major, name='Chuyên ngành'),
-                      FilterNotLike(DoctorModel.major, name='Chuyên ngành'),
                       FloatEqualFilter(DoctorModel.exp_year, name='Kinh nghiệm (năm)'),
                       FloatNotEqualFilter(DoctorModel.exp_year, name='Kinh nghiệm (năm)'),
                       FloatGreaterFilter(DoctorModel.exp_year, name='Kinh nghiệm (năm)'),
@@ -72,7 +71,11 @@ class DoctorView(BaseModelView):
                          managed_department='Khoa quản lý',
                          staff_list='Danh sách nhân viên quản lý',
                          account='Tài khoản',
-                         id_card='Căn cước công dân')
+                         id_card='Căn cước công dân',
+                         avatar='Ảnh đại diện',
+                         facebook_link= 'Facebook',
+                         twitter_link='Twitter'
+                         )
     column_editable_list = ('first_name',
                             'last_name',)
     column_list = ('staff_id',
@@ -87,9 +90,13 @@ class DoctorView(BaseModelView):
                    'date_of_work',
                    'major',
                    'exp_year',
+                   'avatar',
                    'manager',
                    'contained_department',
-                   'account')
+                   'account',
+                   'facebook_link',
+                   'twitter_link'
+                   )
 
     # form
     form_rules = [
@@ -104,7 +111,10 @@ class DoctorView(BaseModelView):
                         'phone_number',
                         'date_of_work',
                         'major',
-                        'exp_year'), 'Thông tin bác sĩ'),
+                        'exp_year',
+                        'avatar',
+                        'facebook_link',
+                        'twitter_link'), 'Thông tin bác sĩ'),
 
         rules.FieldSet(('manager',
                         'contained_department',
@@ -126,6 +136,7 @@ class DoctorView(BaseModelView):
                                  render_kw={
                                      'placeholder': 'Số điện thoại bác sĩ'
                                  }),
+        'avatar': FileField('Ảnh đại diện')
     }
     form_args = dict(
         first_name=dict(validators=[validators.DataRequired(),
@@ -143,10 +154,6 @@ class DoctorView(BaseModelView):
                      render_kw={
                          'placeholder': 'Địa chỉ bác sĩ'
                      }),
-        major=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=100)],
-                   render_kw={
-                       'placeholder': 'Chuyên ngành bác sĩ'
-                   }),
         exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)], ),
 
         id_card=dict(validators=[validators.Length(min=8, max=12), validators.DataRequired()],
@@ -154,6 +161,13 @@ class DoctorView(BaseModelView):
                          'placeholder': 'Căn cước công dân bác sĩ'
                      })
     )
+
+    def on_model_change(self, form, staff_model, is_created):
+        if form.avatar.data:
+            res = cloudinary.uploader.upload(form.avatar.data, folder='avatar_staff')
+            staff_model.set_avatar(str(res['secure_url']))
+        else:
+            staff_model.set_avatar('')
 
     def scaffold_list_columns(self):
         return ['staff_id',
@@ -168,9 +182,12 @@ class DoctorView(BaseModelView):
                 'date_of_work',
                 'major',
                 'exp_year',
+                'avatar',
                 'manager',
                 'contained_department',
                 'managed_department',
                 'staff_list',
-                'account'
+                'account',
+                'facebook_link',
+                'twitter_link'
                 ]

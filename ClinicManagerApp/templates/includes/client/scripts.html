@@ -6,10 +6,12 @@
 <script src="../static/js/client/SmoothScroll.min.js"></script>
 <script src="../static/js/plugin/animate/wow.min.js"></script>
 <script src="../static/js/client/main.js"></script>
-<script src="../static/js/client/doctor-list.js"></script>
 <script src="../static/js/client/custom.js"></script>
 <script src="../static/js/plugin/cursor/cursor.js"></script>
 <script src="https://kit.fontawesome.com/fe78fbcdb4.js"></script>
+<script src="{{url_for('static', filename='js/client/department_pagination.js')}}"></script>
+<script src="{{url_for('static', filename='js/client/doctor_list.js')}}"></script>
+
 <script>
     // Section Menu Active
     var scrollLink = $(".page-scroll");
@@ -19,7 +21,6 @@
 
         scrollLink.each(function () {
             var sectionOffset = $(this.hash).offset().top - 73;
-
             if (sectionOffset <= scrollbarLocation) {
                 $(".hc-navbar>ul>li>a").removeClass("active");
                 $(this).addClass("active");

@@ -1,7 +1,8 @@
+window.onload = function () {
+  $("#add_customer_result").modal("toggle");
+};
+
 $(document).ready(function () {
-  window.onload = function () {
-    $("#add_customer_result").modal("toggle");
-  };
 
   $('#date_of_birth').datetimepicker({
     format: 'DD/MM/YYYY'

@@ -8,6 +8,23 @@ var gFlagInputTime = null
 var gBgChart = null
 var gIndexHint = null
 
+// check theme color when user refesh page
+window.onload = function () {
+    if ($("body").attr('data-background-color') == 'bg1')
+        gBgChart = '#ffffff';
+    else if ($("body").attr('data-background-color') == 'bg2')
+        gBgChart = '#ffffff';
+    else if ($("body").attr('data-background-color') == 'bg3')
+        gBgChart = '#ffffff';
+    else
+        gBgChart = '#202940';
+
+    createChart(type = gType,
+        label = $("#statistic_type option:selected").text(),
+        data = gData,
+        labels = gLabels)
+};
+
 function getNameMedicine() {
     fetch('/api/admin/name_medicine', {
         method: 'post',
@@ -228,22 +245,7 @@ $(document).ready(function () {
         }
     })
 
-    // check theme color when user refesh page
-    window.onload = function () {
-        if ($("body").attr('data-background-color') == 'bg1')
-            gBgChart = '#ffffff';
-        else if ($("body").attr('data-background-color') == 'bg2')
-            gBgChart = '#ffffff';
-        else if ($("body").attr('data-background-color') == 'bg3')
-            gBgChart = '#ffffff';
-        else
-            gBgChart = '#202940';
 
-        createChart(type = gType,
-            label = $("#statistic_type option:selected").text(),
-            data = gData,
-            labels = gLabels)
-    };
     // check theme color when user click change bg
     $('.changeBackgroundColor').click(function () {
         if ($("body").attr('data-background-color') == 'bg1')

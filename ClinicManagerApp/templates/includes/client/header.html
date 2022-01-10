@@ -86,11 +86,14 @@
                     <div class="hc-head-btn">
                         <button class="hc-btn" data-toggle="modal" data-target="#hc-appointment">
                             Đặt lịch hẹn
-                        </button> 
-                        <div> So luot dang ki con lai trong ngay: {{amount_remaining_slot}}</div>
-           
+                        </button>
+                        <div>So luot dang ki con lai trong ngay: {{amount_remaining_slot}}</div>
+                        
                     </div>
+                    {% include 'includes/client/regist_result_modal.html' %}
+
                     <!-- Appointment end -->
+
 
 
                 </div>

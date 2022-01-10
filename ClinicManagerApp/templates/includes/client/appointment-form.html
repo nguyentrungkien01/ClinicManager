@@ -14,24 +14,32 @@
                         <!-- <input type="text" > -->
                         <div class="form-group">
                             <label for="id_card">Căn cước công dân</label>
-                            <input type="number" placeholder="Căn cước công dân" name="id_card" id="id_card"
-                                minlength="8" maxlength="12" class="require " required>
+                            <input type="text" placeholder="Căn cước công dân" name="id_card" id="id_card"
+                                pattern="[0-9]{10,12}" class="require " required
+                                title="Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự" />
                         </div>
                         <div class="form-group">
                             <label for="last_name">Họ và tên đệm</label>
                             <input type="text" placeholder="Họ và tên đệm" name="last_name" id="last_name"
-                                maxlength="50" class="require " required>
+                                pattern=".{1,50}" class="require " required
+                                title="Chiều dài từ 1 đến 50 ký tự" />
                         </div>
                         <div class="form-group">
                             <label for="first_name">Tên</label>
-                            <input type="text" placeholder="Tên" name="first_name" id="first_name" maxlength="20"
-                                class="require " required />
+                            <input type="text" placeholder="Tên" name="first_name" id="first_name"
+                                pattern=".{1,20}" class="require " required
+                                title="Chiều dài từ 1 đến 20 ký tự" />
                         </div>
+
                         <div class="form-group">
                             <label for="male">Nam</label>
                             <input type="radio" name="sex" value="male" class="require " id="male" checked>
                             <label for="female">Nữ</label>
                             <input type="radio" name="sex" value="female" class="require" id="female">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_birth">Ngày sinh</label>
+                            <input type="date" class="require" id="date_of_birth" name="date_of_birth" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -41,19 +49,19 @@
                         <div class="form-group">
                             <label for="phone_number">Số điện thoại</label>
                             <input type="tel" placeholder="Số điện thoại" name="phone_number" id="phone_number"
-                                minlength="10" maxlength="12" class="require " required />
+                                pattern="[0-9]{10,12}" class="require " required
+                                title="Chỉ gồm các số (0-9). Chiều dài từ 10 đến 12 ký tự" />
                         </div>
                         <div class="form-group">
                             <label for="address">Địa chỉ</label>
-                            <input type="text" placeholder="Địa chỉ" name="address" id="address" maxlength="200"
-                                class="require " required />
+                            <input type="text" placeholder="Địa chỉ" name="address" id="address" pattern=".{1,200}"
+                                class="require " required title="Chiều dài từ 1 đến 200 ký tự" />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="hc-btn" id="cfm_btn" value="Xác nhận" />
                         </div>
                         <div class="response"></div>
                     </form>
-
                     {%else%}
                     <p>So luot dang ki trong ngay da het vui long quay lai sau</p>
                     {%endif%}
