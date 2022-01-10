@@ -31,7 +31,7 @@
     <link href="{{ admin_static.url(filename='admin/css/bootstrap4/admin.css', v='1.1.1') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" />
     <!-- Main CSS -->
-    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/admin/custom.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='css/admin/clinic.css') }}" rel="stylesheet" />
     {% if admin_view.extra_css %} {% for css_url in admin_view.extra_css %}
     <link href="{{ css_url }}" rel="stylesheet" />

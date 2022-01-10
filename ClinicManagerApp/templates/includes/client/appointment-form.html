@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title">Đặt lịch</h5>
+                <h5 class="modal-title">Đặt lịch hẹn</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -10,55 +10,106 @@
             <div class="modal-body">
                 <div class="hc-contact-box">
                     {%if amount_remaining_slot > 0 %}
+                    <div><span class="font-weight-bold">Số lượt đăng ký còn lại trong ngày của phòng khám</span>:
+                        {{amount_remaining_slot}}</div>
                     <form action="/api/client/online_registration" , method="post">
                         <!-- <input type="text" > -->
-                        <div class="form-group">
-                            <label for="id_card">Căn cước công dân</label>
-                            <input type="text" placeholder="Căn cước công dân" name="id_card" id="id_card"
-                                pattern="[0-9]{10,12}" class="require " required
-                                title="Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự" />
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Họ và tên đệm</label>
-                            <input type="text" placeholder="Họ và tên đệm" name="last_name" id="last_name"
-                                pattern=".{1,50}" class="require " required
-                                title="Chiều dài từ 1 đến 50 ký tự" />
-                        </div>
-                        <div class="form-group">
-                            <label for="first_name">Tên</label>
-                            <input type="text" placeholder="Tên" name="first_name" id="first_name"
-                                pattern=".{1,20}" class="require " required
-                                title="Chiều dài từ 1 đến 20 ký tự" />
+                        <div class="form-group row">
+                            <label for="id_card" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Căn cước công dân<span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="text" placeholder="Nhập căn cước công dân...." name="id_card" id="id_card"
+                                    pattern="[0-9]{10,12}" class="require " required
+                                    title="Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự"
+                                    oninvalid="this.setCustomValidity('Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự')"
+                                    oninput="this.setCustomValidity('')" />
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="male">Nam</label>
-                            <input type="radio" name="sex" value="male" class="require " id="male" checked>
-                            <label for="female">Nữ</label>
-                            <input type="radio" name="sex" value="female" class="require" id="female">
+                        <div class="form-group row">
+                            <label for="last_name" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Họ và tên đệm<span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="text" placeholder="Nhập họ và tên đệm..." name="last_name" id="last_name"
+                                    pattern=".{1,50}" class="require " required title="Chiều dài từ 1 đến 50 ký tự"
+                                    oninvalid="this.setCustomValidity('Chiều dài từ 1 đến 50 ký tự')"
+                                    oninput="this.setCustomValidity('')" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="date_of_birth">Ngày sinh</label>
-                            <input type="date" class="require" id="date_of_birth" name="date_of_birth" required>
+
+                        <div class="form-group row">
+                            <label for="first_name" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Tên<span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="text" placeholder="Nhập tên...." name="first_name" id="first_name"
+                                    pattern=".{1,20}" class="require " required title="Chiều dài từ 1 đến 20 ký tự"
+                                    oninvalid="this.setCustomValidity('Chiều dài từ 1 đến 20 ký tự')"
+                                    oninput="this.setCustomValidity('')" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" placeholder="Email" name="email" id="email" class="require"
-                                data-valid="email" data-error="Email should be valid." maxlength="50" />
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Giới tính <span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12 d-flex align-items-center">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="male" name="sex" class="custom-control-input" value="male"
+                                        checked>
+                                    <label class="custom-control-label" for="male">Nam</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="female" name="sex" class="custom-control-input"
+                                        value="female">
+                                    <label class="custom-control-label" for="female">Nữ</label>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <label for="phone_number">Số điện thoại</label>
-                            <input type="tel" placeholder="Số điện thoại" name="phone_number" id="phone_number"
-                                pattern="[0-9]{10,12}" class="require " required
-                                title="Chỉ gồm các số (0-9). Chiều dài từ 10 đến 12 ký tự" />
+
+                        <div class="form-group row">
+                            <label for="date_of_birth" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Ngày sinh <span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="date" class="require" id="date_of_birth" name="date_of_birth" required />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="address">Địa chỉ</label>
-                            <input type="text" placeholder="Địa chỉ" name="address" id="address" pattern=".{1,200}"
-                                class="require " required title="Chiều dài từ 1 đến 200 ký tự" />
+
+                        <div class="form-group row">
+                            <label for="email" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Email</label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="email" placeholder="Email" name="email" id="email" class="require"
+                                    data-valid="email" data-error="Email should be valid." maxlength="50"
+                                    oninvalid="this.setCustomValidity('Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự')"
+                                    oninput="this.setCustomValidity('')" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" class="hc-btn" id="cfm_btn" value="Xác nhận" />
+
+                        <div class="form-group row">
+                            <label for="phone_number" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Số điện thoại <span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="tel" placeholder="Số điện thoại" name="phone_number" id="phone_number"
+                                    pattern="[0-9]{10,12}" class="require " required
+                                    title="Chỉ gồm các số (0-9). Chiều dài từ 10 đến 12 ký tự"
+                                    oninvalid="this.setCustomValidity('Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự')"
+                                    oninput="this.setCustomValidity('')" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-lg-3 col-md-5 col-sm-12 mt-sm-2">Địa chỉ <span
+                                    class="required-label">*</span></label>
+                            <div class="col-lg-9 col-md-7 col-sm-12">
+                                <input type="text" placeholder="Địa chỉ" name="address" id="address" pattern=".{1,200}"
+                                    class="require " required title="Chiều dài từ 1 đến 200 ký tự"
+                                    oninvalid="this.setCustomValidity('Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự')"
+                                    oninput="this.setCustomValidity('')" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <input type="submit" class="hc-btn" id="cfm_btn" value="Xác nhận"
+                                style="margin-top:unset;margin-bottom:unset;" />
                         </div>
                         <div class="response"></div>
                     </form>

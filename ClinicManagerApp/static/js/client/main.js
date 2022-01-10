@@ -13,7 +13,6 @@ $(function () {
             $('.back-to-top').fadeOut(200)
         }
     });
-
 })
 
 // init cursor
@@ -35,8 +34,6 @@ var cursors = [{
 
 //=====  WOW active
 new WOW().init();
-
-
 
 if (document.getElementById("particles-1")) particlesJS("particles-1", {
     "particles": {

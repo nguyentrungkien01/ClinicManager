@@ -40,7 +40,7 @@ function setPagegination(amount) {
         gCurrentPage = 1
         $('#pagination_service').html('')
         page += `<li class="page-item" id ='previous_item_service'>
-                <button class="page-link" onclick='setPrevious(${amountPage} )'><</button>
+                <button class="page-link" onclick='setPrevious(${amountPage} )'><<</button>
             </li>`
         for (let i = 1; i <= amountPage; i++)
             page += `<li class="page-item ${i == 1 ? 'active' : ''}">
@@ -48,7 +48,7 @@ function setPagegination(amount) {
                 </li>`
 
         page += `<li class="page-item" id = 'next_item_service'>
-                <button class="page-link" onclick='setNext(${amountPage}, ${amount})'>></button>
+                <button class="page-link" onclick='setNext(${amountPage}, ${amount})'>>></button>
             </li>`
         $('#pagination_service').html(page)
     }
@@ -102,15 +102,15 @@ function setPage(itemIdx, amountPage) {
         if (itemIdx != 1)
             $('#previous_item_service').show()
     } else
-        if (itemIdx == 1) {
-            $('#previous_item_service').hide()
-            if (itemIdx != amountPage)
-                $('#next_item_service').show()
-
-        } else {
-            $('#previous_item_service').show()
+    if (itemIdx == 1) {
+        $('#previous_item_service').hide()
+        if (itemIdx != amountPage)
             $('#next_item_service').show()
-        }
+
+    } else {
+        $('#previous_item_service').show()
+        $('#next_item_service').show()
+    }
     gBegIdx = (itemIdx - 1) * gPageSize
     gEndIdx = gBegIdx + gPageSize
     getInforDepartment()
@@ -137,7 +137,7 @@ function setDepartmentData(datas) {
         if (department_description == null)
             department_description = ''
         cols += `
-                <div class="col-lg-3 col-md-6">
+                <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="hc-service-box">
                         <div class="hc-service-icon hc-service-ico-clr1">
                             <img src="${department_logo}" alt="service" />
@@ -156,9 +156,9 @@ function setDepartmentData(datas) {
                         </div>
                     </div>`
     }
-    if (datas.length > 0) 
+    if (datas.length > 0)
         $('#department_infor').html(cols)
-    
+
 }
 
 function initData() {
