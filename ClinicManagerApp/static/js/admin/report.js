@@ -1,5 +1,3 @@
-
-
 var gMonth = null
 var gQuarter = null
 var gYear = null
@@ -74,8 +72,6 @@ function getAll() {
     })
 }
 
-
-
 function setPagegination(amount) {
     var page = ''
     var amountPage = Math.ceil(amount / gPageSize)
@@ -111,7 +107,6 @@ function setPrevious(amountPage) {
         if (gCurrentPage == 1 && gCurrentPage != amountPage)
             $('#next_item').show()
 
-
         gBegIdx -= gPageSize
         gEndIdx = gBegIdx + gPageSize
         getData()
@@ -123,7 +118,6 @@ function setPrevious(amountPage) {
 }
 
 function setNext(amountPage, amountData) {
-
     if (gBegIdx + gPageSize <= amountData) {
         $('#next_item').show()
         gCurrentPage++;
@@ -153,7 +147,6 @@ function setPage(itemIdx, amountPage) {
             $('#previous_item').hide()
             if (itemIdx != amountPage)
                 $('#next_item').show()
-
         } else {
             $('#previous_item').show()
             $('#next_item').show()
@@ -190,12 +183,15 @@ function setDataSelection() {
 function setDataTable(datas) {
     if (datas == undefined)
         return
+
     var headers = ''
     var rows = ''
     var total = ''
+
     $('#title_report_table').html('')
     $('#data_report_table').html('')
     $('#total').text('')
+
     sum = 0
     if ($('#report_type').val() == 'revenue') {
         headers += `<tr>
@@ -218,6 +214,7 @@ function setDataTable(datas) {
         }
         total = `Tổng doanh thu: ${sum} VNĐ`
     }
+
     if ($('#report_type').val() == 'frequency_of_medicine_use') {
         headers += `<tr>
                         <th> ${'Số thứ tự'}</th>
@@ -238,6 +235,7 @@ function setDataTable(datas) {
         }
         total = `Tổng số lượng thuốc đã sử dụng: ${sum}`
     }
+
     if (datas.length > 0) {
         $('#title_report_table').html(headers)
         $('#data_report_table').html(rows)
@@ -254,8 +252,6 @@ function initData(){
     setIndexPagination()
     getData()
     getAmount()
-
-
 }
 
 $(document).ready(function () {
@@ -264,7 +260,6 @@ $(document).ready(function () {
     $('#quarter_selection').hide()
     $('#report_type').change(function () {
         setIndexPagination()
-
         getData()
         getAmount()
     })
@@ -276,55 +271,52 @@ $(document).ready(function () {
             gMonth = parseInt($('#month_input').val())
             gQuarter = null
         }
+
         if ($(this).val() == 'quarter_report') {
             $('#month_selection').hide()
             $('#quarter_selection').show()
             gMonth = null
             gQuarter = parseInt($('#quarter_input').val())
         }
+
         if ($(this).val() == 'year_report') {
             $('#month_selection').hide()
             $('#quarter_selection').hide()
             gMonth = null
             gQuarter = null
         }
+
         gYear = parseInt($('#year_input').val())
         setIndexPagination()
-
         getData()
         getAmount()
-
     })
 
     $('#month_input').change(function () {
         gMonth = parseInt($(this).val())
         setIndexPagination()
-
         getData()
         getAmount()
-
     })
 
     $('#quarter_input').change(function () {
         gQuarter = parseInt($(this).val())
         setIndexPagination()
-
         getData()
         getAmount()
-
     })
 
     $('#year_input').change(function () {
         gYear = parseInt($(this).val())
         setIndexPagination()
-
         getData()
         getAmount()
-
     })
+
     $('#export_pdf').mousedown(function () {
         getAll()
     })
+
     $('#export_pdf').click(function () {
         const pdf = new jsPDF({
             orientation: 'landscape',
@@ -332,11 +324,13 @@ $(document).ready(function () {
             putOnlyUsedFonts: true,
             floatPrecision: 16
         })
+
         pdf.setFontSize(13)
         var head = []
         var body = []
         var foot = ''
         var sum = 0
+
         if ($('#report_type option:selected').val() == 'revenue') {
             head = ['STT', 'Ngay tao', 'So benh nhan', 'Doanh thu', 'Ti le']
             for (let i = 0; i < gExportDatas.length; i++) {
@@ -349,10 +343,10 @@ $(document).ready(function () {
                 body.push(temp)
                 sum += parseFloat(gExportDatas[i]['revenue'].slice(0,
                     gExportDatas[i]['revenue'].length - 4).replaceAll(',', ''))
-
             }
             foot = `Tong doanh thu: ${sum} VND`
         }
+
         if ($('#report_type option:selected').val() == 'frequency_of_medicine_use') {
             head = ['STT', 'Thuoc', 'Don vi tinh', 'So luong', 'So lan dung']
             for (let i = 0; i < gExportDatas.length; i++) {
@@ -366,6 +360,7 @@ $(document).ready(function () {
                 sum += parseInt(gExportDatas[i]['medicine_amount'])
             }
         }
+
         if ($('#report_condition').val().includes('revenue'))
             pdf.text($('#report_type option:selected').text().toUpperCase(), 130, 10)
         else
@@ -421,5 +416,4 @@ $(document).ready(function () {
             confirmButtonText: 'Ok',
         })
     })
-
 })

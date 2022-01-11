@@ -1,50 +1,29 @@
 <div class="hc-contact hc-spacer-high hc-spacer-bottom" id="contact">
     <div class="container">
+        <div class="hc-heading-wrap text-center">
+            <h2 class="hc-sub-heading">Liên hệ</h2>
+            <h1 class="hc-heading">Phản hồi khách hàng</h1>
+        </div>
         <div class="row">
-            <div class="col-lg-5 offset-lg-1">
-                <div class="hc-heading-wrap">
-                    <h2 class="hc-sub-heading">Liên hệ</h2>
-                    <h1 class="hc-heading">Phản hồi khách hàng</h1>
-                </div>
-                <div class="hc-map-box">
-                    <img src="https://res.cloudinary.com/ouproject/image/upload/v1639921918/img/map_a4epmy.png"
-                        alt="map" />
-                    <ul>
-                        <li>
-                            <span><i class="fas fa-plus"></i></span>
-                            <div class="hc-map-address">
-                                <p>371 Nguyễn Kiệm, Gò Vấp Q.3</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span><i class="fas fa-plus"></i></span>
-                            <div class="hc-map-address">
-                                <p>371 Nguyễn Kiệm, Gò Vấp Q.3</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span><i class="fas fa-plus"></i></span>
-                            <div class="hc-map-address">
-                                <p>371 Nguyễn Kiệm, Gò Vấp Q.3</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="col-lg-5">
                 <div class="hc-contact-box">
                     <form>
-                        <label for="customer_fullname">Họ và tên <span> * </span></label>
+                        <label for="customer_fullname">Họ và tên<span class="required-label">*</span></label>
                         <input type="text" id="customer_fullname" class="require" />
-                        <label for="customer_email">Email <span> * </span></label>
-                        <input type="email" id="customer_email" class="require"  />
-                        <label for = "feedback_subject">Tiêu đề <span> * </span> </label>
+                        <label for="customer_email">Email<span class="required-label">*</span></label>
+                        <input type="email" id="customer_email" class="require" />
+                        <label for="feedback_subject">Tiêu đề<span class="required-label">*</span> </label>
                         <input type="text" id="feedback_subject" class="require" />
-                        <label for ="feedback_content">Lời nhắn <span> * </span></label>
+                        <label for="feedback_content">Lời nhắn<span class="required-label">*</span></label>
                         <textarea id="feedback_content" class="require"></textarea>
                     </form>
                     <button class="hc-btn" id="feed_back_cfm">Xác nhận</button>
                 </div>
+            </div>
+            <div class="col-lg-7 mt-4">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.935272466166!2d106.67561845034145!3d10.816265492256663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e195f816b7%3A0xfb5c0101490d8870!2zMzcxIE5ndXnhu4VuIEtp4buHbSwgUGjGsOG7nW5nIDMsIEfDsiBW4bqlcCwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1641894441399!5m2!1svi!2s"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>

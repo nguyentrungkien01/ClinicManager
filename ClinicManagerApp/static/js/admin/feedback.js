@@ -25,10 +25,10 @@ function getGeneralFeedbackInfor() {
     }).then(function (res) {
         return res.json()
     }).then(function (datas) {
-        console.info(datas)
         setGeneralFeedbackData(datas)
     })
 }
+
 function getFeedbackContent(feedbackId = None) {
     fetch('/api/admin/feedback_content', {
         method: 'post',
@@ -57,15 +57,15 @@ function setPagegination(amount) {
         gCurrentPage = 1
         $('#pagination').html('')
         page += `<li class="page-item" id ='previous_item'>
-                <button class="page-link" onclick='setPrevious(${amountPage} )'><</button>
+                <button class="page-link" onclick='setPrevious(${amountPage} )'><<</button>
             </li>`
         for (let i = 1; i <= amountPage; i++)
             page += `<li class="page-item ${i == 1 ? 'active' : ''}">
                     <button class="page-link" onclick='setPage(${i},${amountPage})'>${i}</button>
                 </li>`
-
+                
         page += `<li class="page-item" id = 'next_item'>
-                <button class="page-link" onclick='setNext(${amountPage}, ${amount})'>></button>
+                <button class="page-link" onclick='setNext(${amountPage}, ${amount})'>>></button>
             </li>`
         $('#pagination').html(page)
     }
@@ -81,7 +81,6 @@ function setPrevious(amountPage) {
         if (gCurrentPage == 1 && gCurrentPage != amountPage)
             $('#next_item').show()
 
-
         gBegIdx -= gPageSize
         gEndIdx = gBegIdx + gPageSize
         getGeneralFeedbackInfor()
@@ -93,7 +92,6 @@ function setPrevious(amountPage) {
 }
 
 function setNext(amountPage, amountData) {
-
     if (gBegIdx + gPageSize <= amountData) {
         $('#next_item').show()
         gCurrentPage++;
@@ -119,15 +117,15 @@ function setPage(itemIdx, amountPage) {
         if (itemIdx != 1)
             $('#previous_item').show()
     } else
-        if (itemIdx == 1) {
-            $('#previous_item').hide()
-            if (itemIdx != amountPage)
-                $('#next_item').show()
-
-        } else {
-            $('#previous_item').show()
+    if (itemIdx == 1) {
+        $('#previous_item').hide()
+        if (itemIdx != amountPage)
             $('#next_item').show()
-        }
+
+    } else {
+        $('#previous_item').show()
+        $('#next_item').show()
+    }
     gBegIdx = (itemIdx - 1) * gPageSize
     gEndIdx = gBegIdx + gPageSize
     getGeneralFeedbackInfor()
@@ -144,43 +142,58 @@ function setGeneralFeedbackData(datas) {
     if (datas == undefined)
         return
     $('#feedback_dashboard').html('')
-    rows=''
-    for(let i =0; i<datas.length; i++){
+    rows = ''
+    for (let i = 0; i < datas.length; i++) {
         feedbackId = datas[i]['feedback_id']
-        feedbackSubject=datas[i]['feedback_subject']
+        feedbackSubject = datas[i]['feedback_subject']
         customerName = datas[i]['customer_name']
-        dateCreated= datas[i]['date_created']
-        rows+=`
-                <div>
-                    <div onclick ='getFeedbackContent(${feedbackId})'>
-                        <h1>#${feedbackId} - ${feedbackSubject}</h1>
-                        <p>${customerName}</p>
-                        <p>${dateCreated}</p>
+        dateCreated = datas[i]['date_created']
+        rows += `
+                <div class="row">
+                    <div class="col-12 col-lg-5">
+                        <div>
+                        <h4>Tiêu đề: ${feedbackSubject}</h4>
+                        <h5>Người gửi: ${customerName}</h5>
+                        <h5>Ngày gửi: ${dateCreated}</h5>
+                        </div>
                     </div>
-                    <div id='feedback_content_${feedbackId}'>
+                    <div class="col-12 col-lg-7">
+                        <div class="accordion accordion-secondary">
+                            <div class="card">
+                                <div class="card-header collapsed" id="headingOne" data-toggle="collapse"
+                                    data-target="#feedback${feedbackId}" aria-expanded="true"
+                                    aria-controls="feedback${feedbackId}" role="button" onclick ='getFeedbackContent(${feedbackId})'>
+                                    <div class="span-icon"><i class="fas fa-th-large"></i></div>
+                                    <div class="span-title">Nội dung</div>
+                                    <div class="span-mode"></div>
+                                </div>
+                                <div id="feedback${feedbackId}" class="collapse">
+                                    <div class="card-body" id='feedback_content_${feedbackId}'>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="separator-dashed"></div>
         `
     }
-
     if (datas.length > 0)
         $('#feedback_dashboard').html(rows)
-
 }
 
-function showFeedbackContent(datas, feedbackId){
-    if($(`#feedback_content_${feedbackId}`).children().length > 0){
+function showFeedbackContent(datas, feedbackId) {
+    if ($(`#feedback_content_${feedbackId}`).children().length > 0) {
         $(`#feedback_content_${feedbackId}`).html('')
-    }
-    else{
-        content=`
+    } else {
+        content = `
                     <p>${datas['content']}</p>
-                    <a href='mailto:${datas['gmail']}'>Phản hồi mail</a>
+                    <a class="btn btn-secondary" href='mailto:${datas['gmail']}'>Phản hồi mail</a>
         `
         document.getElementById(`feedback_content_${feedbackId}`).
-            insertAdjacentHTML("beforeend", content);
+        insertAdjacentHTML("beforeend", content);
     }
-   
 }
 
 function initData() {
@@ -192,5 +205,4 @@ function initData() {
 
 $(document).ready(function () {
     initData()
-
 })

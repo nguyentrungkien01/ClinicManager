@@ -79,6 +79,7 @@
             }
         },
         // counter end
+        
         // testimonial start
         testimonial_thumb: function () {
             if ($('.hc-testi-slide').length > 0) {
@@ -101,6 +102,7 @@
                     },
                 });
             }
+
             if ($('.hc-testi-thumb').length > 0) {
                 var galleryThumbs = new Swiper('.hc-testi-thumb .gallery-thumbs', {
                     spaceBetween: 10,
@@ -153,6 +155,7 @@
             }
         },
         // testimonial end
+
         // go to start
         go_top: function () {
             $(window).on('scroll', function () {
@@ -180,6 +183,7 @@
             });
         },
         // go to end
+
         preloader: function () {
             jQuery("#status").fadeOut();
             jQuery("#hc-preloader").delay(350).fadeOut("slow");

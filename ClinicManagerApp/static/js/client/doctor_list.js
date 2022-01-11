@@ -64,7 +64,6 @@ function getInforDoctor(tab_id = null, isReset = false) {
     })
 }
 
-
 function setMajorList(datas) {
     $('#major_list').html('')
     cols = `<li>
@@ -77,7 +76,6 @@ function setMajorList(datas) {
                 </li>`
     $('#major_list').html(cols)
 }
-
 
 function setPageginationDoctor(amount) {
     var page = ''
@@ -127,7 +125,6 @@ function setPreviousDoctor(amountPage) {
 }
 
 function setNextDoctor(amountPage, amountData) {
-
     if (gBegIdxDoctor + gPageSizeDoctor <= amountData) {
         $('#next_item_doctor').show()
         gCurrentPageDoctor++;
@@ -142,6 +139,7 @@ function setNextDoctor(amountPage, amountData) {
     } else {
         $('#next_item_doctor').hide()
     }
+
     $('#pagination_doctor').children().removeClass('active')
     $(`#pagination_doctor li:nth-child(${gCurrentPageDoctor + 1})`).addClass('active')
 }
@@ -157,11 +155,11 @@ function setPageDoctor(itemIdx, amountPage) {
         $('#previous_item_doctor').hide()
         if (itemIdx != amountPage)
             $('#next_item_doctor').show()
-
     } else {
         $('#previous_item_doctor').show()
         $('#next_item_doctor').show()
     }
+
     gBegIdxDoctor = (itemIdx - 1) * gPageSizeDoctor
     gEndIdxDoctor = gBegIdxDoctor + gPageSizeDoctor
     getInforDoctor(tab_id = gCurrentTabId)

@@ -55,7 +55,6 @@ function legendClickCallback(event) {
 }
 
 $(document).ready(function () {
-
 	$('.btn-refresh-card').on('click', function () {
 		var e = $(this).parents(".card");
 		e.length && (e.addClass("is-loading"), setTimeout(function () {
@@ -202,6 +201,7 @@ $(document).ready(function () {
 
 	if (!minimize_sidebar) {
 		var minibutton = $('.toggle-sidebar');
+
 		if ($('.wrapper').hasClass('sidebar_minimize')) {
 			mini_sidebar = 1;
 			minibutton.addClass('toggled');
@@ -253,6 +253,7 @@ $(document).ready(function () {
 
 	if (!toggle_overlay_sidebar) {
 		var overlaybutton = $('.sidenav-overlay-toggler');
+
 		if ($('.wrapper').hasClass('is-show')) {
 			overlay_sidebar_open = 1;
 			overlaybutton.addClass('toggled');
@@ -287,7 +288,6 @@ $(document).ready(function () {
 	});
 
 	// addClass if nav-item click and has subnav
-
 	$(".nav-item a").on('click', (function () {
 		if ($(this).parent().find('.collapse').hasClass("show")) {
 			$(this).parent().removeClass('submenu');
@@ -321,7 +321,6 @@ $(document).ready(function () {
 });
 
 // Input File Image
-
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
@@ -329,7 +328,6 @@ function readURL(input) {
 		reader.onload = function (e) {
 			$(input).parent('.input-file-image').find('.img-upload-preview').attr('src', e.target.result);
 		}
-
 		reader.readAsDataURL(input.files[0]);
 	}
 }
@@ -339,7 +337,6 @@ $('.input-file-image input[type="file"').change(function () {
 });
 
 // Show Password
-
 function showPassword(button) {
 	var inputPassword = $(button).parent().find('input');
 	if (inputPassword.attr('type') === "password") {
@@ -392,7 +389,6 @@ $('#show-signin').on('click', function () {
 changeContainer();
 
 //Input with Floating Label
-
 $('.form-floating-label .form-control').keyup(function () {
 	if ($(this).val() !== '') {
 		$(this).addClass('filled');

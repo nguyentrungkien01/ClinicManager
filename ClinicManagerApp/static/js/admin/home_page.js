@@ -17,7 +17,6 @@ var gBgChart = null;
     getTopMedicine();
   };
 
-
 function getCustomerArriveFrequently() {
   fetch("/api/homepage/customer_arrive_frequenly")
     .then(function (res) {
@@ -159,7 +158,6 @@ function createChart(id = "", type = "", label = "", data = [], labels = []) {
 
 $(document).ready(function () {
   gBgChart = $(".card").css("background-color");
-
 
   // check theme color when user click change bg
   $(".changeBackgroundColor").click(function () {

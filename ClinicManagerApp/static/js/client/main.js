@@ -15,6 +15,21 @@ $(function () {
     });
 })
 
+// Section Menu Active
+var scrollLink = $(".page-scroll");
+// Active link switching
+$(window).scroll(function () {
+    var scrollbarLocation = $(this).scrollTop();
+
+    scrollLink.each(function () {
+        var sectionOffset = $(this.hash).offset().top - 73;
+        if (sectionOffset <= scrollbarLocation) {
+            $(".hc-navbar>ul>li>a").removeClass("active");
+            $(this).addClass("active");
+        }
+    });
+});
+
 // init cursor
 var cursors = [{
     cursor_id: "3",

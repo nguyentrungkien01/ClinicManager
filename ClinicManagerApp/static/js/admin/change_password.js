@@ -1,10 +1,7 @@
-// click button change password
-
 var numberFlag = false;
 var lengthFlag = false;
 var titleAlert = ''
 var textAlert = ''
-
 
 function passAccountData() {
     fetch('/api/staff/change_password', {
@@ -42,7 +39,6 @@ function passAccountData() {
 
 $(document).ready(function () {
     $('#cfm').click(function () {
-
         var flag = checkAlertWrong()
         if (!flag) {
             Swal.fire({
@@ -68,14 +64,13 @@ $(document).ready(function () {
                 passAccountData()
             }
         })
-
     })
+    
     var numbers = /[0-9]/g;
     $('#oldPsw').keyup(function () {
         // Validate numbers
         if ($(this).val().match(numbers))
             numberFlag = true;
-
         // Validate length
         if ($(this).val().length >= 8 && $(this).val().length <= 12)
             lengthFlag = true;
@@ -94,7 +89,6 @@ function checkCondition(element, text) {
         textAlert = 'Xin vui lòng nhập lại'
         return false
     }
-
     return true
 }
 
