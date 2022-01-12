@@ -97,11 +97,6 @@ $(document).ready(function () {
 		notifScrollbar.scrollbar();
 	}
 
-	var quickActionsScrollbar = $('.quick-actions-scroll');
-	if (quickActionsScrollbar.length > 0) {
-		quickActionsScrollbar.scrollbar();
-	}
-
 	var statsScrollbar = $('.stats-scroll');
 	if (statsScrollbar.length > 0) {
 		statsScrollbar.scrollbar();

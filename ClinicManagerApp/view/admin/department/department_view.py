@@ -35,7 +35,7 @@ class DepartmentView(BaseModelView):
                          description='Mô tả',
                          manager='Trường khoa',
                          staff_list='Danh sách nhân viên trong khoa',
-                         logo='logo')
+                         logo='Logo')
 
     column_editable_list = ('name',
                             'capacity',

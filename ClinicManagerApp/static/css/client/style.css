@@ -1343,7 +1343,7 @@ li.hc-home-new:after {
 }
 
 .hc-go-top.hc-go-top-show {
-    bottom: 35px;
+    bottom: 90px;
     opacity: 1;
     visibility: visible;
     transition: 1s;

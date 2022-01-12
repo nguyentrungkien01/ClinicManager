@@ -102,7 +102,7 @@
                             <div class="col-lg-9 col-md-7 col-sm-12">
                                 <input type="text" placeholder="Địa chỉ" name="address" id="address" pattern=".{1,200}"
                                     class="require " required title="Chiều dài từ 1 đến 200 ký tự"
-                                    oninvalid="this.setCustomValidity('Chỉ gồm chữ số (0-9). Chiều dài từ 10 đến 12 kí tự')"
+                                    oninvalid="this.setCustomValidity('Chiều dài từ 1 đến 200 ký tự')"
                                     oninput="this.setCustomValidity('')" />
                             </div>
                         </div>
@@ -114,7 +114,8 @@
                         <div class="response"></div>
                     </form>
                     {%else%}
-                    <p>So luot dang ki trong ngay da het vui long quay lai sau</p>
+                    <h5 class="text-center">Số lượt đăng ký trong ngày đã hết, xin vui lòng quay lại vào ngày mai!!!
+                    </h5>
                     {%endif%}
 
                 </div>

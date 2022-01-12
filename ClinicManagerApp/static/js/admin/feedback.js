@@ -63,7 +63,7 @@ function setPagegination(amount) {
             page += `<li class="page-item ${i == 1 ? 'active' : ''}">
                     <button class="page-link" onclick='setPage(${i},${amountPage})'>${i}</button>
                 </li>`
-                
+
         page += `<li class="page-item" id = 'next_item'>
                 <button class="page-link" onclick='setNext(${amountPage}, ${amount})'>>></button>
             </li>`
@@ -152,7 +152,8 @@ function setGeneralFeedbackData(datas) {
                 <div class="row">
                     <div class="col-12 col-lg-5">
                         <div>
-                        <h4>Tiêu đề: ${feedbackSubject}</h4>
+                        <h3 class="font-weight-bold">#${feedbackId}</h3>
+                        <h4 class="font-weight-bold"><span class="text-success">Tiêu đề:</span> ${feedbackSubject}</h4>
                         <h5>Người gửi: ${customerName}</h5>
                         <h5>Ngày gửi: ${dateCreated}</h5>
                         </div>
@@ -169,7 +170,8 @@ function setGeneralFeedbackData(datas) {
                                 </div>
                                 <div id="feedback${feedbackId}" class="collapse">
                                     <div class="card-body" id='feedback_content_${feedbackId}'>
-                            
+                                    <p id="feedback_content${feedbackId}"></p>
+                                    <a class="btn btn-secondary" id="mail_reply${feedbackId}">Phản hồi mail</a>
                                     </div>
                                 </div>
                             </div>
@@ -184,16 +186,8 @@ function setGeneralFeedbackData(datas) {
 }
 
 function showFeedbackContent(datas, feedbackId) {
-    if ($(`#feedback_content_${feedbackId}`).children().length > 0) {
-        $(`#feedback_content_${feedbackId}`).html('')
-    } else {
-        content = `
-                    <p>${datas['content']}</p>
-                    <a class="btn btn-secondary" href='mailto:${datas['gmail']}'>Phản hồi mail</a>
-        `
-        document.getElementById(`feedback_content_${feedbackId}`).
-        insertAdjacentHTML("beforeend", content);
-    }
+    $(`#feedback_content${feedbackId}`).text(datas['content'])
+    $(`#mail_reply${feedbackId}`).attr("href", `mailto:${datas['gmail']}`)
 }
 
 function initData() {

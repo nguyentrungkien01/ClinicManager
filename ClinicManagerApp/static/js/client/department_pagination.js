@@ -137,7 +137,7 @@ function setDepartmentData(datas) {
                 <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="hc-service-box">
                         <div class="hc-service-icon hc-service-ico-clr1">
-                            <img src="${department_logo}" alt="service" />
+                            <img src="${department_logo}" alt="service" style="border-radius: 10px;"/>
                         </div>
                             <h1 class="hc-service-title">${department_name}</h1>
                             <p>${department_description}</p>
