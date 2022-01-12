@@ -131,14 +131,17 @@ function setInputStatistic() {
             minVal = 1
             maxVal = 12
         }
+
         if (conditionSelect.includes('quarter')) {
             minVal = 1
             maxVal = 4
         }
+
         if (conditionSelect.includes('year')) {
             minVal = 2021
             maxVal = 2100
         }
+
         inputTimeArea.style.display = "flex"
         var leftInput = document.getElementById('left_time')
         var rightInput = document.getElementById('right_time')
@@ -160,6 +163,7 @@ function setLabelHeaderTable() {
     var conditionSelect = document.getElementById("statistic_condition").value
     if (conditionSelect.includes('month'))
         return "Tháng"
+
     if (conditionSelect.includes('quarter'))
         return "Quý"
     return "Năm"
@@ -169,10 +173,10 @@ function setResultHeaderTable() {
     var type_select = document.getElementById("statistic_type").value
     if (type_select.includes('revenue'))
         return "Tổng doanh thu"
+
     if (type_select.includes('examination'))
         return "Tần suất khám bệnh"
     return "Tần suất sử dụng thuốc"
-
 }
 
 // load data of data table
@@ -191,8 +195,8 @@ function loadDataTable(datas) {
                     <td>${datas[i]['key']}</td>
                     <td>${datas[i]['value'].substring(0, datas[i]['value'].indexOf(' ')).replaceAll(',', '')}</td>
                 </tr>`
-        else
-            row += `<tr> 
+    else
+        row += `<tr> 
                     <td>${i + 1}</td>
                     <td>${datas[i]['key']}</td>
                     <td>${datas[i]['value']}</td>
@@ -210,7 +214,6 @@ function loadData(datas) {
         gLabels.push(datas[i]['key']);
         gData.push(parseInt(datas[i]['value']));
     }
-
 }
 
 //change data of chart
@@ -233,18 +236,16 @@ $(document).ready(function () {
             if (++gIndexHint > $('#result_input_name').children().length)
                 gIndexHint = 1
             $(`.stats-choice .show-hint p:nth-child(${gIndexHint})`).css("background-color", "#04a9f5");
-
         }
+
         if (event.keyCode == 38) {
             for (let i = 1; i <= $('#result_input_name').children().length; i++)
                 $(`.stats-choice .show-hint p:nth-child(${i})`).css("background-color", "white");
             if (--gIndexHint <= 0)
                 gIndexHint = $('#result_input_name').children().length
             $(`.stats-choice .show-hint p:nth-child(${gIndexHint})`).css("background-color", "#04a9f5");
-
         }
     })
-
 
     // check theme color when user click change bg
     $('.changeBackgroundColor').click(function () {
@@ -278,19 +279,16 @@ $(document).ready(function () {
             $(`.stats-choice .show-hint p:nth-child(1)`).css("background-color", "#04a9f5");
 
     })
-    $("#statistic_type").change(function () {
 
+    $("#statistic_type").change(function () {
         getData();
         if ($(this).val() == 'frequency_of_medicine_use') {
             $('#input_name_medicine').show()
-
         } else {
             $('#input_name_medicine').hide()
             $('#name_medicine').val('')
             $('#result_input_name').html('')
         }
-
-
     });
 
     $("#chart_type").change(function () {
@@ -308,13 +306,10 @@ $(document).ready(function () {
         } else {
             gFromTime = null
             gToTime = null
-
         }
-
         getData()
-
-
     });
+
     $('#left_time').data('lastSelectedIndex', 0);
 
     $('#left_time').click(function () {
@@ -326,7 +321,6 @@ $(document).ready(function () {
         $(this).data('lastSelectedIndex', this.selectedIndex)
     });
 
-
     $('#left_time').change(function () {
         if (parseInt($(this).val()) > parseInt($('#right_time').val())) {
             this.selectedIndex = $(this).data('lastSelectedIndex')
@@ -335,17 +329,17 @@ $(document).ready(function () {
             getData()
         }
     });
+
     $('#right_time').change(function () {
         if (parseInt($(this).val()) < parseInt($('#left_time').val())) {
             this.selectedIndex = $(this).data('lastSelectedIndex')
         } else {
             gToTime = parseInt($(this).val())
-
             getData()
         }
     });
-    $('#pdfChart').click(function () {
 
+    $('#pdfChart').click(function () {
         const canvas = document.getElementById('chart')
         canvas.toDataURL('image/jpeg', 1.0)
 
@@ -408,6 +402,7 @@ $(document).ready(function () {
         })
     })
 });
+
 //create chart
 function createChart(type = 'pie', label = '', data = [], labels = []) {
     var backgroundColor = [];

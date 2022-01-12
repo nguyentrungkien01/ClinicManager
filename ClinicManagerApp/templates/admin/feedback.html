@@ -1,18 +1,42 @@
 {% extends 'admin/master.html' %}
 
+
 {% block head %}
 {{ super() }}
-<script src="{{ url_for('static', filename='js/admin/feedback.js') }}"></script>
 {% endblock %}
 
 
 {% block body %}
 {{ super() }}
-<h1 style="margin-top: 100px" >Danh sách các phản hồi từ khách hàng</h1>
-<div id = "feedback_dashboard">
+<div class="content">
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Phản hồi khách hàng</h2>
+                <h5 class="text-white op-7 mb-2">Phòng khám Trung Thành</h5>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-space">
+                    <div class="card-header">
+                        <div class="card-title">Danh sách các phản hồi từ khách hàng</div>
+                    </div>
+                    <div class="card-body" id='feedback_dashboard'></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <ul class="pagination" id="pagination">
+            </ul>
+        </div>
+    </div>
 </div>
-<div>
-    <ul class="pagination" id="pagination">
-    </ul>
-</div>
+{% endblock %}
+
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/admin/feedback.js') }}"></script>
 {% endblock %}

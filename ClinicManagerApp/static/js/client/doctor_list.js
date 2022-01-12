@@ -64,7 +64,6 @@ function getInforDoctor(tab_id = null, isReset = false) {
     })
 }
 
-
 function setMajorList(datas) {
     $('#major_list').html('')
     cols = `<li>
@@ -77,7 +76,6 @@ function setMajorList(datas) {
                 </li>`
     $('#major_list').html(cols)
 }
-
 
 function setPageginationDoctor(amount) {
     var page = ''
@@ -127,7 +125,6 @@ function setPreviousDoctor(amountPage) {
 }
 
 function setNextDoctor(amountPage, amountData) {
-
     if (gBegIdxDoctor + gPageSizeDoctor <= amountData) {
         $('#next_item_doctor').show()
         gCurrentPageDoctor++;
@@ -142,6 +139,7 @@ function setNextDoctor(amountPage, amountData) {
     } else {
         $('#next_item_doctor').hide()
     }
+
     $('#pagination_doctor').children().removeClass('active')
     $(`#pagination_doctor li:nth-child(${gCurrentPageDoctor + 1})`).addClass('active')
 }
@@ -157,11 +155,11 @@ function setPageDoctor(itemIdx, amountPage) {
         $('#previous_item_doctor').hide()
         if (itemIdx != amountPage)
             $('#next_item_doctor').show()
-
     } else {
         $('#previous_item_doctor').show()
         $('#next_item_doctor').show()
     }
+
     gBegIdxDoctor = (itemIdx - 1) * gPageSizeDoctor
     gEndIdxDoctor = gBegIdxDoctor + gPageSizeDoctor
     getInforDoctor(tab_id = gCurrentTabId)
@@ -191,12 +189,15 @@ function setDoctorData(datas) {
             avatar = 'https://res.cloudinary.com/ouproject/image/upload/v1641740748/avatar_staff/default_avatar_mvuqgu_g1nu1d.png'
 
         if (department == null)
-            department = ''
-
+            department = 'javascript:;'
         if (facebookLink == null)
-            facebookLink = ''
+            facebookLink = 'javascript:;'
         if (twitterLink == null)
-            twitterLink = ''
+            twitterLink = 'javascript:;'
+        if (phoneNumber == null)
+            phoneNumber = 'javascript:;'
+        else
+            phoneNumber = `tel:${phoneNumber}`
         cols += `
                 <div class="d-flex col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="hc-team-box">
@@ -215,7 +216,7 @@ function setDoctorData(datas) {
                         <a href="${twitterLink}"><i class="fab fa-twitter"></i></a>
                     </li>
                     <li>
-                        <a href="tel:${phoneNumber}"><i class="fas fa-phone-alt"></i></a>
+                        <a href="${phoneNumber}"><i class="fas fa-phone-alt"></i></a>
                     </li>
                 </ul>
                 </div>

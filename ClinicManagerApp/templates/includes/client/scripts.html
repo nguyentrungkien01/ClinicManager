@@ -5,6 +5,7 @@
 <script src="../static/js/plugin/particle/particles.min.js"></script>
 <script src="../static/js/client/SmoothScroll.min.js"></script>
 <script src="../static/js/plugin/animate/wow.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../static/js/client/main.js"></script>
 <script src="../static/js/client/custom.js"></script>
 <script src="../static/js/plugin/cursor/cursor.js"></script>
@@ -13,39 +14,33 @@
 <script src="{{url_for('static', filename='js/client/doctor_list.js')}}"></script>
 <script src="{{url_for('static', filename='js/client/feedback.js')}}"></script>
 
+<!-- Messenger Chat Plugin Code -->
+<!-- <div id="fb-root"></div> -->
+
+<!-- Your Chat Plugin code -->
+<!-- <div id="fb-customer-chat" class="fb-customerchat"></div> -->
+<!-- 
 <script>
-    // Section Menu Active
-    var scrollLink = $(".page-scroll");
-    // Active link switching
-    $(window).scroll(function () {
-        var scrollbarLocation = $(this).scrollTop();
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "105825651245887");
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script> -->
 
-        scrollLink.each(function () {
-            var sectionOffset = $(this.hash).offset().top - 73;
-            if (sectionOffset <= scrollbarLocation) {
-                $(".hc-navbar>ul>li>a").removeClass("active");
-                $(this).addClass("active");
-            }
+<!-- Your SDK code -->
+<!-- <script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v12.0'
         });
-    });
+    };
 
-    // var chatbox = document.getElementById('fb-customer-chat');
-    // chatbox.setAttribute("page_id", "105825651245887");
-    // chatbox.setAttribute("attribution", "biz_inbox");
-
-    // window.fbAsyncInit = function () {
-    //     FB.init({
-    //         xfbml: true,
-    //         version: 'v11.0'
-    //     });
-    // };
-
-    // (function (d, s, id) {
-    //     var js, fjs = d.getElementsByTagName(s)[0];
-    //     if (d.getElementById(id)) return;
-    //     js = d.createElement(s);
-    //     js.id = id;
-    //     js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-    //     fjs.parentNode.insertBefore(js, fjs);
-    // }(document, 'script', 'facebook-jssdk'));
-</script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script> -->

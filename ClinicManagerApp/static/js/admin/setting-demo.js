@@ -1,13 +1,11 @@
 "use strict";
-
 // Setting Color
-
-$(window).resize(function() {
-	$(window).width(); 
+$(window).resize(function () {
+	$(window).width();
 });
 
-$('.changeBodyBackgroundFullColor').on('click', function(){
-	if($(this).attr('data-color') == 'default'){
+$('.changeBodyBackgroundFullColor').on('click', function () {
+	if ($(this).attr('data-color') == 'default') {
 		$('body').removeAttr('data-background-full');
 	} else {
 		$('body').attr('data-background-full', $(this).attr('data-color'));
@@ -18,8 +16,8 @@ $('.changeBodyBackgroundFullColor').on('click', function(){
 	layoutsColors();
 });
 
-$('.changeLogoHeaderColor').on('click', function(){
-	if($(this).attr('data-color') == 'default'){
+$('.changeLogoHeaderColor').on('click', function () {
+	if ($(this).attr('data-color') == 'default') {
 		$('.logo-header').removeAttr('data-background-color');
 	} else {
 		$('.logo-header').attr('data-background-color', $(this).attr('data-color'));
@@ -31,8 +29,8 @@ $('.changeLogoHeaderColor').on('click', function(){
 	layoutsColors();
 });
 
-$('.changeTopBarColor').on('click', function(){
-	if($(this).attr('data-color') == 'default'){
+$('.changeTopBarColor').on('click', function () {
+	if ($(this).attr('data-color') == 'default') {
 		$('.main-header .navbar-header').removeAttr('data-background-color');
 	} else {
 		$('.main-header .navbar-header').attr('data-background-color', $(this).attr('data-color'));
@@ -43,8 +41,8 @@ $('.changeTopBarColor').on('click', function(){
 	layoutsColors();
 });
 
-$('.changeSideBarColor').on('click', function(){
-	if($(this).attr('data-color') == 'default'){
+$('.changeSideBarColor').on('click', function () {
+	if ($(this).attr('data-color') == 'default') {
 		$('.sidebar').removeAttr('data-background-color');
 	} else {
 		$('.sidebar').attr('data-background-color', $(this).attr('data-color'));
@@ -55,14 +53,14 @@ $('.changeSideBarColor').on('click', function(){
 	layoutsColors();
 });
 
-$('.changeBackgroundColor').on('click', function(){
+$('.changeBackgroundColor').on('click', function () {
 	$('body').removeAttr('data-background-color');
 	$('body').attr('data-background-color', $(this).attr('data-color'));
 	$(this).parent().find('.changeBackgroundColor').removeClass("selected");
 	$(this).addClass("selected");
 });
 
-function customCheckColor(){
+function customCheckColor() {
 	var logoHeader = $('.logo-header').attr('data-background-color');
 	if (logoHeader !== "white") {
 		$('.logo-header .navbar-brand').attr('src', '/static/assets/img/logo.svg');
@@ -71,24 +69,22 @@ function customCheckColor(){
 	}
 }
 
-
 var toggle_customSidebar = false,
-custom_open = 0;
+	custom_open = 0;
 
-if(!toggle_customSidebar) {
+if (!toggle_customSidebar) {
 	var toggle = $('.custom-template .custom-toggle');
 
-	toggle.on('click', (function(){
-		if (custom_open == 1){
+	toggle.on('click', (function () {
+		if (custom_open == 1) {
 			$('.custom-template').removeClass('open');
 			toggle.removeClass('toggled');
 			custom_open = 0;
-		}  else {
+		} else {
 			$('.custom-template').addClass('open');
 			toggle.addClass('toggled');
 			custom_open = 1;
 		}
-	})
-	);
+	}));
 	toggle_customSidebar = true;
 }

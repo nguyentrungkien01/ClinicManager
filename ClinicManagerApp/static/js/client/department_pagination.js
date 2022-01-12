@@ -3,7 +3,6 @@ var gBegIdx = null
 var gEndIdx = null
 var gCurrentPage = null
 
-
 function getAmountDepartment() {
     fetch('/api/client/amount_department').then(function (res) {
         return res.json()
@@ -64,7 +63,6 @@ function setPrevious(amountPage) {
         if (gCurrentPage == 1 && gCurrentPage != amountPage)
             $('#next_item_service').show()
 
-
         gBegIdx -= gPageSize
         gEndIdx = gBegIdx + gPageSize
         getInforDepartment()
@@ -76,7 +74,6 @@ function setPrevious(amountPage) {
 }
 
 function setNext(amountPage, amountData) {
-
     if (gBegIdx + gPageSize <= amountData) {
         $('#next_item_service').show()
         gCurrentPage++;
@@ -106,11 +103,11 @@ function setPage(itemIdx, amountPage) {
         $('#previous_item_service').hide()
         if (itemIdx != amountPage)
             $('#next_item_service').show()
-
     } else {
         $('#previous_item_service').show()
         $('#next_item_service').show()
     }
+
     gBegIdx = (itemIdx - 1) * gPageSize
     gEndIdx = gBegIdx + gPageSize
     getInforDepartment()
@@ -140,7 +137,7 @@ function setDepartmentData(datas) {
                 <div class="d-flex col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="hc-service-box">
                         <div class="hc-service-icon hc-service-ico-clr1">
-                            <img src="${department_logo}" alt="service" />
+                            <img src="${department_logo}" alt="service" style="border-radius: 10px;"/>
                         </div>
                             <h1 class="hc-service-title">${department_name}</h1>
                             <p>${department_description}</p>
@@ -158,7 +155,6 @@ function setDepartmentData(datas) {
     }
     if (datas.length > 0)
         $('#department_infor').html(cols)
-
 }
 
 function initData() {

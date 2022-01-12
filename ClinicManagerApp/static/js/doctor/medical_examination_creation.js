@@ -9,7 +9,6 @@ function getCurrentDoctorInfo() {
         body: {},
         headers: {
             'Content-Type': 'application/json'
-
         }
     }).then(function (res) {
         return res.json()
@@ -94,7 +93,6 @@ function getMedicineUnit(OrderId) {
     }).then(function (datas) {
         console.info(datas)
         $(`#medicine_datas tr:nth-child(${OrderId}) td:nth-child(5)`).text(datas[0]['value'])
-
     })
 }
 
@@ -140,7 +138,6 @@ function checkMedicineName() {
             saveEditMedicine(gOrderId)
             gOrderId = null
         }
-
     })
 }
 
@@ -255,7 +252,6 @@ function saveData() {
     })
 }
 
-
 // id card action
 function onClickHintCustomerIdCard(hint) {
     $('#id_card_input').val(hint.trim())
@@ -267,7 +263,6 @@ function onMouseOverHintCustomerIdCard(position) {
     for (let i = 1; i <= $('#result_id_card').children().length; i++)
         $(`.id-card-choice .show-hint p:nth-child(${i})`).css("background-color", "white");
     $(`.id-card-choice .show-hint p:nth-child(${position})`).css("background-color", "#04a9f5");
-
 }
 
 // medicine name action
@@ -467,7 +462,6 @@ function alertMedicineModal(title) {
     })
 }
 
-
 $(document).ready(function () {
     //info current doctor
     getCurrentDoctorInfo()
@@ -500,7 +494,6 @@ $(document).ready(function () {
             if (++gIndexHintIdCard > $('#result_id_card').children().length)
                 gIndexHintIdCard = 1
             $(`.id-card-choice .show-hint p:nth-child(${gIndexHintIdCard})`).css("background-color", "#04a9f5");
-
         }
         if (event.keyCode == 38) {
             for (let i = 1; i <= $('#result_id_card').children().length; i++)
@@ -508,7 +501,6 @@ $(document).ready(function () {
             if (--gIndexHintIdCard <= 0)
                 gIndexHintIdCard = $('#result_id_card').children().length
             $(`.id-card-choice .show-hint p:nth-child(${gIndexHintIdCard})`).css("background-color", "#04a9f5");
-
         }
     })
 
@@ -540,7 +532,6 @@ $(document).ready(function () {
             if (++gIndexHintMedicineName > $('#result_name_medicine').children().length)
                 gIndexHintMedicineName = 1
             $(`.medicine-name-choice .show-hint p:nth-child(${gIndexHintMedicineName})`).css("background-color", "#04a9f5");
-
         }
         if (event.keyCode == 38) {
             for (let i = 1; i <= $('#result_name_medicine').children().length; i++)
@@ -548,7 +539,6 @@ $(document).ready(function () {
             if (--gIndexHintMedicineName <= 0)
                 gIndexHintMedicineName = $('#result_name_medicine').children().length
             $(`.medicine-name-choice .show-hint p:nth-child(${gIndexHintMedicineName})`).css("background-color", "#04a9f5");
-
         }
     })
 
@@ -561,12 +551,10 @@ $(document).ready(function () {
         isCreated = true
     })
 
-
     // confirm button
     $('#cfm_button').click(function () {
         checkMedicineName()
     })
-
 
     // save and export pdf
     $('#save_export_button').click(function () {
