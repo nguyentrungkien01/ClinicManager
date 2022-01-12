@@ -103,7 +103,6 @@ $(document).ready(function () {
 	}
 
 	$('.scroll-bar').draggable();
-
 	$('#search-nav').on('shown.bs.collapse', function () {
 		$('.nav-search .form-control').focus();
 	});
