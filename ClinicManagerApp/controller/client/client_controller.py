@@ -9,6 +9,7 @@ from ClinicManagerApp.model.feedback.feedback_model import FeedbackModel
 from ClinicManagerApp.model.human.staff_model import StaffModel
 from ClinicManagerApp.model.document.medical_examination_model import MedicalExaminationModel
 
+
 def get_department_amount():
     return {
         'amount': db.session.query(func.count(DepartmentModel.department_id)).first()[0]
