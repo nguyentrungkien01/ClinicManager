@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import Column, Integer, String, Text, DateTime
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean
 
 from ClinicManagerApp import db
 
@@ -17,6 +17,7 @@ class FeedbackModel(db.Model):
     content = Column(Text, default='')
     gmail = Column(String(100), default='')
     date_created = Column(DateTime, default=datetime.datetime.now())
+    status = Column(Boolean, default=False)
 
     def __str__(self):
         return '{}'.format(self.subject)

@@ -1,19 +1,21 @@
 from sqlalchemy import func
+from twilio.rest import Client
 
 from ClinicManagerApp import db
 from ClinicManagerApp.model.department.department_model import DepartmentModel
 from ClinicManagerApp.model.human.doctor_model import DoctorModel
 from ClinicManagerApp.model.rule.major_model import MajorModel
 from ClinicManagerApp.model.feedback.feedback_model import FeedbackModel
+from ClinicManagerApp.model.human.staff_model import StaffModel
+from ClinicManagerApp.model.document.medical_examination_model import MedicalExaminationModel
 
-
-def get_amount_department():
+def get_department_amount():
     return {
         'amount': db.session.query(func.count(DepartmentModel.department_id)).first()[0]
     }
 
 
-def get_infor_department(begin_index=None, end_index=None):
+def get_department_infor(begin_index=None, end_index=None):
     data = db.session.query(DepartmentModel.name,
                             DepartmentModel.logo,
                             DepartmentModel.description) \
@@ -33,7 +35,7 @@ def get_infor_department(begin_index=None, end_index=None):
     return department_list
 
 
-def get_amount_doctor(major_id=None):
+def get_doctor_amount(major_id=None):
     data = db.session.query(func.count(DoctorModel.staff_id))
 
     if major_id is not None:
@@ -44,7 +46,7 @@ def get_amount_doctor(major_id=None):
     }
 
 
-def get_infor_doctor(major_id=None, begin_index=None, end_index=None):
+def get_doctor_info(major_id=None, begin_index=None, end_index=None):
     data = db.session.query(DoctorModel.last_name,
                             DoctorModel.first_name,
                             DoctorModel.avatar,
@@ -110,3 +112,22 @@ def add_feedback(**kwargs):
         db.session.rollback()
         return False
     pass
+
+
+def get_staff_amount():
+    return {
+        'amount': db.session.query(func.count(StaffModel.staff_id)).first()[0]
+    }
+
+
+def get_exp_doctor_amount():
+    return {
+        'amount': db.session.query(func.count(DoctorModel.staff_id))\
+        .filter(DoctorModel.exp_year.__gt__(1.0)).first()[0]
+    }
+
+
+def get_medical_examination_amount():
+    return {
+        'amount': db.session.query(func.count(MedicalExaminationModel.document_id)).first()[0]
+    }

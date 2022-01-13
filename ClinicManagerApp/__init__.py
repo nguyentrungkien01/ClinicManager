@@ -5,13 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 import cloudinary
-import os
 from twilio.rest import Client
 app = Flask(__name__)
 
 # mysql account
 USERNAME_DB = 'root'
-PASSWORD_DB = 'thanhnam'
+PASSWORD_DB = '12345678'
 NAME_DB = 'ClinicManager'
 IP_DB = 'localhost'
 
@@ -36,7 +35,7 @@ login = LoginManager(app=app)
 cloudinary.config(cloud_name=CLOUD_NAME,
                   api_key=API_KEY,
                   api_secret=API_SECRET)
-
+# twilio
 account_sid = 'AC1dc7baac41475a5ecf3eeee27c07369c'
 auth_token = 'e4f380d3d52df4336a363ccbc399db7d'
 client = Client(account_sid, auth_token)

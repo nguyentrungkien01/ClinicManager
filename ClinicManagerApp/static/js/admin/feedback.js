@@ -29,7 +29,7 @@ function getGeneralFeedbackInfor() {
     })
 }
 
-function getFeedbackContent(feedbackId = None) {
+function getFeedbackContent(feedbackId, feedbackStatus) {
     fetch('/api/admin/feedback_content', {
         method: 'post',
         body: JSON.stringify({
@@ -42,7 +42,26 @@ function getFeedbackContent(feedbackId = None) {
         return res.json()
     }).then(function (datas) {
         //show feedback content
-        showFeedbackContent(datas, feedbackId)
+        showFeedbackContent(datas, feedbackId,feedbackStatus)
+    })
+}
+
+
+function setFeedbackStatus(feedbackId) {
+    fetch('/api/admin/feedback_status', {
+        method: 'post',
+        body: JSON.stringify({
+            'feedback_id': feedbackId
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (res) {
+        return res.json()
+    }).then(function(datas){
+        $(`#feedback_status${feedbackId}`).removeClass()
+        $(`#feedback_status${feedbackId}`).addClass('text-success')
+        $(`#feedback_status${feedbackId}`).text('Đã xem')
     })
 }
 
@@ -117,15 +136,15 @@ function setPage(itemIdx, amountPage) {
         if (itemIdx != 1)
             $('#previous_item').show()
     } else
-    if (itemIdx == 1) {
-        $('#previous_item').hide()
-        if (itemIdx != amountPage)
-            $('#next_item').show()
+        if (itemIdx == 1) {
+            $('#previous_item').hide()
+            if (itemIdx != amountPage)
+                $('#next_item').show()
 
-    } else {
-        $('#previous_item').show()
-        $('#next_item').show()
-    }
+        } else {
+            $('#previous_item').show()
+            $('#next_item').show()
+        }
     gBegIdx = (itemIdx - 1) * gPageSize
     gEndIdx = gBegIdx + gPageSize
     getGeneralFeedbackInfor()
@@ -148,6 +167,13 @@ function setGeneralFeedbackData(datas) {
         feedbackSubject = datas[i]['feedback_subject']
         customerName = datas[i]['customer_name']
         dateCreated = datas[i]['date_created']
+        feedbackStatus = datas[i]['feedback_status']
+        highlightStatus = 'text-danger'
+        textStatus = 'Chưa xem'
+        if (feedbackStatus) {
+            highlightStatus = 'text-success'
+            textStatus = 'Đã xem'
+        }
         rows += `
                 <div class="row">
                     <div class="col-12 col-lg-5">
@@ -163,9 +189,9 @@ function setGeneralFeedbackData(datas) {
                             <div class="card">
                                 <div class="card-header collapsed" id="headingOne" data-toggle="collapse"
                                     data-target="#feedback${feedbackId}" aria-expanded="true"
-                                    aria-controls="feedback${feedbackId}" role="button" onclick ='getFeedbackContent(${feedbackId})'>
+                                    aria-controls="feedback${feedbackId}" role="button" onclick ='getFeedbackContent(${feedbackId}, ${feedbackStatus})'>
                                     <div class="span-icon"><i class="fas fa-th-large"></i></div>
-                                    <div class="span-title">Nội dung</div>
+                                    <div class="span-title">Nội dung (<span id='feedback_status${feedbackId}' class='${highlightStatus}'>${textStatus}</span>)</div>
                                     <div class="span-mode"></div>
                                 </div>
                                 <div id="feedback${feedbackId}" class="collapse">
@@ -185,7 +211,9 @@ function setGeneralFeedbackData(datas) {
         $('#feedback_dashboard').html(rows)
 }
 
-function showFeedbackContent(datas, feedbackId) {
+function showFeedbackContent(datas, feedbackId, feedbackStatus) {
+    if (!feedbackStatus)
+        setFeedbackStatus(feedbackId)
     $(`#feedback_content${feedbackId}`).text(datas['content'])
     $(`#mail_reply${feedbackId}`).attr("href", `mailto:${datas['gmail']}`)
 }

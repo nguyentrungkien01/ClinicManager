@@ -16,10 +16,9 @@ def get_general_feedback_info(begin_index=None, end_index=None):
                             FeedbackModel.subject,
                             FeedbackModel.customer_name,
                             FeedbackModel.date_created,
-                            FeedbackModel.content,
-                            FeedbackModel.gmail) \
-        .order_by(desc(FeedbackModel.date_created))
-
+                            FeedbackModel.status) \
+        .order_by(desc(FeedbackModel.date_created))\
+        .order_by(FeedbackModel.status)
     if begin_index is not None and end_index is not None:
         data = data.slice(begin_index, end_index)
 
@@ -31,7 +30,8 @@ def get_general_feedback_info(begin_index=None, end_index=None):
             'feedback_id': feedback[0],
             'feedback_subject': feedback[1],
             'customer_name': feedback[2],
-            'date_created': feedback[3].strftime('%d/%m/%Y %H:%M:%S %p')
+            'date_created': feedback[3].strftime('%d/%m/%Y %H:%M:%S %p'),
+            'feedback_status': feedback[4]
         })
     return feedback_list
 
@@ -43,4 +43,20 @@ def get_feedback_content(feedback_id=None):
     return {
         'gmail': data[0],
         'content': data[1]
+    }
+
+
+def set_feedback_status(feedback_id=None):
+    try:
+        feedback = FeedbackModel.query.filter(FeedbackModel.feedback_id.__eq__(feedback_id)).first()
+        feedback.status = True
+        db.session.add(feedback)
+        db.session.commit()
+        return {
+            'result': True
+        }
+    except:
+        db.session.rollback()
+    return {
+        'resuslt': False
     }

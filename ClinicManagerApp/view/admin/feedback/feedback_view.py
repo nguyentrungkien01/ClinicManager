@@ -5,7 +5,7 @@ from flask_admin import expose
 
 from ClinicManagerApp import app
 from ClinicManagerApp.controller.admin.feedback_controller import get_feedback_amount as gfa, \
-    get_feedback_content as gfc, get_general_feedback_info as ggfi
+    get_feedback_content as gfc, get_general_feedback_info as ggfi, set_feedback_status as sfs
 from ClinicManagerApp.view.base_view import BaseView
 
 
@@ -31,3 +31,9 @@ def get_general_feedback_info():
     begin_index = request.json.get('begin_index')
     end_index = request.json.get('end_index')
     return json.dumps(ggfi(begin_index=begin_index, end_index=end_index))
+
+
+@app.route('/api/admin/feedback_status', methods=['post'])
+def set_feedback_status():
+    feedback_id = request.json.get('feedback_id')
+    return jsonify(sfs(feedback_id=feedback_id))
