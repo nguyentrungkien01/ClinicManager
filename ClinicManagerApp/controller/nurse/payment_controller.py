@@ -58,7 +58,7 @@ def get_nurse_by_username(username=None):
                             NurseModel.first_name,
                             NurseModel.last_name) \
         .join(AccountModel) \
-        .filter(and_(AccountModel.staff_id.__eq__(NurseModel.staff_id),
+        .filter(and_(AccountModel.account_id.__eq__(NurseModel.account_id),
                      AccountModel.username.__eq__(str(username).strip()))) \
         .first()
 

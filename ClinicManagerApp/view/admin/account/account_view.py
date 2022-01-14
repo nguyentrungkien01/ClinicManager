@@ -33,9 +33,7 @@ class AccountView(BaseModelView):
                       DateGreaterFilter(AccountModel.last_access, name='Truy cập lân cuối'),
                       DateSmallerFilter(AccountModel.last_access, name='Truy cập lân cuối'),
                       DateBetweenFilter(AccountModel.last_access, name='Truy cập lân cuối'),
-                      FilterEmpty(AccountModel.avatar, name='Ảnh đại diện'),
-                      FilterEmpty(column='staff', name='Nhân viên sở hữu'))
-
+                      FilterEmpty(AccountModel.avatar, name='Ảnh đại diện'))
     column_default_sort = 'account_id'
     column_labels = dict(account_id='Mã',
                          username='Tên đăng nhập',
@@ -43,8 +41,7 @@ class AccountView(BaseModelView):
                          role='Vai trò',
                          is_active='Kích hoạt',
                          last_access='Truy cập lần cuối',
-                         avatar='Ảnh đại diện',
-                         staff='Nhân viên sở hữu'
+                         avatar='Ảnh đại diện'
                          )
 
     # form
@@ -54,10 +51,7 @@ class AccountView(BaseModelView):
                         'password',
                         'role',
                         'avatar',
-                        'is_active'), 'Thông tin tài khoản'),
-
-        rules.FieldSet(('staff',), 'Thông tin khác có liên quan'),
-
+                        'is_active'), 'Thông tin tài khoản')
     ]
     form_extra_fields = {
         'password': PasswordField('Mật khẩu',
@@ -111,7 +105,7 @@ def login_admin():
             account = get_account(username, password)
         else:
             account = None
-        if account:
+        if account and account.is_active == True:
             login_user(user=account)
             set_lass_access(account)
     return redirect('/admin')

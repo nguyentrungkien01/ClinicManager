@@ -231,6 +231,7 @@ function saveData() {
     }).then(function (res) {
         return res.json()
     }).then(function (datas) {
+        console.info(datas)
         if (datas['result']) {
             exportPDF(datas['medical_examination_id'])
             Swal.fire({

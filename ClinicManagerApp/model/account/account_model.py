@@ -2,6 +2,8 @@ import hashlib
 from datetime import datetime
 
 from sqlalchemy import Column, Text, String, Boolean, Integer, DateTime, ForeignKey
+from sqlalchemy.orm import relationship, backref
+
 from ClinicManagerApp import db
 from flask_login import UserMixin
 
@@ -20,8 +22,11 @@ class AccountModel(db.Model, UserMixin):
     last_access = Column(DateTime, default=datetime.now())
 
     # foreign keys
-    staff_id = Column(Integer, ForeignKey('staff_model.staff_id'))
     role_id = Column(Integer, ForeignKey('role_model.role_id'))
+
+    # relationship
+    staff = relationship('StaffModel', backref=backref('account', uselist=False, lazy=True),
+                         foreign_keys='[StaffModel.account_id]', uselist=False, lazy=True)
 
     def __str__(self):
         return '{}'.format(self.username)

@@ -76,6 +76,7 @@ def get_current_doctor_infor():
 
 @app.route('/api/doctor/save_medical_examination_data', methods=['post'])
 def save_medical_examination():
+
     id_card = request.json.get('id_card')
     symptom = request.json.get('symptom')
     predicted_disease = request.json.get('predicted_disease')
