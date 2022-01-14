@@ -51,7 +51,7 @@ def get_doctor_infor(username=None):
     return db.session.query(DoctorModel.first_name,
                             DoctorModel.last_name) \
         .join(AccountModel) \
-        .filter(and_(AccountModel.staff_id.__eq__(DoctorModel.staff_id),
+        .filter(and_(AccountModel.account_id.__eq__(DoctorModel.account_id),
                      AccountModel.username.__eq__(username))) \
         .all()
 
@@ -69,7 +69,7 @@ def get_customer_id_by_id_card(id_card=None):
 def get_doctor_id_by_username(username=None):
     return db.session.query(DoctorModel.staff_id) \
         .join(AccountModel) \
-        .filter(and_(AccountModel.staff_id.__eq__(DoctorModel.staff_id),
+        .filter(and_(AccountModel.account_id.__eq__(DoctorModel.account_id),
                      AccountModel.username.__eq__(username))) \
         .all()[0][0]
 

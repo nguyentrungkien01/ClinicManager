@@ -17,18 +17,17 @@ class StaffModel(PersonModel, db.Model):
     date_of_work = Column(DateTime, default=datetime.now())
     exp_year = Column(Float, default=0.0)
     type = Column(String(50))
-    avatar = Column(Text, default='')
-    facebook_link = Column(Text, default='')
-    twitter_link = Column(Text, default='')
+    avatar = Column(String(200), default='')
+    facebook_link = Column(String(130), default='')
+    twitter_link = Column(String(130), default='')
 
     # foreign keys
     contained_department_id = Column('contained_department_id', Integer,
                                      ForeignKey('department_model.department_id'))
     manager_id = Column('manager_id', Integer, ForeignKey('staff_model.staff_id'))
+    account_id = Column(Integer, ForeignKey('account_model.account_id'))
 
     # relationships
-    account = relationship('AccountModel', backref=backref('staff', uselist=False, lazy=True),
-                           foreign_keys='[AccountModel.staff_id]', uselist=False, lazy=True)
     staff_list = relationship('StaffModel', backref=backref('manager', remote_side=[staff_id], lazy=True),
                               foreign_keys='[StaffModel.manager_id]', lazy=True)
 
