@@ -35,8 +35,10 @@ class CustomerView(BaseModelView):
                       DateGreaterFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       DateSmallerFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       DateBetweenFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
-                      FilterLike(CustomerModel.sex, name='Giới tính'),
+                      FilterEqual(CustomerModel.sex, name='Giới tính'),
                       FilterNotEqual(CustomerModel.sex, name='Giới tính'),
+                      FilterLike(CustomerModel.sex, name='Giới tính'),
+                      FilterNotLike(CustomerModel.sex, name='Giới tính'),
                       FilterEqual(CustomerModel.id_card, name='Căn cước công dân'),
                       FilterNotEqual(CustomerModel.id_card, name='Căn cước công dân'),
                       FilterLike(CustomerModel.id_card, name='Căn cước công dân'),
@@ -60,8 +62,6 @@ class CustomerView(BaseModelView):
                          document_list='Danh sách tài liệu',
                          id_card='Căn cước công dân'
                          )
-    column_editable_list = ('first_name',
-                            'last_name',)
 
     # form
     form_args = dict(

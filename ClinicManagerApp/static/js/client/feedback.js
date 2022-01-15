@@ -54,8 +54,8 @@ function checkFeedbackData() {
         alertFeedbackData('Email không hợp lệ')
         return false
     }
-       if ($('#customer_email').val().length >50 0) {
-        alertFeedbackData('Thông tin email không được vượt quá 50 ký tự)
+       if ($('#customer_email').val().length >50) {
+        alertFeedbackData('Thông tin email không được vượt quá 50 ký tự')
         return false
     }
 

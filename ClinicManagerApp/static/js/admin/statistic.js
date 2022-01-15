@@ -18,7 +18,6 @@ window.onload = function () {
         gBgChart = '#ffffff';
     else
         gBgChart = '#202940';
-
     createChart(type = gType,
         label = $("#statistic_type option:selected").text(),
         data = gData,
@@ -195,8 +194,8 @@ function loadDataTable(datas) {
                     <td>${datas[i]['key']}</td>
                     <td>${datas[i]['value'].substring(0, datas[i]['value'].indexOf(' ')).replaceAll(',', '')}</td>
                 </tr>`
-    else
-        row += `<tr> 
+        else
+            row += `<tr> 
                     <td>${i + 1}</td>
                     <td>${datas[i]['key']}</td>
                     <td>${datas[i]['value']}</td>
@@ -407,13 +406,14 @@ $(document).ready(function () {
 function createChart(type = 'pie', label = '', data = [], labels = []) {
     var backgroundColor = [];
     var borderColor = [];
-    for (let i = 0; i < data.length; i++) {
-        r = Math.floor(Math.random() * 255 + 1);
-        g = Math.floor(Math.random() * 255 + 1);
-        b = Math.floor(Math.random() * 255 + 1);
-        backgroundColor.push(`rgba(${r},${g}, ${b}, 0.7)`);
-        borderColor.push(`rgba(${r},${g}, ${b}, 1)`);
-    }
+    if (data != null)
+        for (let i = 0; i < data.length; i++) {
+            r = Math.floor(Math.random() * 255 + 1);
+            g = Math.floor(Math.random() * 255 + 1);
+            b = Math.floor(Math.random() * 255 + 1);
+            backgroundColor.push(`rgba(${r},${g}, ${b}, 0.7)`);
+            borderColor.push(`rgba(${r},${g}, ${b}, 1)`);
+        }
     const ctx = document.getElementById('chart').getContext('2d');
 
     if (gChart != null)

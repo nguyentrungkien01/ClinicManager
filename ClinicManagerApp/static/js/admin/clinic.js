@@ -413,10 +413,10 @@ var all = $(".sidebar-content > ul > li > a").map(function () {
 
 /* --------------- logo header - navbar header - side bar - background switched color ------------ */
 
-colors = ["dark", "blue", "purple", "light-blue", "green", "orange", "red", "white", "dark2",
-	"blue2", "purple2", "light-blue2", "green2", "orange2", "red2"]
-themeBg = ["bg1", "bg2", "bg3", "dark"]
-themeSideBar = ["white", "dark", "dark2"]
+const colors = ["dark", "blue", "purple", "light-blue", "green", "orange", "red", "white", "dark2",
+"blue2", "purple2", "light-blue2", "green2", "orange2", "red2"]
+const themeBg = ["bg1", "bg2", "bg3", "dark"]
+const themeSideBar = ["white", "dark", "dark2"]
 
 // background switch
 $(".bg-switch button").on('click', function () {
@@ -441,7 +441,7 @@ $(".sidebar-switch button").on('click', function () {
 
 // navbar switch
 $(".navbar-switch button").on('click', function () {
-	color = $(this).attr("data-color")
+	var color = $(this).attr("data-color")
 	for (let i = 0; i < colors.length; i++)
 		if (color == colors[i]) {
 			$(this).attr("data-color", colors[i])
@@ -453,7 +453,7 @@ $(".navbar-switch button").on('click', function () {
 
 // logo switch
 $(".logo-switch button").on('click', function () {
-	color = $(this).attr("data-color")
+	var color = $(this).attr("data-color")
 	for (let i = 0; i < colors.length; i++)
 		if (color == colors[i]) {
 			$(this).attr("data-color", colors[i])
@@ -484,7 +484,7 @@ function themeMode() {
 
 	// checking if 'theme-navbar' key exists
 	if (localStorage.getItem("theme-navbar") !== null) {
-		color = localStorage.getItem("theme-navbar")
+		var color = localStorage.getItem("theme-navbar")
 		for (let i = 0; i < colors.length; i++)
 			if (color == colors[i]) {
 				$(".navbar-header").attr("data-background-color", colors[i])
@@ -494,7 +494,7 @@ function themeMode() {
 
 	// checking if 'theme-logo' key exists
 	if (localStorage.getItem("theme-logo") !== null) {
-		color = localStorage.getItem("theme-logo")
+		var color = localStorage.getItem("theme-logo")
 		for (let i = 0; i < colors.length; i++)
 			if (color == colors[i]) {
 				$(".logo-header").attr("data-background-color", colors[i])

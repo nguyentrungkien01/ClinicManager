@@ -37,9 +37,6 @@ class DepartmentView(BaseModelView):
                          staff_list='Danh sách nhân viên trong khoa',
                          logo='Logo')
 
-    column_editable_list = ('name',
-                            'capacity',
-                            'description')
     column_list = ('department_id', 'name', 'capacity', 'logo', 'manager', 'description')
 
     # form

@@ -36,8 +36,10 @@ class NurseView(BaseModelView):
                       DateGreaterFilter(NurseModel.date_of_birth, name='Ngày sinh'),
                       DateSmallerFilter(NurseModel.date_of_birth, name='Ngày sinh'),
                       DateBetweenFilter(NurseModel.date_of_birth, name='Ngày sinh'),
-                      BooleanEqualFilter(NurseModel.sex, name='Giới tính'),
-                      BooleanNotEqualFilter(NurseModel.sex, name='Giới tính'),
+                      FilterEqual(NurseModel.sex, name='Giới tính'),
+                      FilterNotEqual(NurseModel.sex, name='Giới tính'),
+                      FilterLike(NurseModel.sex, name='Giới tính'),
+                      FilterNotLike(NurseModel.sex, name='Giới tính'),
                       FilterEqual(NurseModel.id_card, name='Căn cước công dân'),
                       FilterNotEqual(NurseModel.id_card, name='Căn cước công dân'),
                       FilterLike(NurseModel.id_card, name='Căn cước công dân'),
@@ -79,8 +81,6 @@ class NurseView(BaseModelView):
                          facebook_link= 'Facebook',
                          twitter_link='Twitter'
                          )
-    column_editable_list = ('first_name',
-                            'last_name')
 
     # form
     form_rules = [

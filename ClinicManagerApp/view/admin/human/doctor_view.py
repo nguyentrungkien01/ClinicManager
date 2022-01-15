@@ -32,8 +32,10 @@ class DoctorView(BaseModelView):
                       DateGreaterFilter(DoctorModel.date_of_birth, name='Ngày sinh'),
                       DateSmallerFilter(DoctorModel.date_of_birth, name='Ngày sinh'),
                       DateBetweenFilter(DoctorModel.date_of_birth, name='Ngày sinh'),
-                      BooleanEqualFilter(DoctorModel.sex, name='Giới tính'),
-                      BooleanNotEqualFilter(DoctorModel.sex, name='Giới tính'),
+                      FilterEqual(DoctorModel.sex, name='Giới tính'),
+                      FilterNotEqual(DoctorModel.sex, name='Giới tính'),
+                      FilterLike(DoctorModel.sex, name='Giới tính'),
+                      FilterNotLike(DoctorModel.sex, name='Giới tính'),
                       FilterEqual(DoctorModel.id_card, name='Căn cước công dân'),
                       FilterNotEqual(DoctorModel.id_card, name='Căn cước công dân'),
                       FilterLike(DoctorModel.id_card, name='Căn cước công dân'),
@@ -76,8 +78,6 @@ class DoctorView(BaseModelView):
                          facebook_link= 'Facebook',
                          twitter_link='Twitter'
                          )
-    column_editable_list = ('first_name',
-                            'last_name',)
     column_list = ('staff_id',
                    'first_name',
                    'last_name',
