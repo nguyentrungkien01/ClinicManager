@@ -113,7 +113,7 @@ class NurseView(BaseModelView):
                             }),
         'date_of_birth': DateField('Ngày sinh', validators=[validators.DataRequired()], ),
         'date_of_work': DateField('Ngày vào làm', validators=[validators.DataRequired()], ),
-        'phone_number': TelField('Số điện thoại', validators=[validators.Length(min=0, max=12)],
+        'phone_number': TelField('Số điện thoại', validators=[validators.Length(min=9, max=10)],
                                  render_kw={
                                      'placeholder': 'Số điện thoại y tá'
                                  }),
@@ -132,12 +132,12 @@ class NurseView(BaseModelView):
                            'placeholder': 'Họ và tên đệm y tá'
                        }),
         address=dict(validators=[validators.DataRequired(),
-                                 validators.Length(min=1, max=100)],
+                                 validators.Length(min=1, max=150)],
                      render_kw={
                          'placeholder': 'Địa chỉ y tá'
                      }),
         exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)], ),
-        id_card=dict(validators=[validators.Length(min=8, max=12), validators.DataRequired()])
+        id_card=dict(validators=[validators.Length(min=10, max=12), validators.DataRequired()])
     )
 
     def on_model_change(self, form, staff_model, is_created):

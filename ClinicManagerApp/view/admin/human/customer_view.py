@@ -8,7 +8,6 @@ from ClinicManagerApp.view.base_model_view import BaseModelView
 
 
 class CustomerView(BaseModelView):
-
     can_create = False
     can_delete = False
 
@@ -36,7 +35,7 @@ class CustomerView(BaseModelView):
                       DateGreaterFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       DateSmallerFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
                       DateBetweenFilter(CustomerModel.date_of_birth, name='Ngày sinh'),
-                      FilterLike(CustomerModel.sex,name='Giới tính' ),
+                      FilterLike(CustomerModel.sex, name='Giới tính'),
                       FilterNotEqual(CustomerModel.sex, name='Giới tính'),
                       FilterEqual(CustomerModel.id_card, name='Căn cước công dân'),
                       FilterNotEqual(CustomerModel.id_card, name='Căn cước công dân'),
@@ -59,7 +58,7 @@ class CustomerView(BaseModelView):
                          email='Email',
                          phone_number='Số điện thoại',
                          document_list='Danh sách tài liệu',
-                         id_card = 'Căn cước công dân'
+                         id_card='Căn cước công dân'
                          )
     column_editable_list = ('first_name',
                             'last_name',)
@@ -78,7 +77,7 @@ class CustomerView(BaseModelView):
                        }),
         date_of_birth=dict(validators=[validators.DataRequired()], ),
         address=dict(validators=[validators.DataRequired(),
-                                 validators.Length(min=1, max=100)],
+                                 validators.Length(min=1, max=150)],
                      render_kw={
                          'placeholder': 'Địa chỉ khách hàng'
                      }),
@@ -86,14 +85,14 @@ class CustomerView(BaseModelView):
                    render_kw={
                        'placeholder': 'Địa chỉ email khách hàng'
                    }),
-        phone_number=dict(validators=[validators.Length(min=1, max=12)],
+        phone_number=dict(validators=[validators.Length(min=9, max=10)],
                           render_kw={
                               'placeholder': 'Số điện thoại khách hàng'
                           }),
-        id_card=dict(validators=[validators.Length(min=10, max = 12), validators.DataRequired()],
-                    render_kw={
-                        'placeholder': 'Căn cước công dân khách hàng'
-                    })
+        id_card=dict(validators=[validators.Length(min=10, max=12), validators.DataRequired()],
+                     render_kw={
+                         'placeholder': 'Căn cước công dân khách hàng'
+                     })
     )
 
     form_rules = [
@@ -121,5 +120,3 @@ class CustomerView(BaseModelView):
                 'email',
                 'phone_number',
                 'document_list']
-
-

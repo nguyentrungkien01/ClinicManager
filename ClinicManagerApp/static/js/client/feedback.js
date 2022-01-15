@@ -39,7 +39,10 @@ function checkFeedbackData() {
         alertFeedbackData('Thông tin tên khách hàng không được để trống')
         return false
     }
-
+     if ($('#customer_fullname').val().length > 100) {
+            alertFeedbackData('Thông tin tên khách hàng không được vượt quá 100 ký tự')
+            return false
+        }
     if ($('#customer_email').val().length <= 0) {
         alertFeedbackData('Thông tin email không được để trống')
         return false
@@ -51,12 +54,19 @@ function checkFeedbackData() {
         alertFeedbackData('Email không hợp lệ')
         return false
     }
+       if ($('#customer_email').val().length >50 0) {
+        alertFeedbackData('Thông tin email không được vượt quá 50 ký tự)
+        return false
+    }
 
     if ($('#feedback_subject').val().length <= 0) {
         alertFeedbackData('Tiêu đề phản hồi không được để trống')
         return false
     }
-
+    if ($('#feedback_subject').val().length >200) {
+        alertFeedbackData('Tiêu đề phản hồi không được vượt quá 200 ký tự')
+        return false
+    }
     if ($('#feedback_content').val().length <= 0) {
         alertFeedbackData('Nội dung phản hồi không được để trống')
         return false

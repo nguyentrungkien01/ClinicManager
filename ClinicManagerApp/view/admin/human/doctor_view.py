@@ -132,7 +132,7 @@ class DoctorView(BaseModelView):
         'date_of_birth': DateField('Ngày sinh', validators=[validators.DataRequired()]),
         'date_of_work': DateField('Ngày vào làm', validators=[validators.DataRequired()]),
         'phone_number': TelField('Số điện thoại',
-                                 validators=[validators.Length(min=0, max=12)],
+                                 validators=[validators.Length(min=9, max=10)],
                                  render_kw={
                                      'placeholder': 'Số điện thoại bác sĩ'
                                  }),
@@ -150,13 +150,13 @@ class DoctorView(BaseModelView):
                            'placeholder': 'Họ và tên đệm bác sĩ'
                        }),
         address=dict(validators=[validators.DataRequired(),
-                                 validators.Length(min=1, max=100)],
+                                 validators.Length(min=1, max=150)],
                      render_kw={
                          'placeholder': 'Địa chỉ bác sĩ'
                      }),
         exp_year=dict(validators=[validators.NumberRange(min=0.0, max=50.0)], ),
 
-        id_card=dict(validators=[validators.Length(min=8, max=12), validators.DataRequired()],
+        id_card=dict(validators=[validators.Length(min=10, max=12), validators.DataRequired()],
                      render_kw={
                          'placeholder': 'Căn cước công dân bác sĩ'
                      })

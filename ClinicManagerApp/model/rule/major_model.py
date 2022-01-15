@@ -11,7 +11,7 @@ class MajorModel(db.Model):
     major_id = Column(Integer, primary_key=True, autoincrement=True)
 
     # attribute
-    name = Column(String(30), nullable=False, unique=True, default='')
+    name = Column(String(100), nullable=False, unique=True, default='')
 
     # relationship
     doctor_list = relationship('DoctorModel', backref='major', lazy=True,

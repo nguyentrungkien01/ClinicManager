@@ -85,14 +85,14 @@ class MedicineView(BaseModelView):
 
     ]
     form_args = dict(
-        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=50)],
+        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=100)],
                   render_kw={
                       'placeholder': 'Tên thuốc'
                   }),
-        amount=dict(validators=[validators.DataRequired(), validators.NumberRange(0, 1000)], ),
+        amount=dict(validators=[validators.DataRequired(), validators.NumberRange(1, 1000)], ),
         medicine_unit=dict(validators=[validators.DataRequired()], ),
         unit_price=dict(validators=[validators.DataRequired(), validators.NumberRange(0, 100000000)], ),
-        dosage=dict(validators=[validators.DataRequired(), validators.Length(min=0, max=100)],
+        dosage=dict(validators=[validators.DataRequired(), validators.Length(min=0, max=200)],
                     render_kw={
                         'placeholder': 'Liều dùng thuốc'
                     }),

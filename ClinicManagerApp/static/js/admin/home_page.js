@@ -1,21 +1,21 @@
 var gChart = null;
 var gBgChart = null;
 
-  // check theme color when user refesh page
-  window.onload = function () {
-    if ($("body").attr('data-background-color') == 'bg1')
-      gBgChart = '#ffffff';
-    else if ($("body").attr('data-background-color') == 'bg2')
-      gBgChart = '#ffffff';
-    else if ($("body").attr('data-background-color') == 'bg3')
-      gBgChart = '#ffffff';
-    else
-      gBgChart = '#202940';
-    getGeneralAmount();
-    getRevenue();
-    getCustomerArriveFrequently();
-    getTopMedicine();
-  };
+// check theme color when user refesh page
+window.onload = function () {
+  if ($("body").attr('data-background-color') == 'bg1')
+    gBgChart = '#ffffff';
+  else if ($("body").attr('data-background-color') == 'bg2')
+    gBgChart = '#ffffff';
+  else if ($("body").attr('data-background-color') == 'bg3')
+    gBgChart = '#ffffff';
+  else
+    gBgChart = '#202940';
+  getGeneralAmount();
+  getRevenue();
+  getCustomerArriveFrequently();
+  getTopMedicine();
+};
 
 function getCustomerArriveFrequently() {
   fetch("/api/homepage/customer_arrive_frequenly")
@@ -49,8 +49,8 @@ function getTopMedicine() {
         labels.push(datas[i]["name"]);
         data.push(
           datas[i]["total_price"]
-          .substring(0, datas[i]["total_price"].indexOf(" "))
-          .replaceAll(",", "")
+            .substring(0, datas[i]["total_price"].indexOf(" "))
+            .replaceAll(",", "")
         );
       }
       createChart(
@@ -75,13 +75,13 @@ function getRevenue() {
       data = [];
       data.push(
         datas["today"]
-        .substring(0, datas["today"].indexOf(" "))
-        .replaceAll(",", "")
+          .substring(0, datas["today"].indexOf(" "))
+          .replaceAll(",", "")
       );
       data.push(
         datas["yesterday"]
-        .substring(0, datas["yesterday"].indexOf(" "))
-        .replaceAll(",", "")
+          .substring(0, datas["yesterday"].indexOf(" "))
+          .replaceAll(",", "")
       );
       createChart(
         (id = "total_income_chart"),
@@ -143,7 +143,7 @@ function createChart(id = "", type = "", label = "", data = [], labels = []) {
         backgroundColor: backgroundColor,
         borderColor: borderColor,
         borderWidth: 1,
-      }, ],
+      },],
     },
     options: {
       scales: {

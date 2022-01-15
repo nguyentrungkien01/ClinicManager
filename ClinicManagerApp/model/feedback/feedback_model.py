@@ -13,9 +13,9 @@ class FeedbackModel(db.Model):
 
     # attribute
     subject = Column(String(200), default='')
-    customer_name = Column(String(200), default='')
+    customer_name = Column(String(100), default='')
     content = Column(Text, default='')
-    gmail = Column(String(100), default='')
+    gmail = Column(String(50), default='')
     date_created = Column(DateTime, default=datetime.datetime.now())
     status = Column(Boolean, default=False)
 

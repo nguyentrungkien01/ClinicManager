@@ -33,7 +33,7 @@ class CategoryView(BaseModelView):
     ]
 
     form_args = dict(
-        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=50)],
+        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=100)],
                   render_kw={
                       'placeholder': 'Tên kho thuốc'
                   }),

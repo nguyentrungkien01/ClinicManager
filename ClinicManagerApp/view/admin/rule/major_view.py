@@ -31,7 +31,7 @@ class MajorView(BaseModelView):
 
     ]
     form_args = dict(
-        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=30)],
+        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=100)],
                   render_kw={
                       'placeholder': 'Chuyên ngành bác sĩ'
                   }),

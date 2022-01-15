@@ -35,17 +35,13 @@ class RuleView(BaseModelView):
     form_rules = [
         rules.FieldSet(('name',
                         'amount'), 'Thông tin quy định'),
-
-        # rules.FieldSet(('category',
-        #                 'medical_examination_list'), 'Thông tin khác có liên quan'),
-
     ]
     form_args = dict(
-        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=50)],
+        name=dict(validators=[validators.DataRequired(), validators.Length(min=1, max=150)],
                   render_kw={
                       'placeholder': 'Tên quy định'
                   }),
-        amount=dict(validators=[validators.DataRequired(), validators.NumberRange(0, 1000)], )
+        amount=dict(validators=[validators.DataRequired(), validators.NumberRange(0, 100000000)], )
     )
 
     def scaffold_list_columns(self):

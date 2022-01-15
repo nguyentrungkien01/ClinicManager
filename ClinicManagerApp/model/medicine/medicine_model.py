@@ -18,7 +18,7 @@ class MedicineModel(db.Model):
     import_date = Column(DateTime, default=datetime.now())
     expiration_date = Column(DateTime, default=datetime.now())
     dosage = Column(String(200), default='')
-    manufacturer = Column(String(50), default='')
+    manufacturer = Column(String(100), default='')
     description = Column(Text, default='')
 
     # foreign keys

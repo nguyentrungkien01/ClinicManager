@@ -1,4 +1,3 @@
-
 import cloudinary.uploader
 from flask import request
 from flask_admin.contrib.sqla.filters import BooleanEqualFilter, FilterLike, FilterEmpty, DateEqualFilter, \
