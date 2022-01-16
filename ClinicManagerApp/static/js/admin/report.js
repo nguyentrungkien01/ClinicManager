@@ -143,14 +143,14 @@ function setPage(itemIdx, amountPage) {
         if (itemIdx != 1)
             $('#previous_item').show()
     } else
-        if (itemIdx == 1) {
-            $('#previous_item').hide()
-            if (itemIdx != amountPage)
-                $('#next_item').show()
-        } else {
-            $('#previous_item').show()
+    if (itemIdx == 1) {
+        $('#previous_item').hide()
+        if (itemIdx != amountPage)
             $('#next_item').show()
-        }
+    } else {
+        $('#previous_item').show()
+        $('#next_item').show()
+    }
     gBegIdx = (itemIdx - 1) * gPageSize
     gEndIdx = gBegIdx + gPageSize
     getData()
@@ -362,25 +362,24 @@ $(document).ready(function () {
         }
         var time = ''
         if ($('#report_condition').val().includes('month'))
-            time = 'THÁNG'
+            time = 'THANG'
         else
-            if ($('#report_condition').val().includes('quarter'))
-                time = 'QUÝ'
-            else
-                time = 'NĂM'
-
-        if ($('#report_condition').val().includes('revenue'))
-            pdf.text(`BAO CAO DOANH THU THEO ${time}`, 130, 10)
+        if ($('#report_condition').val().includes('quarter'))
+            time = 'QUY'
+        else
+            time = 'NAM'
+        if ($('#report_type').val().includes('revenue'))
+            pdf.text(`BAO CAO DOANH THU THEO ${time}`, 110, 10)
         else
             pdf.text('BAO CAO TAN SUAT SU DUNG THUOC', 110, 10)
 
         if ($('#report_condition').val().includes('month'))
-            pdf.text(`Tháng: ${gMonth} / ${gYear}`, 135, 20)
+            pdf.text(`Thang: ${gMonth} / ${gYear}`, 135, 20)
         else
-            if ($('#report_condition').val().includes('quarter'))
-                pdf.text(`Qúy: ${gQuarter} / ${gYear}`, 135, 20)
-            else
-                pdf.text(`Năm: ${gYear}`, 140, 20)
+        if ($('#report_condition').val().includes('quarter'))
+            pdf.text(`Quy: ${gQuarter} / ${gYear}`, 135, 20)
+        else
+            pdf.text(`Nam: ${gYear}`, 140, 20)
 
         pdf.autoTable({
             head: [head],
