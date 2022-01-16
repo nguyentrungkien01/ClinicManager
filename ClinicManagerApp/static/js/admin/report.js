@@ -244,11 +244,11 @@ function setDataTable(datas) {
 }
 
 
-function initData(){
+function initData() {
     setDataSelection()
     gMonth = parseInt($('#month_input').val())
     gYear = parseInt($('#year_input').val())
-    gPageSize=10
+    gPageSize = 10
     setIndexPagination()
     getData()
     getAmount()
@@ -360,16 +360,27 @@ $(document).ready(function () {
                 sum += parseInt(gExportDatas[i]['medicine_amount'])
             }
         }
+        var time = ''
+        if ($('#report_condition').val().includes('month'))
+            time = 'THÁNG'
+        else
+            if ($('#report_condition').val().includes('quarter'))
+                time = 'QUÝ'
+            else
+                time = 'NĂM'
 
         if ($('#report_condition').val().includes('revenue'))
-            pdf.text($('#report_type option:selected').text().toUpperCase(), 130, 10)
+            pdf.text(`BAO CAO DOANH THU THEO ${time}`, 130, 10)
         else
-            pdf.text($('#report_type option:selected').text().toUpperCase(), 100, 10)
+            pdf.text('BAO CAO TAN SUAT SU DUNG THUOC', 110, 10)
 
         if ($('#report_condition').val().includes('month'))
             pdf.text(`Tháng: ${gMonth} / ${gYear}`, 135, 20)
         else
-            pdf.text(`Qúy: ${gQuarter} / ${gYear}`, 135, 20)
+            if ($('#report_condition').val().includes('quarter'))
+                pdf.text(`Qúy: ${gQuarter} / ${gYear}`, 135, 20)
+            else
+                pdf.text(`Năm: ${gYear}`, 140, 20)
 
         pdf.autoTable({
             head: [head],

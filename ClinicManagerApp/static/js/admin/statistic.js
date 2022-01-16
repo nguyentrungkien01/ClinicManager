@@ -414,6 +414,8 @@ function createChart(type = 'pie', label = '', data = [], labels = []) {
             backgroundColor.push(`rgba(${r},${g}, ${b}, 0.7)`);
             borderColor.push(`rgba(${r},${g}, ${b}, 1)`);
         }
+    else 
+        return
     const ctx = document.getElementById('chart').getContext('2d');
 
     if (gChart != null)
