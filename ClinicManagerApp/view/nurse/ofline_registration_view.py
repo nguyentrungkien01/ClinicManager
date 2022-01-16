@@ -6,6 +6,7 @@ from ClinicManagerApp.view.base_view import BaseView
 from ClinicManagerApp.model.human.customer_model import CustomerModel
 from ClinicManagerApp.controller.nurse.offline_registration_controller import \
     add_customer_daily, add_customer_db, get_remaining_amount_daily_slot, get_customer_daily_list
+from ClinicManagerApp.controller.utils_controller import readJsonFile, writeJsonFile
 
 
 class OfflineRegistrationView(BaseView):
@@ -30,9 +31,12 @@ def get_add_customer_result():
 
 
 def add_customer(customer=None):
+    daily_customer_list = readJsonFile('daily_customer_list.json')
     OfflineRegistrationView.add_customer_result = add_customer_daily(id_card=customer.id_card)
     if OfflineRegistrationView.add_customer_result:
         OfflineRegistrationView.add_customer_result = add_customer_db(customer=customer)
+        if not OfflineRegistrationView.add_customer_result:
+            writeJsonFile(filename='daily_customer_list.json', data=daily_customer_list)
 
 
 @app.route('/api/nurse/customer_offline_data', methods=['post'])

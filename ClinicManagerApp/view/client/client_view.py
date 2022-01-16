@@ -7,6 +7,7 @@ from ClinicManagerApp.model.human.customer_model import CustomerModel
 from ClinicManagerApp.controller.client.client_controller import get_department_amount as gda, \
     get_department_infor as gdi, get_doctor_amount as gdra, get_major as gm, \
     get_doctor_info as gdri, add_feedback, get_exp_doctor_amount, get_staff_amount, get_medical_examination_amount
+from ClinicManagerApp.controller.utils_controller import readJsonFile, writeJsonFile
 
 
 class AddingResult:
@@ -33,9 +34,12 @@ def get_add_customer_result():
 
 
 def add_customer(customer=None):
+    daily_customer_list = readJsonFile('daily_customer_list.json')
     AddingResult.add_customer_result = add_customer_daily(id_card=customer.id_card)
     if AddingResult.add_customer_result:
         AddingResult.add_customer_result = add_customer_db(customer=customer)
+        if not AddingResult.add_customer_result:
+            writeJsonFile(filename='daily_customer_list.json', data=daily_customer_list)
 
 
 @app.route('/api/client/online_registration', methods=['post'])
