@@ -2,7 +2,7 @@ window.onload = function () {
     $("#search_result").modal("toggle");
 };
 
-function confirm_pay() {
+function confirmPay() {
     fetch("/api/nurse/payment", {
         method: "post",
         body: JSON.stringify({
@@ -118,6 +118,6 @@ function exportPDF() {
 
 $(document).ready(function () {
     $("#confirm").click(function () {
-        confirm_pay();
+        confirmPay();
     });
 });
