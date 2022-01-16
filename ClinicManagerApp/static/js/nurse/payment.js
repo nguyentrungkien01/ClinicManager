@@ -53,8 +53,10 @@ function exportPDF() {
     });
     pdf.setFontSize(13);
     pdf.text("HOA DON THANH TOAN", 77, 10);
-    pdf.text(`Ho Ten: ${$("#customer_fullname_pay").text()}`, 10, 20)
-    pdf.text(`Ngay kham: ${dateTime}`, 110, 20)
+    fullname = $("#customer_fullname_pay").text().replaceAll('\n', '').trim().split(' ');
+
+    pdf.text(`Ho Ten: ${fullname[0]} ${fullname[fullname.length-1]}`, 10, 20)
+    pdf.text(`Ngay kham: ${dateTime}`, 120, 20)
     pdf.text(`Tien kham: ${$("#medical_examination_price_pay").text()}`, 10, 30);
     pdf.text(`Tien thuoc: ${$("#medicine_price_total_pay").text()}`, 110, 30);
     pdf.text(`Tong tien: ${$("#total_price_pay").text()}`, 10, 40);
