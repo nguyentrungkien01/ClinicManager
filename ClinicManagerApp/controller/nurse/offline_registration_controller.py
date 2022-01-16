@@ -48,22 +48,23 @@ def reset_daily_list():
         writeJsonFile('daily_customer_list.json', daily_customer_list)
 
 
-def add_customer_db(customer=None):
+def add_customer_db(customer=None, send_message=False):
     if is_exist_customer_db(customer.id_card):
         return True
-    # message = 'Phòng khám Trung Thành xin kính chào quý khách! ' \
-    #           'Khách hàng: {} {} có số ' \
-    #           'CCCD: {}. ' \
-    #           'Đã đăng ký thành công lịch hẹn khám tại phòng khám Trung Thành vào lúc {}' \
-    #     .format(customer.last_name, customer.first_name, customer.id_card, datetime.datetime.now())
-    # phone_number = '+84' + customer.phone_number[1:]
+    message = 'Phòng khám Trung Thành xin kính chào quý khách! ' \
+              'Khách hàng: {} {} có số ' \
+              'CCCD: {}. ' \
+              'Đã đăng ký thành công lịch hẹn khám tại phòng khám Trung Thành vào lúc {}' \
+        .format(customer.last_name, customer.first_name, customer.id_card, datetime.datetime.now())
+    phone_number = '+84' + customer.phone_number[1:]
     try:
-        # client.messages \
-        #     .create(
-        #     from_='+15706092840',
-        #     body=message,
-        #     to='+84982482975'
-        # )
+        if send_message:
+            client.messages \
+                .create(
+                from_='+15706092840',
+                body=message,
+                to='+84982482975'
+            )
         db.session.add(customer)
         db.session.commit()
         return True
