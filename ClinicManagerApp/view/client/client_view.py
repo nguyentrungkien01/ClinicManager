@@ -37,7 +37,7 @@ def add_customer(customer=None):
     daily_customer_list = readJsonFile('daily_customer_list.json')
     AddingResult.add_customer_result = add_customer_daily(id_card=customer.id_card)
     if AddingResult.add_customer_result:
-        AddingResult.add_customer_result = add_customer_db(customer=customer)
+        AddingResult.add_customer_result = add_customer_db(customer=customer, send_message=True)
         if not AddingResult.add_customer_result:
             writeJsonFile(filename='daily_customer_list.json', data=daily_customer_list)
 
