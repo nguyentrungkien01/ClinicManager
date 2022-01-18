@@ -6,11 +6,23 @@ from ClinicManagerApp.model.rule.rule_model import RuleModel
 from ClinicManagerApp.controller.utils_controller import readJsonFile, writeJsonFile
 
 
+def reset_daily_list():
+    daily_customer_list = readJsonFile('daily_customer_list.json')
+    pdt = daily_customer_list['date']
+    dt = datetime.datetime.now().strftime('%Y-%m-%d')
+    if pdt and pdt != dt:
+        daily_customer_list['date'] = None
+        daily_customer_list['customer_list'] = []
+        writeJsonFile('daily_customer_list.json', daily_customer_list)
+
+
 def get_amount_registration_daily():
+    reset_daily_list()
     return RuleModel.query.filter(RuleModel.name.like('%số lượng%')).first().amount
 
 
 def get_remaining_amount_daily_slot():
+    reset_daily_list()
     return get_amount_registration_daily() - len(readJsonFile('daily_customer_list.json')['customer_list'])
 
 
@@ -36,16 +48,6 @@ def is_exist_customer_db(id_card=None):
     if CustomerModel.query.filter(CustomerModel.id_card.__eq__(id_card)).first():
         return True
     return False
-
-
-def reset_daily_list():
-    daily_customer_list = readJsonFile('daily_customer_list.json')
-    pdt = daily_customer_list['date']
-    dt = datetime.datetime.now().strftime('%Y-%m-%d')
-    if pdt and pdt != dt:
-        daily_customer_list['date'] = None
-        daily_customer_list['customer_list'] = []
-        writeJsonFile('daily_customer_list.json', daily_customer_list)
 
 
 def add_customer_db(customer=None, send_message=False):

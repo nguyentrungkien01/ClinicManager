@@ -48,8 +48,6 @@ def get_amount_customer_in_month():
         'month': month,
         'year': year,
         'days': days,
-        # 'datas': [100, 3, 4, 12, 9, 21, 23, 13, 5, 21, 34, 5, 1, 23, 23, 13, 27, 12, 2, 3, 4, 1, 0, 30, 2, 1, 3, 1, 28,
-        #           29, 16]
         'datas': datas
     }
 
@@ -58,7 +56,7 @@ def get_revenue_today():
     return db.session.query(func.sum(MedicalBillModel.total_price)) \
         .filter(func.month(MedicalBillModel.date_created).__eq__(datetime.datetime.now().month),
                 func.year(MedicalBillModel.date_created).__eq__(datetime.datetime.now().year),
-                func.day(MedicalBillModel.date_created).__eq__(datetime.datetime.day)).first()[0]
+                func.day(MedicalBillModel.date_created).__eq__(datetime.datetime.now().day)).first()[0]
 
 
 def get_revenue_yesterday():
