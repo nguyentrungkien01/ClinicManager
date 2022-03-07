@@ -1,8 +1,8 @@
 # ClinicManager
-Website quản lý phòng khám tư được viết bằng ngôn ngữ Python, HTML, CSS, Javascript, sử dụng Flask, SqlAlchemy, MySql, CharJs, JsPdf, cloudinary
+Website quản lý phòng khám tư được viết bằng ngôn ngữ `Python`, `HTML`, `CSS`, `Javascript`, sử dụng `Flask`, `SqlAlchemy`, `MySql`, `CharJs`, `JsPdf`, `cloudinary`
 
 # Mô tả
-Website quản lý phòng khám tư được ứng dụng từ môn Công nghệ phần mềm và được triển khai trên PythonAnywhere
+Website quản lý phòng khám tư được ứng dụng từ môn Công nghệ phần mềm và được triển khai trên `PythonAnywhere`
 
 # Chức năng
 - Khách hàng
